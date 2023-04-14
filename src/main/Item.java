@@ -1,10 +1,8 @@
 package main;
 
-import main.Athlete.Stats;
-
 public class Item extends Purchasable {
 	private String name;
-	private Stats stat;
+	private STATS stat;
 	private int value;
 	public Item() {
 		
@@ -24,8 +22,13 @@ public class Item extends Purchasable {
 	public int getValue() {
 		return value;
 	}
-	public Stats getStat() {
+	public STATS getStat() {
 		return stat;
+	}
+	
+	public static void main(String[] args) {
+		Item item = new Item();
+		System.out.println(item.stat);
 	}
 
 }

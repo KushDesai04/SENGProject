@@ -1,64 +1,64 @@
 package main;
 import java.util.*;
 
+enum POSITION {
+	PG, PF, CENTER, SF, SG;
+}
+
+enum STATS {O, D, S, A}
+
 public class Athlete extends Purchasable {
 	
 	private String name;
 	private int price;
 	private int rating;
-	private int offence;
-	private int defence;
-	private int stamina;
-	private int agility;
-	private String position;
+	private POSITION position;
 	private boolean isPlaying;
-	private ArrayList<Integer> statsArray = new ArrayList<Integer>();
+	private HashMap<String, Integer> Stats = new HashMap<String, Integer>();
 	
 	
 	public Athlete() {
 		// TODO Auto-generated constructor stub
 		
 	}
-	public Athlete (String tempName, int tempRating, String tempPosition, ArrayList<Integer> tempStats) {
+	public Athlete (String tempName, int tempRating, POSITION tempPosition, ArrayList<Integer> tempStats) {
 		name = tempName;
 		rating = tempRating;
 		position = tempPosition;
-		offence = tempStats.get(0);
-		defence = tempStats.get(1);
-		stamina = tempStats.get(2);
-		agility = tempStats.get(3);
-		statsArray = tempStats;
+		int offence = tempStats.get(0);
+		int defence = tempStats.get(1);
+		int stamina = tempStats.get(2);
+		int agility = tempStats.get(3);
+		Stats.put("offence", offence);
+		Stats.put("defence", defence);
+		Stats.put("stamina", stamina);
+		Stats.put("agility", agility);
 		
 	}
 	public void setNickname(String newName) {
 		name = newName;
 	}
 	
-	public enum Stats {O, D, S, A}
 	
-	public void increase(int value, Stats stat) {
+	public void increase(int value, STATS stat) {
 		switch (stat) {
 			case O:
-				offence += value;
-				statsArray.set(0, offence);
+				Stats.put("offence", Stats.get("offence") + value);
 				break;
 			case D:
-				defence += value;
-				statsArray.set(1, defence);
+				Stats.put("defence", Stats.get("defence") + value);
 				break;
 			case S:
-				stamina += value;
-				statsArray.set(2, stamina);
+				Stats.put("stamina", Stats.get("stamina") + value);
 				break;
 			case A:
-				agility += value;
-				statsArray.set(3, agility);
+				Stats.put("agility", Stats.get("agility") + value);
 				break;
 		}
 	}	
 	
 	public int getStat() {
-		return Collections.max(statsArray);
+		return Stats.get("offence");
 	}
 	
 	@Override
@@ -66,6 +66,7 @@ public class Athlete extends Purchasable {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public void sell() {
 		// TODO Auto-generated method stub
@@ -78,16 +79,19 @@ public class Athlete extends Purchasable {
 		statListsA.add(96);
 		statListsA.add(95);
 		statListsA.add(94);
-		Athlete a = new Athlete("A", 99, "PG", statListsA);
-		System.out.println(a.offence);
-		Stats increaseStat = Stats.O;
+		
+		Athlete a = new Athlete("A", 99, POSITION.PG, statListsA);
+		
+		System.out.println(a.Stats.get("offence"));
+	
 		System.out.println(a.getStat());
-		System.out.println(a.statsArray);
-		a.increase(99, increaseStat);
-		System.out.println(a.offence);
+		System.out.println(a.Stats);
+		STATS pos = STATS.O;
+		a.increase(99, pos);
+		System.out.println(a.Stats.get("offence"));
 		
 		System.out.println(a.getStat());
-		System.out.println(a.statsArray);
+		System.out.println(a.Stats);
 	}
 	
 }
