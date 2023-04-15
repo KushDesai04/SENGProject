@@ -1,3 +1,6 @@
+/*
+ * This is the Item class.
+ */
 package main;
 
 public class Item extends Purchasable {
