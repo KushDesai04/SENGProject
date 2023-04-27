@@ -7,8 +7,11 @@ public class Item extends Purchasable {
 	private String name;
 	private STATS stat;
 	private int value;
-	public Item() {
-		
+	public Item(String name, STATS stat, int value) {
+		this.name = name;
+		this.stat = stat;
+		this.value = value;
+		this.description = name + ". This item increases a players " + getStatName() + " by " + value;
 	}
 
 	@Override
@@ -25,13 +28,29 @@ public class Item extends Purchasable {
 	public int getValue() {
 		return value;
 	}
+	
+	public String getStatName() {
+		switch (this.stat){
+		case A:
+			return "agility";
+		case D:
+			return "defence";
+		case O:
+			return "offence";
+		case S:
+			return "stamina";
+		default:
+			return "error";
+		}
+	}
+	
 	public STATS getStat() {
-		return stat;
+		return (this.stat);
 	}
 	
 	public static void main(String[] args) {
-		Item item = new Item();
-		System.out.println(item.stat);
+		Item item = new Item("Cake", STATS.D, 12);
+		System.out.println(item);
 	}
 
 }
