@@ -17,7 +17,7 @@ public class Athlete extends Purchasable {
 	private int rating;
 	private POSITION position;
 	private boolean isPlaying;
-	private HashMap<String, Integer> Stats = new HashMap<String, Integer>();
+	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 	
 	
 	public Athlete() {
@@ -32,10 +32,11 @@ public class Athlete extends Purchasable {
 		int defence = tempStats.get(1);
 		int stamina = tempStats.get(2);
 		int agility = tempStats.get(3);
-		Stats.put("offence", offence);
-		Stats.put("defence", defence);
-		Stats.put("stamina", stamina);
-		Stats.put("agility", agility);
+		Stats.put(STATS.O, offence);
+		Stats.put(STATS.D, defence);
+		Stats.put(STATS.S, stamina);
+		Stats.put(STATS.A, agility);
+		this.description = "temp description";
 		
 	}
 	public void setNickname(String newName) {
@@ -44,24 +45,11 @@ public class Athlete extends Purchasable {
 	
 	
 	public void increase(int value, STATS stat) {
-		switch (stat) {
-			case O:
-				Stats.put("offence", Stats.get("offence") + value);
-				break;
-			case D:
-				Stats.put("defence", Stats.get("defence") + value);
-				break;
-			case S:
-				Stats.put("stamina", Stats.get("stamina") + value);
-				break;
-			case A:
-				Stats.put("agility", Stats.get("agility") + value);
-				break;
-		}
+		Stats.put(stat, (getStat(stat) + value));
 	}	
 	
-	public int getStat() {
-		return Stats.get("offence");
+	public int getStat(STATS stat) {
+		return Stats.get(stat);
 	}
 	
 	@Override
@@ -76,6 +64,10 @@ public class Athlete extends Purchasable {
 		
 	}
 	
+	public String toString() {
+		return super.toString();
+	}
+	
 	public static void main(String args[]) {
 		ArrayList<Integer> statListsA = new ArrayList<Integer>();
 		statListsA.add(99);
@@ -85,16 +77,17 @@ public class Athlete extends Purchasable {
 		
 		Athlete a = new Athlete("A", 99, POSITION.PG, statListsA);
 		
-		System.out.println(a.Stats.get("offence"));
-	
-		System.out.println(a.getStat());
-		System.out.println(a.Stats);
-		STATS pos = STATS.O;
-		a.increase(99, pos);
-		System.out.println(a.Stats.get("offence"));
-		
-		System.out.println(a.getStat());
-		System.out.println(a.Stats);
+//		System.out.println(a.Stats.get(STATS.O));
+//	
+//		System.out.println(a.getStat(STATS.O));
+//		System.out.println(a.Stats);
+//		STATS pos = STATS.O;
+//		a.increase(99, pos);
+//		System.out.println(a.Stats.get(STATS.O));
+//		
+//		System.out.println(a.getStat(STATS.O));
+//		System.out.println(a.Stats);
+		System.out.println(a);
 	}
 	
 }
