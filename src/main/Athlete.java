@@ -48,9 +48,6 @@ public class Athlete extends Purchasable {
 		Stats.put(stat, (getStat(stat) + value));
 	}	
 	
-	public int getStat(STATS stat) {
-		return Stats.get(stat);
-	}
 	
 	@Override
 	public boolean buy() {
@@ -66,6 +63,27 @@ public class Athlete extends Purchasable {
 	
 	public String toString() {
 		return super.toString();
+	}
+	
+	//Getter methods
+	public int getStat(STATS stat) {
+		return Stats.get(stat);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public POSITION getPosition() {
+		return position;
+	}
+	public boolean getPlaying() {
+		return isPlaying;
 	}
 	
 	public static void main(String args[]) {
