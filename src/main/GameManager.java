@@ -18,7 +18,7 @@ public class GameManager {
 	}
 	
 	public void launchGameSetupScreen() {
-		GameSetupScreen gameSetupWindow = new GameSetupScreen(this);
+		SetupScreen gameSetupWindow = new SetupScreen(this);
 	}
 	public void closeGameSetupScreen() {
 		gameSetupWindow.close();
