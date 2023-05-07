@@ -12,19 +12,32 @@ public class Team extends Athlete {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void addPlayers(Athlete player) {
+	public void addPlayer(Athlete player) {
 		players.add(player);
 	}
-	public void removePlayers(Athlete player) {
+	
+	public void buyPlayer(Athlete player) {
+		reserves.add(player);
+	}
+	
+	public void sellPlayer(Athlete player) {
+		reserves.remove(player);
+		// TODO throw exception if player is in team
+	}
+	
+	public void removePlayer(Athlete player) {
 		players.remove(player);
 		reserves.add(player);
 	}
-	public void addConsumable(Item consumable) {
+	
+	public void buyConsumable(Item consumable) {
 		consumables.add(consumable);
 	}
-	public void removeConsumable(Item consumable) {
+	
+	public void sellConsumable(Item consumable) {
 		consumables.remove(consumable);
 	}
+	
 	public boolean useConsumable(Item consumable, Athlete athlete) {
 		if (consumables.contains(consumable)) {
 			athlete.increase(consumable.getValue(), consumable.getStat());
