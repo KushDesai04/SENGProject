@@ -21,6 +21,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import java.awt.FlowLayout;
+import javax.swing.border.MatteBorder;
 
 public class SetupScreen {
 
@@ -72,7 +73,7 @@ public class SetupScreen {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JButton btnNewButton = new JButton("Start Game");
+		JButton btnNewButton = new JButton("Next");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JPanel panel = new JPanel();
@@ -116,14 +117,14 @@ public class SetupScreen {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Easy", "Hard"}));
 		
-		JLabel lblSeasonLength = new JLabel("Season Length:");
+		JLabel lblSeasonLength = new JLabel("Season Length (weeks):");
 		lblSeasonLength.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeasonLength.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JSlider slider = new JSlider();
 		slider.setMinimum(5);
 		slider.setMajorTickSpacing(5);
-		slider.setToolTipText("");
+		slider.setToolTipText("Weeks");
 		slider.setSnapToTicks(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
@@ -158,11 +159,11 @@ public class SetupScreen {
 					.addComponent(lblDifficulty)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addGap(39)
 					.addComponent(lblSeasonLength)
 					.addGap(9)
 					.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
