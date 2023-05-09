@@ -56,9 +56,20 @@ public class GameManager {
 	 public void launchStadiumScreen() {
 	 	StadiumScreen stadiumWindow = new StadiumScreen(this);
 	 }
+	 public void goToGame(StadiumScreen stadiumWindow) {
+		 stadiumWindow.closeWindow();
+		 
+	 }
 	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
 	 	stadiumWindow.closeWindow();
 	 	launchMainScreen();
+	 }
+	 public void gameScreen() {
+		 GameScreen gameWindow = new GameScreen(this);
+	 }
+	 public void closeGameScreen(GameScreen gameWindow) {
+		 gameWindow.closeWindow();
+		 launchMainScreen();
 	 }
 	
 	public static void main(String args[]) {
