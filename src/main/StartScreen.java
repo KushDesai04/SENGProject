@@ -30,7 +30,14 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class StartScreen {
 
 	private JFrame frame;
-
+	private GameManager manager;
+	
+	public StartScreen(GameManager gameManager) {
+		// TODO Auto-generated constructor stub
+		manager = gameManager;
+		initialize();
+		frame.setVisible(true);
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -54,10 +61,13 @@ public class StartScreen {
 		initialize();
 	}
 
-	public StartScreen(GameManager gameManager) {
-		// TODO Auto-generated constructor stub
+	
+	public void closeWindow() {
+		frame.dispose();
 	}
-
+	public void finishedWindow() {
+		manager.closeStartScreen(this);
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */

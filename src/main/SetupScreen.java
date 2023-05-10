@@ -6,12 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -23,11 +28,35 @@ import javax.swing.JSlider;
 import java.awt.FlowLayout;
 import javax.swing.border.MatteBorder;
 
+import org.junit.validator.PublicClassValidator;
+
+import java.awt.event.ActionListener;
+import java.util.concurrent.Flow.Publisher;
+import java.awt.event.ActionEvent;
+
 public class SetupScreen {
 
 	private JFrame frame;
 	private JTextField txtTeamName;
-
+	private GameManager manager;
+	private String teamName;
+	
+	public SetupScreen(GameManager gameManager) {
+		manager = gameManager;
+		initialize();
+		frame.setVisible(true);
+		
+	}
+	public String returnTeamName() {
+		return teamName;
+	}
+	public void closeWindow() {
+		frame.dispose();
+	}
+	public void finishedWindow() {
+		manager.closeGameSetupScreen(this);
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -51,10 +80,8 @@ public class SetupScreen {
 		initialize();
 	}
 
-	public SetupScreen(GameManager gameManager) {
-		// TODO Auto-generated constructor stub
-	}
-
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -73,7 +100,16 @@ public class SetupScreen {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
+		
 		JButton btnNewButton = new JButton("Next");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				teamName = txtTeamName.getText();
+				returnTeamName();
+				finishedWindow();
+			}
+		});
+		
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JPanel panel = new JPanel();
@@ -168,4 +204,5 @@ public class SetupScreen {
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
+	
 }
