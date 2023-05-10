@@ -33,13 +33,14 @@ import org.junit.validator.PublicClassValidator;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Flow.Publisher;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class SetupScreen {
 
 	private JFrame frame;
 	private JTextField txtTeamName;
 	private GameManager manager;
-	private String teamName;
 	
 	public SetupScreen(GameManager gameManager) {
 		manager = gameManager;
@@ -47,15 +48,8 @@ public class SetupScreen {
 		frame.setVisible(true);
 		
 	}
-	public String returnTeamName() {
-		return teamName;
-	}
-	public void closeWindow() {
-		frame.dispose();
-	}
-	public void finishedWindow() {
-		manager.closeGameSetupScreen(this);
-	}
+	
+	
 	
 	/**
 	 * Launch the application.
@@ -79,7 +73,13 @@ public class SetupScreen {
 	public SetupScreen() {
 		initialize();
 	}
-
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	public void finishedWindow() {
+		manager.closeGameSetupScreen(this);
+	}
 	
 	
 	/**
@@ -104,8 +104,7 @@ public class SetupScreen {
 		JButton btnNewButton = new JButton("Next");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				teamName = txtTeamName.getText();
-				returnTeamName();
+				manager.setTeamName(txtTeamName.getText());
 				finishedWindow();
 			}
 		});
@@ -150,14 +149,27 @@ public class SetupScreen {
 		lblDifficulty.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDifficulty.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Easy", "Hard"}));
+		JComboBox<String> difficultyComboBox = new JComboBox<String>();
+		if (difficultyComboBox.getSelectedIndex() == -1) {
+			manager.setDifficulty("Easy");
+		}
+		difficultyComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.setDifficulty(difficultyComboBox.getSelectedItem().toString());
+			}		
+		});
+		difficultyComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Easy", "Hard"}));
 		
 		JLabel lblSeasonLength = new JLabel("Season Length (weeks):");
 		lblSeasonLength.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeasonLength.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JSlider slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				manager.setNumWeeks(slider.getValue());
+			}
+		});
 		slider.setMinimum(5);
 		slider.setMajorTickSpacing(5);
 		slider.setToolTipText("Weeks");
@@ -183,7 +195,7 @@ public class SetupScreen {
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(10)
-									.addComponent(comboBox, 0, 75, Short.MAX_VALUE))
+									.addComponent(difficultyComboBox, 0, 75, Short.MAX_VALUE))
 								.addComponent(lblDifficulty, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGap(57)))
 					.addGap(198))
@@ -194,7 +206,7 @@ public class SetupScreen {
 					.addGap(8)
 					.addComponent(lblDifficulty)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(difficultyComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(39)
 					.addComponent(lblSeasonLength)
 					.addGap(9)

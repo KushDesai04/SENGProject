@@ -3,6 +3,7 @@ package main;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.naming.ldap.ManageReferralControl;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
@@ -18,7 +19,14 @@ import javax.swing.JLabel;
 public class TeamSetupScreen {
 
 	private JFrame frame;
-
+	private GameManager manager;
+	
+	public TeamSetupScreen(GameManager gameManager) {
+		manager = gameManager;
+		initialize();
+		frame.setVisible(true);
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -40,6 +48,12 @@ public class TeamSetupScreen {
 	 */
 	public TeamSetupScreen() {
 		initialize();
+	}
+	public void closeWindow() {
+		frame.dispose();
+	}
+	public void finishedWindow() {
+		manager.closeTeamSetupScreen(this);
 	}
 
 	/**

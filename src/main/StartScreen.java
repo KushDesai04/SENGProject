@@ -26,6 +26,8 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class StartScreen {
 
@@ -104,6 +106,11 @@ public class StartScreen {
 		JPanel panel_1_1 = new JPanel();
 		
 		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				closeWindow();
+			}
+		});
 		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnQuit.setAlignmentX(0.5f);
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -151,6 +158,11 @@ public class StartScreen {
 		panel_1_1.setLayout(gl_panel_1_1);
 		
 		JButton btnNewButton = new JButton("Play");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);

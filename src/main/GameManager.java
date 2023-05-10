@@ -2,10 +2,30 @@ package main;
 import java.util.*;
 public class GameManager {
 	
-	private ArrayList<Athlete> startingTeam;
 	private String teamName;
 	private int numWeeks;
 	private Team team;
+	private String difficulty;
+	
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+	public String getDifficulty() {
+		return difficulty;
+	}
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
+	public int getNumWeeks() {
+		return numWeeks;
+	}
+	public void setNumWeeks(int numWeeks) {
+		this.numWeeks = numWeeks;
+	}
+	
 	public void launchStartScreen() {
 		StartScreen startWindow = new StartScreen(this);
 	}
@@ -18,17 +38,18 @@ public class GameManager {
 		SetupScreen gameSetupWindow = new SetupScreen(this);
 	}
 	public void closeGameSetupScreen(SetupScreen gameSetupWindow) {
-		teamName = gameSetupWindow.returnTeamName();
+		System.out.println(String.format("%s,%s,%d",teamName, difficulty, numWeeks ));
 		gameSetupWindow.closeWindow();
+		launchTeamSetupScreen();
 	}
 //	
-//	public void launchTeamSetupScreen() {
-//		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
-//	}
-//	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
-//		teamSetupWindow.closeWindow();
-//	}
-//	
+	public void launchTeamSetupScreen() {
+		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
+	}
+	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
+		teamSetupWindow.closeWindow();
+	}
+	
 //	public void launchMainScreen() {
 //	 	MainScreen mainWindow = new MainScreen(this);
 //	 }
@@ -75,5 +96,8 @@ public class GameManager {
 		GameManager manager = new GameManager();
 		manager.launchStartScreen();
 	}
+	
+	
+	
 	
 }
