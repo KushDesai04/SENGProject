@@ -4,8 +4,9 @@ public class GameManager {
 	
 	private String teamName;
 	private int numWeeks;
-	private Team team;
+	private Team team = new Team(teamName);
 	private String difficulty;
+	private Market market = new Market();
 	
 	public String getTeamName() {
 		return teamName;
@@ -13,17 +14,23 @@ public class GameManager {
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
+	public int getNumWeeks() {
+		return numWeeks;
+	}
+	public void setNumWeeks(int numWeeks) {
+		this.numWeeks = numWeeks;
+	}
+	public Team getTeam() {
+		return team;
+	}
 	public String getDifficulty() {
 		return difficulty;
 	}
 	public void setDifficulty(String difficulty) {
 		this.difficulty = difficulty;
 	}
-	public int getNumWeeks() {
-		return numWeeks;
-	}
-	public void setNumWeeks(int numWeeks) {
-		this.numWeeks = numWeeks;
+	public Market getMarket() {
+		return market;
 	}
 	
 	public void launchStartScreen() {
@@ -48,6 +55,7 @@ public class GameManager {
 	}
 	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
 		teamSetupWindow.closeWindow();
+		
 	}
 	
 //	public void launchMainScreen() {

@@ -9,12 +9,20 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.junit.validator.PublicClassValidator;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.desktop.AboutHandler;
+
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JToggleButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 public class TeamSetupScreen {
 
@@ -55,7 +63,13 @@ public class TeamSetupScreen {
 	public void finishedWindow() {
 		manager.closeTeamSetupScreen(this);
 	}
-
+	public boolean maxSize() {
+		return manager.getTeam().getPlayers().size() == 5;
+	}
+	public boolean lessThanMax() {
+		return manager.getTeam().getPlayers().size() < 5;
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -71,6 +85,17 @@ public class TeamSetupScreen {
 		panel_1.setBackground(Color.WHITE);
 		
 		JButton btnNewButton = new JButton("Start");
+		btnNewButton.setEnabled(false);
+		if (manager.getTeam().getPlayers().size() == 5) {
+			btnNewButton.setEnabled(true);
+		}
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (btnNewButton.isEnabled()) {
+					finishedWindow();
+				}		
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -97,22 +122,207 @@ public class TeamSetupScreen {
 					.addGap(18))
 		);
 		
+		JLabel nameLabel = new JLabel("placeholder text for name");
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel positionLabel = new JLabel("placeholder for position ");
+		positionLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel offLabel = new JLabel("Offence:");
+		offLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JSeparator separator = new JSeparator();
+		
+		JLabel defLabel = new JLabel("Defence:");
+		defLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel stamLabel = new JLabel("Stamina:");
+		stamLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel agilLabel = new JLabel("Agility: ");
+		agilLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(positionLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(offLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(defLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(stamLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(agilLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+					.addContainerGap(59, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(181)
+					.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(positionLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(9)
+					.addComponent(offLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(5)
+					.addComponent(defLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(stamLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(agilLabel)
+					.addContainerGap(18, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+		
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("Player1");
+		if (!tglbtnNewToggleButton.isSelected() && maxSize()) {
+			tglbtnNewToggleButton.setEnabled(false);
+		}
+		else {
+			tglbtnNewToggleButton.setEnabled(true);
+		}
+		tglbtnNewToggleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton.isSelected() && lessThanMax()) {
+					manager.getTeam().addPlayer(null); //Add player from array to starters
+					nameLabel.setText(null); //Set name label to athlete name
+					offLabel.setText(null);
+					defLabel.setText(null);
+					stamLabel.setText(null);
+					agilLabel.setText(null);
+				}
+				else if (!tglbtnNewToggleButton.isSelected()) {
+					manager.getTeam().removePlayer(null);
+				}
+			}
+		});
 		tglbtnNewToggleButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnNewToggleButton_1 = new JToggleButton("Player1");
+		if (!tglbtnNewToggleButton_1.isSelected() && maxSize()) {
+			tglbtnNewToggleButton_1.setEnabled(false);
+		}
+		else {
+			tglbtnNewToggleButton_1.setEnabled(true);
+		}
+		tglbtnNewToggleButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton_1.isSelected() && lessThanMax()) {
+					manager.getTeam().addPlayer(null);
+					nameLabel.setText(null); //Set name label to athlete name
+					offLabel.setText(null);
+					defLabel.setText(null);
+					stamLabel.setText(null);
+					agilLabel.setText(null);
+				}
+				else if (!tglbtnNewToggleButton_1.isSelected()) {
+					manager.getTeam().removePlayer(null);
+				}
+			}
+		});
 		tglbtnNewToggleButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnNewToggleButton_2 = new JToggleButton("Player1");
+		if (!tglbtnNewToggleButton_2.isSelected() && maxSize()) {
+			tglbtnNewToggleButton_2.setEnabled(false);
+		}
+		else {
+			tglbtnNewToggleButton_2.setEnabled(true);
+		}
+		tglbtnNewToggleButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton_2.isSelected() && lessThanMax()) {
+					manager.getTeam().addPlayer(null);
+					nameLabel.setText(null); //Set name label to athlete name
+					offLabel.setText(null);
+					defLabel.setText(null);
+					stamLabel.setText(null);
+					agilLabel.setText(null);
+				}
+				else if (!tglbtnNewToggleButton_2.isSelected()) {
+					manager.getTeam().removePlayer(null);
+				}
+			}
+		});
 		tglbtnNewToggleButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnNewToggleButton_3 = new JToggleButton("Player1");
+		if (!tglbtnNewToggleButton_3.isSelected() && maxSize()) {
+			tglbtnNewToggleButton_3.setEnabled(false);
+		}
+		else {
+			tglbtnNewToggleButton_3.setEnabled(true);
+		}
+		tglbtnNewToggleButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton_3.isSelected() && lessThanMax()) {
+					manager.getTeam().addPlayer(null);
+					nameLabel.setText(null); //Set name label to athlete name
+					offLabel.setText(null);
+					defLabel.setText(null);
+					stamLabel.setText(null);
+					agilLabel.setText(null);
+				}
+				else if (!tglbtnNewToggleButton_3.isSelected()) {
+					manager.getTeam().removePlayer(null);
+				}
+			}
+		});
 		tglbtnNewToggleButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnNewToggleButton_1_1 = new JToggleButton("Player1");
+		if (!tglbtnNewToggleButton_1_1.isSelected() && maxSize()) {
+			tglbtnNewToggleButton_1_1.setEnabled(false);
+		}
+		else {
+			tglbtnNewToggleButton_1_1.setEnabled(true);
+		}
+		tglbtnNewToggleButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton_1_1.isSelected() && lessThanMax()) {
+					manager.getTeam().addPlayer(null);
+					nameLabel.setText(null); //Set name label to athlete name
+					offLabel.setText(null);
+					defLabel.setText(null);
+					stamLabel.setText(null);
+					agilLabel.setText(null);
+				}
+				else if (!tglbtnNewToggleButton_1_1.isSelected()) {
+					manager.getTeam().removePlayer(null);
+				}
+			}
+		});
 		tglbtnNewToggleButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnNewToggleButton_2_1 = new JToggleButton("Player1");
+		if (!tglbtnNewToggleButton_2_1.isSelected() && maxSize()) {
+			tglbtnNewToggleButton_2_1.setEnabled(false);
+		}
+		else {
+			tglbtnNewToggleButton_2_1.setEnabled(true);
+		}
+		tglbtnNewToggleButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton_2_1.isSelected() && lessThanMax()) {
+					manager.getTeam().addPlayer(null);
+					nameLabel.setText(null); //Set name label to athlete name
+					offLabel.setText(null);
+					defLabel.setText(null);
+					stamLabel.setText(null);
+					agilLabel.setText(null);
+				}
+				else if (!tglbtnNewToggleButton_2_1.isSelected()) {
+					manager.getTeam().removePlayer(null);
+				}
+			}
+		});
 		tglbtnNewToggleButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel = new JLabel("Select 5 Players");
@@ -166,4 +376,5 @@ public class TeamSetupScreen {
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
 	}
+	
 }

@@ -13,7 +13,7 @@ public class Team extends Athlete {
 		// TODO Auto-generated constructor stub
 		teamName = name;
 	}
-	
+
 	public void addPlayer(Athlete player) {
 		players.add(player);
 	}
@@ -51,7 +51,7 @@ public class Team extends Athlete {
 		}
 	}
 	public void canPlay() {
-		if (players.size() == 5 && reserves.size() == 5) {
+		if (players.size() == 5 && reserves.size() >= 5) {
 			canPlay = true;
 		}
 		else {
