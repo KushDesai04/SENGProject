@@ -5,7 +5,7 @@ package main;
 import java.util.*;
 
 enum POSITION {
-	PG, PF, CENTER, SF, SG;
+	PG, PF, C, SF, SG;
 }
 
 enum STATS {O, D, S, A}

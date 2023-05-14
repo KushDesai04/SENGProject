@@ -15,5 +15,8 @@ public class Market {
 	public void sell() {
 		
 	}
+	public ArrayList<Athlete> getPurchasableAthletes() {
+		return purchasableAthletes;
+	}
 
 }

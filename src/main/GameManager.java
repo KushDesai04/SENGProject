@@ -1,5 +1,7 @@
 package main;
 import java.util.*;
+
+import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.EnumSelector;
 public class GameManager {
 	
 	private String teamName;
@@ -51,6 +53,23 @@ public class GameManager {
 	}
 //	
 	public void launchTeamSetupScreen() {
+		ArrayList<Integer> stats1= new ArrayList<Integer>();
+		stats1.add(99);
+		stats1.add(99);
+		stats1.add(99);
+		stats1.add(99);
+		Athlete athlete1 =  new Athlete("Athlete 1", 70, POSITION.PG, stats1);
+		Athlete athlete2 =  new Athlete("Athlete 2", 80, POSITION.SG, stats1);
+		Athlete athlete3 =  new Athlete("Athlete 3", 79, POSITION.SF, stats1);
+		Athlete athlete4 =  new Athlete("Athlete 4", 76, POSITION.PF, stats1);
+		Athlete athlete5 =  new Athlete("Athlete 5", 89, POSITION.C, stats1);
+		Athlete athlete6 =  new Athlete("Athlete 6", 99, POSITION.PG, stats1);
+		market.getPurchasableAthletes().add(athlete1);
+		market.getPurchasableAthletes().add(athlete2);
+		market.getPurchasableAthletes().add(athlete3);
+		market.getPurchasableAthletes().add(athlete4);
+		market.getPurchasableAthletes().add(athlete5);
+		market.getPurchasableAthletes().add(athlete6);
 		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
 	}
 	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
