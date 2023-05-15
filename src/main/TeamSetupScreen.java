@@ -103,7 +103,7 @@ public class TeamSetupScreen {
 		
 		JLabel lblErrorMsg = new JLabel("Select 5 Players");
 		lblErrorMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		lblErrorMsg.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblErrorMsg.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JButton btnStart = new JButton("Start");
 
@@ -120,7 +120,7 @@ public class TeamSetupScreen {
 				}
 			}
 		});
-		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnStart.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -148,39 +148,39 @@ public class TeamSetupScreen {
 		);
 		
 		JLabel nameLabel = new JLabel("Click a player to add them into your team");
-		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel positionLabel = new JLabel("and see their stats.");
-		positionLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		positionLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel offLabel = new JLabel("Offence: ");
-		offLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		offLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JSeparator separator = new JSeparator();
 		
 		JLabel defLabel = new JLabel("Defence: ");
-		defLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		defLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel stamLabel = new JLabel("Stamina: ");
-		stamLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		stamLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel agilLabel = new JLabel("Agility: ");
-		agilLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		agilLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel ovrLabel = new JLabel("");
-		ovrLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		ovrLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel offValue = new JLabel("");
-		offValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		offValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel defValue = new JLabel("");
-		defValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		defValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel stamValue = new JLabel("");
-		stamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		stamValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel agilValue = new JLabel("");
-		agilValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		agilValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -259,7 +259,7 @@ public class TeamSetupScreen {
 				tglButtonEvent(tglbtnPlayer1, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
-		tglbtnPlayer1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnPlayer1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer2 = new JToggleButton("Player1");
 		
@@ -268,7 +268,7 @@ public class TeamSetupScreen {
 				tglButtonEvent(tglbtnPlayer2, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
-		tglbtnPlayer2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnPlayer2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer3 = new JToggleButton("Player1");
 		tglbtnPlayer3.addActionListener(new ActionListener() {
@@ -276,7 +276,7 @@ public class TeamSetupScreen {
 				tglButtonEvent(tglbtnPlayer3, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
-		tglbtnPlayer3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnPlayer3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer4 = new JToggleButton("Player1");
 		tglbtnPlayer4.addActionListener(new ActionListener() {
@@ -284,7 +284,7 @@ public class TeamSetupScreen {
 				tglButtonEvent(tglbtnPlayer4, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 3);
 			}
 		});
-		tglbtnPlayer4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnPlayer4.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer5 = new JToggleButton("Player1");
 		tglbtnPlayer5.addActionListener(new ActionListener() {
@@ -292,7 +292,7 @@ public class TeamSetupScreen {
 				tglButtonEvent(tglbtnPlayer5, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 4);
 			}
 		});
-		tglbtnPlayer5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnPlayer5.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer6 = new JToggleButton("Player1");
 		tglbtnPlayer6.addActionListener(new ActionListener() {
@@ -300,7 +300,7 @@ public class TeamSetupScreen {
 				tglButtonEvent(tglbtnPlayer6, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 5);
 			}
 		});
-		tglbtnPlayer6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnPlayer6.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -311,22 +311,22 @@ public class TeamSetupScreen {
 							.addContainerGap()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(tglbtnPlayer4, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+									.addComponent(tglbtnPlayer4, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
 									.addGap(6))
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(tglbtnPlayer1, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+									.addComponent(tglbtnPlayer1, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
 									.addGap(3)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(tglbtnPlayer5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(tglbtnPlayer2, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+								.addComponent(tglbtnPlayer2, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+								.addComponent(tglbtnPlayer5, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(tglbtnPlayer3, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-								.addComponent(tglbtnPlayer6, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
+								.addComponent(tglbtnPlayer3, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+								.addComponent(tglbtnPlayer6, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(274)
-							.addComponent(lblErrorMsg, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+							.addComponent(lblErrorMsg, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
 							.addGap(265)))
 					.addContainerGap())
 		);
@@ -338,7 +338,7 @@ public class TeamSetupScreen {
 					.addGap(39)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(tglbtnPlayer1, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-						.addComponent(tglbtnPlayer2, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tglbtnPlayer2, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tglbtnPlayer3, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
 					.addGap(84)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)

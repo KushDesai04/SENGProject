@@ -2,11 +2,12 @@ package main;
 import java.util.*;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.EnumSelector;
-enum GOTOSCREEN {START, MAIN, SHOP, TEAM, STADIUM}
+enum GOTOSCREEN {START, MAIN, SHOP, TEAM, STADIUM, QUIT}
 public class GameManager {
 	
 	private String teamName;
 	private int numWeeks;
+	private int currentWeek = 1;
 	private Team team = new Team(teamName);
 	private String difficulty;
 	private Market market = new Market();
@@ -18,9 +19,16 @@ public class GameManager {
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
+	public int getCurrentWeek() {
+		return currentWeek;
+	}
+	public void incrementWeek() {
+		currentWeek += 1;
+	}
 	public int getNumWeeks() {
 		return numWeeks;
 	}
+
 	public void setNumWeeks(int numWeeks) {
 		this.numWeeks = numWeeks;
 	}
@@ -101,6 +109,9 @@ public class GameManager {
 			mainWindow.closeWindow();
 			launchTeamScreen();
 			break;
+		case QUIT:
+			mainWindow.closeWindow();
+			break;
 		default:
 			break;
 		}
@@ -125,7 +136,7 @@ public class GameManager {
 	 public void launchStadiumScreen() {
 	 	StadiumScreen stadiumWindow = new StadiumScreen(this);
 	 }
-	 
+	   
 	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
 	 	stadiumWindow.closeWindow();
 	 	launchMainScreen();

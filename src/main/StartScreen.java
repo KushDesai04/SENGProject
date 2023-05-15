@@ -83,7 +83,7 @@ public class StartScreen {
 		
 		JLabel lblNewLabel = new JLabel("Basketball Manager");
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -111,7 +111,7 @@ public class StartScreen {
 				closeWindow();
 			}
 		});
-		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnQuit.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		btnQuit.setAlignmentX(0.5f);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -164,7 +164,7 @@ public class StartScreen {
 			}
 		});
 		btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)

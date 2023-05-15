@@ -72,7 +72,7 @@ public class MainScreen {
 				finishedWindow(GOTOSCREEN.SHOP);
 			}
 		});
-		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnShop.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JButton btnStadium = new JButton("Stadium");
 		btnStadium.addActionListener(new ActionListener() {
@@ -80,7 +80,7 @@ public class MainScreen {
 				finishedWindow(GOTOSCREEN.STADIUM);
 			}
 		});
-		btnStadium.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnStadium.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JButton btnTeam = new JButton("Team");
 		btnTeam.addActionListener(new ActionListener() {
@@ -89,15 +89,15 @@ public class MainScreen {
 				finishedWindow(GOTOSCREEN.TEAM);
 			}
 		});
-		btnTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnTeam.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
-		JButton btnBack = new JButton("<");
+		JButton btnBack = new JButton("Quit");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishedWindow(GOTOSCREEN.START);
+				finishedWindow(GOTOSCREEN.QUIT);
 			}
 		});
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

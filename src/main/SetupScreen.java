@@ -93,13 +93,13 @@ public class SetupScreen {
 		
 		txtTeamName = new JTextField();
 		txtTeamName.setForeground(new Color(0, 0, 0));
-		txtTeamName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		txtTeamName.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
 		txtTeamName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTeamName.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Select Team Name:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		
 		JButton btnNewButton = new JButton("Next");
@@ -107,25 +107,26 @@ public class SetupScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (txtTeamName.getText().length() >= 3 && txtTeamName.getText().length() <= 15) {
 					manager.setTeamName(txtTeamName.getText());
-					if (txtTeamName.getText().matches("[a-zA-Z0-9]*")) {
+					String name = txtTeamName.getText();
+					if (!name.isBlank() || name.matches("([a-zA-Z0-9]+[ ]*)+")) {
 						finishedWindow();
 					}
 					else {
-						String message = "No special characters are allowed in the team name";
+						String message = "No special characters are allowed in the team name" + "\n and name should be between 3-15 characters long";
 					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
 					        JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
 				else {
-					String message = "Please enter a team name that is between 3 and 15 characters";
+					String message = "Please enter a team name that is between 3 and 15 characters long";
 				    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
 				        JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JPanel panel = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -133,37 +134,37 @@ public class SetupScreen {
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(481)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
 					.addGap(481))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(295)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(txtTeamName, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
-					.addGap(18)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
-					.addGap(62))
+						.addComponent(txtTeamName, GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+					.addGap(13))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+							.addGap(496)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(112)
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 							.addGap(53)
 							.addComponent(txtTeamName, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 							.addGap(79)
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)))
-					.addGap(25))
+							.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(19))
 		);
 		
 		JLabel lblDifficulty = new JLabel("Difficulty:");
 		lblDifficulty.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDifficulty.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblDifficulty.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JComboBox<String> difficultyComboBox = new JComboBox<String>();
 		if (difficultyComboBox.getSelectedIndex() == -1) {
@@ -178,7 +179,7 @@ public class SetupScreen {
 		
 		JLabel lblSeasonLength = new JLabel("Season Length (weeks):");
 		lblSeasonLength.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeasonLength.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSeasonLength.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JSlider slider = new JSlider();
 		slider.addChangeListener(new ChangeListener() {
