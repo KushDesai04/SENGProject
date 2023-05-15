@@ -55,8 +55,8 @@ public class MainScreen {
 	public void closeWindow() {
 		frame.dispose();
 	}
-	public void finishedWindow() {
-		manager.closeMainScreen(this);
+	public void finishedWindow(GOTOSCREEN screen) {
+		manager.closeMainScreen(this, screen);
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -67,20 +67,35 @@ public class MainScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnShop = new JButton("Shop");
+		btnShop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow(GOTOSCREEN.SHOP);
+			}
+		});
 		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnStadium = new JButton("Stadium");
+		btnStadium.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow(GOTOSCREEN.STADIUM);
+			}
+		});
 		btnStadium.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnTeam = new JButton("Team");
 		btnTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishedWindow();
+				finishedWindow(GOTOSCREEN.TEAM);
 			}
 		});
 		btnTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnBack = new JButton("<");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow(GOTOSCREEN.START);
+			}
+		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(

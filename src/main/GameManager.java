@@ -2,6 +2,7 @@ package main;
 import java.util.*;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.EnumSelector;
+enum GOTOSCREEN {START, MAIN, SHOP, TEAM, STADIUM}
 public class GameManager {
 	
 	private String teamName;
@@ -9,6 +10,7 @@ public class GameManager {
 	private Team team = new Team(teamName);
 	private String difficulty;
 	private Market market = new Market();
+	GOTOSCREEN screen;
 	
 	public String getTeamName() {
 		return teamName;
@@ -73,51 +75,71 @@ public class GameManager {
 		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
 	}
 	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
-		teamSetupWindow.closeWindow();
-		
+		teamSetupWindow.closeWindow();	
 	}
 	
-//	public void launchMainScreen() {
-//	 	MainScreen mainWindow = new MainScreen(this);
-//	 }
-//	 public void closeMainScreen(MainScreen mainWindow) {
-//	 	mainWindow.closeWindow();
-//	 }
-//	
-//	 public void launchShopScreen() {
-//	 	ShopScreen shopWindow = new ShopScreen(this);
-//	 }
-//	 public void closeShopScreen(ShopScreen shopWindow) {
-//	 	shopWindow.closeWindow();
-//	 	launchMainScreen();
-//	 }
-//	
-//	 public void launchTeamScreen() {
-//	 	TeamScreen teamWindow = new TeamScreen(this);
-//	 }
-//	 public void closeTeamScreen(TeamScreen teamWindow) {
-//	 	teamWindow.closeWindow();
-//	 	launchMainScreen();
-//	 }
-//	
-//	 public void launchStadiumScreen() {
-//	 	StadiumScreen stadiumWindow = new StadiumScreen(this);
-//	 }
-//	 public void goToGame(StadiumScreen stadiumWindow) {
-//		 stadiumWindow.closeWindow();
-//		 
-//	 }
-//	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
-//	 	stadiumWindow.closeWindow();
-//	 	launchMainScreen();
-//	 }
-//	 public void gameScreen() {
-//		 GameScreen gameWindow = new GameScreen(this);
-//	 }
-//	 public void closeGameScreen(GameScreen gameWindow) {
-//		 gameWindow.closeWindow();
-//		 launchMainScreen();
-//	 }
+	public void launchMainScreen() {
+	 	MainScreen mainWindow = new MainScreen(this);
+	 }
+	 public void closeMainScreen(MainScreen mainWindow, GOTOSCREEN value) {
+		switch (screen) {
+		case START:
+			mainWindow.closeWindow();
+			launchStartScreen();
+			break;
+		case SHOP:
+			mainWindow.closeWindow();
+			launchShopScreen();
+			break;
+		case STADIUM:
+			mainWindow.closeWindow();
+			launchStadiumScreen();
+			break;
+		case TEAM:
+			mainWindow.closeWindow();
+			launchTeamScreen();
+			break;
+		default:
+			break;
+		}
+	 }
+	 	
+	 
+	
+	 public void launchShopScreen() {
+	 	ShopScreen shopWindow = new ShopScreen(this);
+	 }
+	 public void closeShopScreen(ShopScreen shopWindow) {
+	 	shopWindow.closeWindow();
+	 	launchMainScreen();
+	 }
+	
+	 public void launchTeamScreen() {
+	 	TeamScreen teamWindow = new TeamScreen(this);
+	 }
+	 public void closeTeamScreen(TeamScreen teamWindow) {
+	 	teamWindow.closeWindow();
+	 	launchMainScreen();
+	 }
+	
+	 public void launchStadiumScreen() {
+	 	StadiumScreen stadiumWindow = new StadiumScreen(this);
+	 }
+	 public void goToGame(StadiumScreen stadiumWindow) {
+		 stadiumWindow.closeWindow();
+		 
+	 }
+	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
+	 	stadiumWindow.closeWindow();
+	 	launchMainScreen();
+	 }
+	 public void gameScreen() {
+		 GameScreen gameWindow = new GameScreen(this);
+	 }
+	 public void closeGameScreen(GameScreen gameWindow) {
+		 gameWindow.closeWindow();
+		 launchMainScreen();
+	 }
 	
 	public static void main(String args[]) {
 		GameManager manager = new GameManager();
