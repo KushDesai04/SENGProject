@@ -24,8 +24,8 @@ public class MainScreen {
 	private JFrame frame;
 	private GameManager manager;
 	
-	public MainScreen(GameManager manager) {
-		manager = this.manager;
+	public MainScreen(GameManager gameManager) {
+		manager = gameManager;
 		initialize();
 		frame.setVisible(true);
 	}
@@ -85,6 +85,7 @@ public class MainScreen {
 		JButton btnTeam = new JButton("Team");
 		btnTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("TEAM");
 				finishedWindow(GOTOSCREEN.TEAM);
 			}
 		});
