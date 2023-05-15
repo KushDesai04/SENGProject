@@ -100,10 +100,10 @@ public class MainScreen {
 		});
 		btnTeam.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
-		JButton btnBack = new JButton("Quit");
+		JButton btnBack = new JButton("<");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishedWindow(GOTOSCREEN.QUIT);
+				finishedWindow(GOTOSCREEN.MAIN);
 			}
 		});
 		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));

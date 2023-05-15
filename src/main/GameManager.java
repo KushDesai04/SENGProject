@@ -24,6 +24,7 @@ public class GameManager {
 	private Team team = new Team(teamName);
 	private String difficulty;
 	private Market market = new Market();
+	private boolean isSetup = false;
 	GOTOSCREEN screen;
 	
 	public String getTeamName() {
@@ -63,7 +64,13 @@ public class GameManager {
 	}
 	public void closeStartScreen(StartScreen startWindow) { 
 		startWindow.closeWindow();
-		launchGameSetupScreen();
+		if (!isSetup) {
+		    isSetup = true;
+		    launchGameSetupScreen();
+		}
+		else {
+			launchMainScreen();
+		}
 	}
 	
 	public void launchGameSetupScreen() {
@@ -130,6 +137,9 @@ public class GameManager {
 		case QUIT:
 			mainWindow.closeWindow();
 			break;
+		case MAIN:
+			mainWindow.closeWindow();
+			launchStartScreen();
 		default:
 			break;
 		}

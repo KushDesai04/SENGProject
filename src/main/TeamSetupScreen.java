@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.JOptionPane;
@@ -53,7 +54,7 @@ public class TeamSetupScreen {
 	
 	/**
 	 * Launch the application.
-	 * @param args argss
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -133,6 +134,12 @@ public class TeamSetupScreen {
 		}
 		else if (!btn.isSelected()) {
 			manager.getTeam().removePlayer(manager.getMarket().getPurchasableAthletes().get(index));
+		}
+	}
+	
+	public void setAthleteButtons(ArrayList<JToggleButton> btns) {
+		for (int i=0; i < btns.size();i++) {
+			btns.get(i).setText(manager.getMarket().getPurchasableAthletes().get(i).getName());
 		}
 	}
 	/**
@@ -398,6 +405,16 @@ public class TeamSetupScreen {
 		);
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
+		
+		ArrayList<JToggleButton> tglBtns = new ArrayList<JToggleButton>();
+		tglBtns.add(tglbtnPlayer1);
+		tglBtns.add(tglbtnPlayer2);
+		tglBtns.add(tglbtnPlayer3);
+		tglBtns.add(tglbtnPlayer4);
+		tglBtns.add(tglbtnPlayer5);
+		tglBtns.add(tglbtnPlayer6);
+
+		setAthleteButtons(tglBtns);
 	}
 	
 }
