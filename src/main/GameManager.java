@@ -10,7 +10,7 @@ enum GOTOSCREEN {START, MAIN, SHOP, TEAM, STADIUM, QUIT}
 
 /**
  * This is the GameManager class which controls the logic for the game
- * such as opening/closing windows
+ * such as opening/closing windows.
  * 
  * @author Kush Desai
  * @author Yunu Cho
@@ -77,7 +77,7 @@ public class GameManager {
 		SetupScreen gameSetupWindow = new SetupScreen(this);
 	}
 	public void closeGameSetupScreen(SetupScreen gameSetupWindow) {
-		System.out.println(String.format("%s,%s,%d",teamName, difficulty, numWeeks ));
+		System.out.println(String.format("%s,%s,%d",teamName, difficulty, numWeeks));
 		gameSetupWindow.closeWindow();
 		launchTeamSetupScreen();
 	}

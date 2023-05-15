@@ -124,19 +124,19 @@ public class StartScreen {
 		btnQuit.setAlignmentX(0.5f);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(108)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-					.addGap(107))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(108)
-					.addComponent(panel_1_1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-					.addGap(107))
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 					.addGap(47)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
 					.addGap(45))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(107)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(108))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(107)
+					.addComponent(panel_1_1, GroupLayout.PREFERRED_SIZE, 80, Short.MAX_VALUE)
+					.addGap(108))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -144,25 +144,22 @@ public class StartScreen {
 					.addGap(42)
 					.addComponent(lblNewLabel)
 					.addGap(38)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
 					.addGap(23)
-					.addComponent(panel_1_1, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+					.addComponent(panel_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(23))
 		);
 		GroupLayout gl_panel_1_1 = new GroupLayout(panel_1_1);
 		gl_panel_1_1.setHorizontalGroup(
 			gl_panel_1_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1_1.createSequentialGroup()
-					.addGap(7)
-					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-					.addGap(6))
+				.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
 		);
 		gl_panel_1_1.setVerticalGroup(
-			gl_panel_1_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1_1.createSequentialGroup()
+			gl_panel_1_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_1_1.createSequentialGroup()
 					.addGap(14)
-					.addComponent(btnQuit)
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		panel_1_1.setLayout(gl_panel_1_1);
 		
@@ -177,17 +174,14 @@ public class StartScreen {
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(7)
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(6))
+				.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(14)
-					.addComponent(btnNewButton)
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
 		panel.setLayout(gl_panel);
