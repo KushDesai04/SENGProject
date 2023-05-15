@@ -19,6 +19,15 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This is the Main Screen class. The main screen will 
+ * allow players to access the stadium, shop, and their their
+ * Team of players (as well as quit the game)
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class MainScreen {
 
 	private JFrame frame;

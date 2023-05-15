@@ -1,5 +1,4 @@
 package main;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +6,15 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 
+/**
+ * This is the Shop Screen class. The shop screen will 
+ * allow players to purchase items and/or players. The 
+ * purchasable objects in the shop will change every week
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class ShopScreen {
 
 	private JFrame frame;

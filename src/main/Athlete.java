@@ -1,15 +1,31 @@
-/*
- * This is the Athlete class.
- */
 package main;
 import java.util.*;
 
+/**
+ * Enum to represent possible player positions
+ */
 enum POSITION {
 	PG, PF, C, SF, SG;
 }
 
+/**
+ * Enum to all player stats:
+ * Offence
+ * Defence
+ * Stamina
+ * Agility
+ */
 enum STATS {O, D, S, A}
 
+/**
+ * This is the Athlete class which represents a single Athlete.
+ * The class extends Purchasable as Athletes can be bought and sold
+ * to make a Team.
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class Athlete extends Purchasable {
 	
 	private String name;
@@ -23,6 +39,9 @@ public class Athlete extends Purchasable {
 		//TODO
 	}
 	
+	/**
+	 * Constructor to create Athlete
+	 */
 	public Athlete (String tempName, int tempRating, POSITION tempPosition, ArrayList<Integer> tempStats) {
 		name = tempName;
 		rating = tempRating;
@@ -38,11 +57,21 @@ public class Athlete extends Purchasable {
 		this.description = "temp description";
 		
 	}
+	
+	/**
+	 * Set player nickname
+	 * @param newName    The nickname to call the player
+	 */
 	public void setNickname(String newName) {
 		name = newName;
 	}
 	
-	
+	/**
+	 * Increase a certain stat of a player
+	 * Used when consuming Items
+	 * @param value   The amount to increase the stat by
+	 * @param stat    The stat to increase
+	 */
 	public void increase(int value, STATS stat) {
 		Stats.put(stat, (getStat(stat) + value));
 	}	

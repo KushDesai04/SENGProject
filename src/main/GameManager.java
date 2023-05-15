@@ -2,7 +2,20 @@ package main;
 import java.util.*;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.EnumSelector;
+
+/**
+* Enum to select next screen
+*/
 enum GOTOSCREEN {START, MAIN, SHOP, TEAM, STADIUM, QUIT}
+
+/**
+ * This is the GameManager class which controls the logic for the game
+ * such as opening/closing windows
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class GameManager {
 	
 	private String teamName;
@@ -90,8 +103,13 @@ public class GameManager {
 	public void launchMainScreen() {
 	 	MainScreen mainWindow = new MainScreen(this);
 	 }
-	 public void closeMainScreen(MainScreen mainWindow, GOTOSCREEN value) {
-		 this.screen = value;
+	
+	/**
+	 * Close main screen and navigate to one of 5 options
+	 * @param toScreen    The screen to navigate to
+	 */
+	 public void closeMainScreen(MainScreen mainWindow, GOTOSCREEN toScreen) {
+		 this.screen = toScreen;
 		switch (screen) {
 		case START:
 			mainWindow.closeWindow();

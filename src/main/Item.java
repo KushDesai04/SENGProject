@@ -1,8 +1,14 @@
-/*
- * This is the Item class.
- */
 package main;
 
+/**
+ * This is the Item class which represents a single Item.
+ * The class extends Purchasable as Items can be bought and sold
+ * to consume. Items are used to boost player stats.
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class Item extends Purchasable {
 	private String name;
 	private STATS stat;
@@ -29,6 +35,10 @@ public class Item extends Purchasable {
 		return value;
 	}
 	
+	/**
+	 * Method to represent a stat as a string
+	 * @param stat    takes an enum value to return as a string
+	 */
 	public String getStatName() {
 		switch (this.stat){
 		case A:

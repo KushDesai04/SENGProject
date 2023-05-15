@@ -1,3 +1,4 @@
+
 package main;
 
 import java.awt.EventQueue;
@@ -7,6 +8,16 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 
+/**
+ * This is the Team Screen class. The team screen will 
+ * allow players to access their team and make changes such 
+ * as: selecting the starting lineup, selling players,
+ * using consumables to boost player stats.
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class TeamScreen {
 
 	private JFrame frame;

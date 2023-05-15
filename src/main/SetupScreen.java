@@ -1,3 +1,4 @@
+
 package main;
 import java.util.regex.*;
 import java.awt.EventQueue;
@@ -37,6 +38,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
+/**
+ * This is the Setup Screen class. The setup screen will 
+ * allow players to purchase their initial 5 players so 
+ * start the game
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class SetupScreen {
 
 	private JFrame frame;

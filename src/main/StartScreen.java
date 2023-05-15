@@ -29,6 +29,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This is the Start Screen class. The start screen
+ * is the first screen that opens when the game begins.
+ * The only options are to start the game, or quit.
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class StartScreen {
 
 	private JFrame frame;

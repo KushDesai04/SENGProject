@@ -17,6 +17,18 @@ import java.awt.Color;
 
 public class StadiumScreen {
 
+/**
+* This is the Stadium Screen class. The stadium screen will 
+* allow players to access the stadium which is where players 
+* can find and select matches to play, or take a bye. Each
+* week, the opponents will change and become more difficult
+* 
+* @author Kush Desai
+* @author Yunu Cho
+* 
+*/
+	
+
 	private JFrame frame;
 	private GameManager manager;
 	

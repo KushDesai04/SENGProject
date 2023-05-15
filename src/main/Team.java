@@ -1,7 +1,16 @@
+
 package main;
 import java.util.ArrayList;
 
-public class Team extends Athlete{
+/**
+ * This is the Team class. This class will handle logic
+ * to provide a functioning team so that the game is playable.
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
+public class Team{
 	
 	private String teamName;
 	private ArrayList<Athlete> players = new ArrayList<Athlete>();
@@ -40,6 +49,11 @@ public class Team extends Athlete{
 		consumables.remove(consumable);
 	}
 	
+	/**
+	 * Given an item and player, consume the item and increase player stats
+	 * @param consumable    The item to consume
+	 * @param athlete       The athlete whos stats should increase
+	 */
 	public boolean useConsumable(Item consumable, Athlete athlete) {
 		if (consumables.contains(consumable)) {
 			athlete.increase(consumable.getValue(), consumable.getStat());
@@ -50,6 +64,8 @@ public class Team extends Athlete{
 			return false;
 		}
 	}
+	
+	
 	public void canPlay() {
 		if (players.size() == 5 && reserves.size() >= 5) {
 			canPlay = true;

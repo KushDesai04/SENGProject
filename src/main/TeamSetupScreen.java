@@ -25,11 +25,26 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.JOptionPane;
 
+/**
+ * This is the Team Setup Screen class. This screen will 
+ * allow players to purchase their first 5 athletes so 
+ * that they can start the game. Players are given an
+ * option to choose 5 from 6 players and the players
+ * are generated mostly randomly.
+ * 
+ * @author Kush Desai
+ * @author Yunu Cho
+ * 
+ */
 public class TeamSetupScreen {
 
 	private JFrame frame;
 	private GameManager manager;
 	
+	/**
+	 * Constructor
+	 * @param gameManager    The GameManager object that controls the game logic
+	 */
 	public TeamSetupScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
@@ -38,6 +53,7 @@ public class TeamSetupScreen {
 	
 	/**
 	 * Launch the application.
+	 * @param args argss
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,19 +74,52 @@ public class TeamSetupScreen {
 	public TeamSetupScreen() {
 		initialize();
 	}
+	
+	/**
+	 * Close window
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
+	
+	/**
+	 * Give control back to game manager
+	 */
 	public void finishedWindow() {
 		manager.closeTeamSetupScreen(this);
 	}
+	
+	/**
+	 * @return if the team is at max capacity
+	 */
 	public boolean maxSize() {
 		return manager.getTeam().getPlayers().size() == 5;
 	}
+	
+	/**
+	 * @return if the team is at less than max capacity
+	 *
+	 */
 	public boolean lessThanMax() {
 		return manager.getTeam().getPlayers().size() < 5;
 	}
 	
+	/**
+	 * When a toggle button is pressed to select a player, this method is run
+	 * The method displays the information of the selected player in a panel.
+	 * 
+	 * If the toggle button is deselected, the player is removed from the team
+	 * 
+	 * @param btn    the toggled button
+	 * @param pos    the position of the player
+	 * @param name   the name of the player
+	 * @param ovr    the overall stat of the player
+	 * @param off    the offence stat of the player
+	 * @param def    the defence stat of the player
+	 * @param stam   the stamina stat of the player
+	 * @param agil   the agility stat of the player
+	 * @param index  the index of the player in the team
+	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		if (btn.isSelected() && lessThanMax()) {
 			manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(index)); //Add player from array to starters
