@@ -71,10 +71,11 @@ public class TeamSetupScreen {
 		return manager.getTeam().getPlayers().size() < 5;
 	}
 	
-	public void tglButtonEvent(JToggleButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
+	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		if (btn.isSelected() && lessThanMax()) {
 			manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(index)); //Add player from array to starters
 			name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
+			pos.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getPosition()));
 			ovr.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getRating()));
 			off.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.O)));
 			def.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.D)));
@@ -128,9 +129,9 @@ public class TeamSetupScreen {
 					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
 					.addGap(138)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-						.addComponent(btnStart, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE))
-					.addGap(36))
+						.addComponent(btnStart, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -138,10 +139,11 @@ public class TeamSetupScreen {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-							.addGap(158)
-							.addComponent(btnStart, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
+							.addGap(83)
+							.addComponent(btnStart, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE))
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE))
 					.addGap(18))
 		);
 		
@@ -254,7 +256,7 @@ public class TeamSetupScreen {
 		JToggleButton tglbtnPlayer1 = new JToggleButton("Player1");
 		tglbtnPlayer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglButtonEvent(tglbtnPlayer1, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 0);
+				tglButtonEvent(tglbtnPlayer1, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
 		tglbtnPlayer1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -263,7 +265,7 @@ public class TeamSetupScreen {
 		
 		tglbtnPlayer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglButtonEvent(tglbtnPlayer2, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 1);
+				tglButtonEvent(tglbtnPlayer2, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
 		tglbtnPlayer2.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -271,7 +273,7 @@ public class TeamSetupScreen {
 		JToggleButton tglbtnPlayer3 = new JToggleButton("Player1");
 		tglbtnPlayer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglButtonEvent(tglbtnPlayer3, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 2);
+				tglButtonEvent(tglbtnPlayer3, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
 		tglbtnPlayer3.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -279,7 +281,7 @@ public class TeamSetupScreen {
 		JToggleButton tglbtnPlayer4 = new JToggleButton("Player1");
 		tglbtnPlayer4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglButtonEvent(tglbtnPlayer4, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 3);
+				tglButtonEvent(tglbtnPlayer4, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 3);
 			}
 		});
 		tglbtnPlayer4.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -287,7 +289,7 @@ public class TeamSetupScreen {
 		JToggleButton tglbtnPlayer5 = new JToggleButton("Player1");
 		tglbtnPlayer5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglButtonEvent(tglbtnPlayer5, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 4);
+				tglButtonEvent(tglbtnPlayer5, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 4);
 			}
 		});
 		tglbtnPlayer5.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -295,7 +297,7 @@ public class TeamSetupScreen {
 		JToggleButton tglbtnPlayer6 = new JToggleButton("Player1");
 		tglbtnPlayer6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglButtonEvent(tglbtnPlayer6, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 5);
+				tglButtonEvent(tglbtnPlayer6, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 5);
 			}
 		});
 		tglbtnPlayer6.setFont(new Font("Tahoma", Font.PLAIN, 20));

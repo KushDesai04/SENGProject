@@ -19,11 +19,6 @@ public class Athlete extends Purchasable {
 	private boolean isPlaying;
 	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 	
-	
-	public Athlete() {
-		// TODO Auto-generated constructor stub
-		
-	}
 	public Athlete (String tempName, int tempRating, POSITION tempPosition, ArrayList<Integer> tempStats) {
 		name = tempName;
 		rating = tempRating;

@@ -1,7 +1,7 @@
 package main;
 import java.util.ArrayList;
 
-public class Team extends Athlete {
+public class Team {
 	
 	private String teamName;
 	private ArrayList<Athlete> players = new ArrayList<Athlete>();
