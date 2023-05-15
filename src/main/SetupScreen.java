@@ -1,5 +1,5 @@
 package main;
-
+import java.util.regex.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +10,7 @@ import java.awt.Window;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
@@ -104,8 +105,23 @@ public class SetupScreen {
 		JButton btnNewButton = new JButton("Next");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.setTeamName(txtTeamName.getText());
-				finishedWindow();
+				if (txtTeamName.getText().length() >= 3 && txtTeamName.getText().length() <= 15) {
+					manager.setTeamName(txtTeamName.getText());
+					if (txtTeamName.getText().matches("[a-zA-Z0-9]*")) {
+						finishedWindow();
+					}
+					else {
+						String message = "No special characters are allowed in the team name";
+					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+				else {
+					String message = "Please enter a team name that is between 3 and 15 characters";
+				    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+				        JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		

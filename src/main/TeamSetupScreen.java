@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import javax.swing.JOptionPane;
 
 public class TeamSetupScreen {
 
@@ -70,10 +71,25 @@ public class TeamSetupScreen {
 		return manager.getTeam().getPlayers().size() < 5;
 	}
 	
+	public void tglButtonEvent(JToggleButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
+		if (btn.isSelected() && lessThanMax()) {
+			manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(index)); //Add player from array to starters
+			name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
+			ovr.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getRating()));
+			off.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.O)));
+			def.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.D)));
+			stam.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.S)));
+			agil.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.A)));
+		}
+		else if (!btn.isSelected()) {
+			manager.getTeam().removePlayer(manager.getMarket().getPurchasableAthletes().get(index));
+		}
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,16 +100,23 @@ public class TeamSetupScreen {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		
+		JLabel lblErrorMsg = new JLabel("Select 5 Players");
+		lblErrorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorMsg.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
 		JButton btnStart = new JButton("Start");
-		btnStart.setEnabled(false);
-		if (manager.getTeam().getPlayers().size() == 5) {
-			btnStart.setEnabled(true);
-		}
+
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (btnStart.isEnabled()) {
+				if (!maxSize()) {
+					lblErrorMsg.setForeground(Color.red);
+					String message = "Please select exactly 5 players!";
+					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
+				}
+				else {
 					finishedWindow();
-				}		
+				}
 			}
 		});
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -229,158 +252,54 @@ public class TeamSetupScreen {
 		panel.setLayout(gl_panel);
 		
 		JToggleButton tglbtnPlayer1 = new JToggleButton("Player1");
-		if (!tglbtnPlayer1.isSelected() && maxSize()) {
-			tglbtnPlayer1.setEnabled(false);
-		}
-		else {
-			tglbtnPlayer1.setEnabled(true);
-		}
 		tglbtnPlayer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnPlayer1.isSelected() && lessThanMax()) {
-					manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(0)); //Add player from array to starters
-					nameLabel.setText(manager.getMarket().getPurchasableAthletes().get(0).getName()); //Set name label to athlete name
-					ovrLabel.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(0).getRating()));
-					offValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(0).getStat(STATS.O)));
-					defValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(0).getStat(STATS.D)));
-					stamValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(0).getStat(STATS.S)));
-					agilValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(0).getStat(STATS.A)));
-				}
-				else if (!tglbtnPlayer1.isSelected()) {
-					manager.getTeam().removePlayer(null);
-				}
+				tglButtonEvent(tglbtnPlayer1, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
 		tglbtnPlayer1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer2 = new JToggleButton("Player1");
-		if (!tglbtnPlayer2.isSelected() && maxSize()) {
-			tglbtnPlayer2.setEnabled(false);
-		}
-		else {
-			tglbtnPlayer2.setEnabled(true);
-		}
+		
 		tglbtnPlayer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnPlayer2.isSelected() && lessThanMax()) {
-					manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(1)); //Add player from array to starters
-					nameLabel.setText(manager.getMarket().getPurchasableAthletes().get(1).getName()); //Set name label to athlete name
-					ovrLabel.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(1).getRating()));
-					offValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(1).getStat(STATS.O)));
-					defValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(1).getStat(STATS.D)));
-					stamValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(1).getStat(STATS.S)));
-					agilValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(1).getStat(STATS.A)));
-				}
-				else if (!tglbtnPlayer2.isSelected()) {
-					manager.getTeam().removePlayer(null);
-				}
+				tglButtonEvent(tglbtnPlayer2, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
 		tglbtnPlayer2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer3 = new JToggleButton("Player1");
-		if (!tglbtnPlayer3.isSelected() && maxSize()) {
-			tglbtnPlayer3.setEnabled(false);
-		}
-		else {
-			tglbtnPlayer3.setEnabled(true);
-		}
 		tglbtnPlayer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnPlayer3.isSelected() && lessThanMax()) {
-					manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(2)); //Add player from array to starters
-					nameLabel.setText(manager.getMarket().getPurchasableAthletes().get(2).getName()); //Set name label to athlete name
-					ovrLabel.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(2).getRating()));
-					offValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(2).getStat(STATS.O)));
-					defValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(2).getStat(STATS.D)));
-					stamValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(2).getStat(STATS.S)));
-					agilValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(2).getStat(STATS.A)));
-				}
-				else if (!tglbtnPlayer3.isSelected()) {
-					manager.getTeam().removePlayer(null);
-				}
+				tglButtonEvent(tglbtnPlayer3, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
 		tglbtnPlayer3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer4 = new JToggleButton("Player1");
-		if (!tglbtnPlayer4.isSelected() && maxSize()) {
-			tglbtnPlayer4.setEnabled(false);
-		}
-		else {
-			tglbtnPlayer4.setEnabled(true);
-		}
 		tglbtnPlayer4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnPlayer4.isSelected() && lessThanMax()) {
-					manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(3)); //Add player from array to starters
-					nameLabel.setText(manager.getMarket().getPurchasableAthletes().get(3).getName()); //Set name label to athlete name
-					ovrLabel.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(3).getRating()));
-					offValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(3).getStat(STATS.O)));
-					defValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(3).getStat(STATS.D)));
-					stamValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(3).getStat(STATS.S)));
-					agilValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(3).getStat(STATS.A)));
-				}
-				else if (!tglbtnPlayer4.isSelected()) {
-					manager.getTeam().removePlayer(null);
-				}
+				tglButtonEvent(tglbtnPlayer4, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 3);
 			}
 		});
 		tglbtnPlayer4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer5 = new JToggleButton("Player1");
-		if (!tglbtnPlayer5.isSelected() && maxSize()) {
-			tglbtnPlayer5.setEnabled(false);
-		}
-		else {
-			tglbtnPlayer5.setEnabled(true);
-		}
 		tglbtnPlayer5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnPlayer5.isSelected() && lessThanMax()) {
-					manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(4)); //Add player from array to starters
-					nameLabel.setText(manager.getMarket().getPurchasableAthletes().get(4).getName()); //Set name label to athlete name
-					ovrLabel.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(4).getRating()));
-					offValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(4).getStat(STATS.O)));
-					defValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(4).getStat(STATS.D)));
-					stamValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(4).getStat(STATS.S)));
-					agilValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(4).getStat(STATS.A)));
-				}
-				else if (!tglbtnPlayer5.isSelected()) {
-					manager.getTeam().removePlayer(null);
-				}
+				tglButtonEvent(tglbtnPlayer5, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 4);
 			}
 		});
 		tglbtnPlayer5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JToggleButton tglbtnPlayer6 = new JToggleButton("Player1");
-		if (!tglbtnPlayer6.isSelected() && maxSize()) {
-			tglbtnPlayer6.setEnabled(false);
-		}
-		else {
-			tglbtnPlayer6.setEnabled(true);
-		}
 		tglbtnPlayer6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnPlayer6.isSelected() && lessThanMax()) {
-					manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(5)); //Add player from array to starters
-					nameLabel.setText(manager.getMarket().getPurchasableAthletes().get(5).getName()); //Set name label to athlete name
-					ovrLabel.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(5).getRating()));
-					offValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(5).getStat(STATS.O)));
-					defValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(5).getStat(STATS.D)));
-					stamValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(5).getStat(STATS.S)));
-					agilValue.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(5).getStat(STATS.A)));
-				}
-				else if (!tglbtnPlayer6.isSelected()) {
-					manager.getTeam().removePlayer(null);
-				}
+				tglButtonEvent(tglbtnPlayer6, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 5);
 			}
 		});
 		tglbtnPlayer6.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JLabel lblNewLabel = new JLabel("Select 5 Players");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -405,7 +324,7 @@ public class TeamSetupScreen {
 								.addComponent(tglbtnPlayer6, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(274)
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+							.addComponent(lblErrorMsg, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
 							.addGap(265)))
 					.addContainerGap())
 		);
@@ -413,7 +332,7 @@ public class TeamSetupScreen {
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel)
+					.addComponent(lblErrorMsg)
 					.addGap(39)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(tglbtnPlayer1, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
@@ -429,4 +348,5 @@ public class TeamSetupScreen {
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
 	}
+	
 }
