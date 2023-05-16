@@ -21,7 +21,26 @@ import javax.swing.JButton;
 public class TeamScreen {
 
 	private JFrame frame;
-
+	private GameManager manager;
+	
+	public TeamScreen(GameManager gameManager) {
+		manager = gameManager;
+		initialize();
+		frame.setVisible(true);
+	}
+	/**
+	 * Close window
+	 */
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	/**
+	 * Give control back to game manager
+	 */
+	public void finishedWindow() {
+		manager.closeTeamScreen(this);
+	}
 	/**
 	 * Launch the application.
 	 */

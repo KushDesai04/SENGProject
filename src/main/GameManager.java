@@ -126,7 +126,7 @@ public class GameManager {
 	 * @param toScreen    The screen to navigate to
 	 */
 	 public void closeMainScreen(MainScreen mainWindow, GOTOSCREEN toScreen) {
-		 this.screen = toScreen;
+		this.screen = toScreen;
 		switch (screen) {
 		case START:
 			mainWindow.closeWindow();
@@ -196,10 +196,17 @@ public class GameManager {
 	 }
 	   
 	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
-	 	stadiumWindow.closeWindow();
-	 	launchMainScreen();
+		 stadiumWindow.closeWindow();
 	 }
-	 public void gameScreen() {
+	 
+	 public void LaunchOpponentSelectorScreen() {
+		 OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
+	 }
+	 public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
+		 	opponentSelectorWindow.closeWindow();
+		}
+	 
+	 public void launchGameScreen() {
 		 GameScreen gameWindow = new GameScreen(this);
 	 }
 	 public void closeGameScreen(GameScreen gameWindow) {

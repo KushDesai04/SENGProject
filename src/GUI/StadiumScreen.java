@@ -72,6 +72,12 @@ public class StadiumScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnPlay = new JButton("Play Match");
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.LaunchOpponentSelectorScreen();
+				finishedWindow();
+			}
+		});
 		//TODO: Implement gameplay and GUI
 		btnPlay.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
@@ -88,6 +94,7 @@ public class StadiumScreen {
 		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				manager.launchMainScreen();
 				finishedWindow();
 			}
 		});

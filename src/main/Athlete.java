@@ -15,11 +15,10 @@ import java.util.*;
 public class Athlete {
 	
 	private String name;
-	private String description;
 	private int price;
 	private int rating;
 	private POSITION position;
-	private boolean isPlaying;
+	private boolean isInjured = false;
 	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 	
 	public Athlete() {
@@ -41,9 +40,7 @@ public class Athlete {
 		Stats.put(STATS.O, offence);
 		Stats.put(STATS.D, defence);
 		Stats.put(STATS.S, stamina);
-		Stats.put(STATS.A, agility);
-		this.description = "temp description";
-		
+		Stats.put(STATS.A, agility);	
 	}
 	
 
@@ -104,8 +101,8 @@ public class Athlete {
 	public POSITION getPosition() {
 		return position;
 	}
-	public boolean getPlaying() {
-		return isPlaying;
+	public boolean getInjuryStatus() {
+		return isInjured;
 	}
 	
 	public static void main(String args[]) {

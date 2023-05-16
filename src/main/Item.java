@@ -19,7 +19,7 @@ public class Item {
 		this.stat = stat;
 		this.value = value;
 		this.price = price;
-		this.description = "This item increases a players " + getStatName() + " by " + value;
+		this.description = "This item increases a player's " + getStatName() + " by " + value;
 	}
 
 	public int getValue() {
@@ -60,8 +60,8 @@ public class Item {
 	}
 	
 	public static void main(String[] args) {
-		Item item = new Item("Cake", Athlete.STATS.D, 12);
-		System.out.println(item);
+//		Item item = new Item("Cake", Athlete.STATS.D, 12, 6000);
+//		System.out.println(item);
 	}
 
 }
