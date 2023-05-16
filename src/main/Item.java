@@ -2,17 +2,17 @@ package main;
 
 /**
  * This is the Item class which represents a single Item.
- * The class extends Purchasable as Items can be bought and sold
- * to consume. Items are used to boost player stats.
+ * Items are used to boost player stats.
  * 
  * @author Kush Desai
  * @author Yunu Cho
  * 
  */
-public class Item extends Purchasable {
+public class Item {
 	private String name;
 	private STATS stat;
 	private int value;
+	private String description;
 	public Item(String name, STATS stat, int value) {
 		this.name = name;
 		this.stat = stat;
@@ -20,17 +20,6 @@ public class Item extends Purchasable {
 		this.description = name + ". This item increases a players " + getStatName() + " by " + value;
 	}
 
-	@Override
-	public boolean buy() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void sell() {
-		// TODO Auto-generated method stub
-		
-	}
 	public int getValue() {
 		return value;
 	}

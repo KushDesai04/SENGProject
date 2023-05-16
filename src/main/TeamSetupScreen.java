@@ -122,7 +122,7 @@ public class TeamSetupScreen {
 	 * @param index  the index of the player in the team
 	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
-		if (btn.isSelected() && lessThanMax()) {
+		if (btn.isSelected()) {
 			manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(index)); //Add player from array to starters
 			name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
 			pos.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getPosition()));
@@ -165,6 +165,7 @@ public class TeamSetupScreen {
 
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(manager.getTeam().getPlayers());
 				if (!maxSize()) {
 					lblErrorMsg.setForeground(Color.red);
 					String message = "Please select exactly 5 players!";

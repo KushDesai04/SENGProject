@@ -26,9 +26,10 @@ enum STATS {O, D, S, A}
  * @author Yunu Cho
  * 
  */
-public class Athlete extends Purchasable {
+public class Athlete {
 	
 	private String name;
+	private String description;
 	private int price;
 	private int rating;
 	private POSITION position;
@@ -76,18 +77,6 @@ public class Athlete extends Purchasable {
 		Stats.put(stat, (getStat(stat) + value));
 	}	
 	
-	
-	@Override
-	public boolean buy() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public void sell() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public String toString() {
 		return super.toString();

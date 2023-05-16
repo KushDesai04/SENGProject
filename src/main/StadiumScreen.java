@@ -14,9 +14,6 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 import java.awt.Color;
-
-public class StadiumScreen {
-
 /**
 * This is the Stadium Screen class. The stadium screen will 
 * allow players to access the stadium which is where players 
@@ -27,8 +24,8 @@ public class StadiumScreen {
 * @author Yunu Cho
 * 
 */
-	
 
+public class StadiumScreen {
 	private JFrame frame;
 	private GameManager manager;
 	
