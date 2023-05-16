@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Yunu Cho
  * 
  */
-public class Team{
+public class Team {
 	
 	private String teamName;
 	private ArrayList<Athlete> players = new ArrayList<Athlete>();
@@ -52,7 +52,7 @@ public class Team{
 	/**
 	 * Given an item and player, consume the item and increase player stats
 	 * @param consumable    The item to consume
-	 * @param athlete       The athlete whos stats should increase
+	 * @param athlete       The athlete whose stats should increase
 	 */
 	public boolean useConsumable(Item consumable, Athlete athlete) {
 		if (consumables.contains(consumable)) {

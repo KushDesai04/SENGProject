@@ -43,7 +43,7 @@ public class ShopScreen {
 
 	private JFrame frame;
 	private GameManager manager;
-	
+	private Object consumable;
 	
 	/**
 	 * Constructor
@@ -112,11 +112,11 @@ public class ShopScreen {
 	public void athleteButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
 		ovr.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getRating()));
-		off.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.O)));
-		def.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.D)));
-		stam.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.S)));
-		agil.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.A)));
-		
+		off.setText("Offence: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.O)));
+		def.setText("Defence: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.D)));
+		stam.setText("Stamina: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.S)));
+		agil.setText("Agility: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.A)));
+		consumable = manager.getMarket().getPurchasableAthletes().get(index);
 	}
 	
 	public void itemButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
@@ -127,8 +127,10 @@ public class ShopScreen {
 		def.setText("");
 		stam.setText("");
 		agil.setText("");
+		consumable = manager.getMarket().getPurchasableItems().get(index);
 		
 	}
+
 	public Athlete returnAthlete(int index) {
 		return manager.getMarket().getPurchasableAthletes().get(index);
 	}
@@ -167,19 +169,29 @@ public class ShopScreen {
 		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShop.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
-		JButton btnStart = new JButton("Buy");
+		JButton btnBuy = new JButton("Buy");
 
-		btnStart.addActionListener(new ActionListener() {
+		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("BUY");
-				if (manager.getMoney() < consumable.getPrice()) {
+				if (manager.getMoney() < ((Athlete) consumable).getPrice() | manager.getMoney() < ((Item) consumable).getPrice()) {
 					String message = "You broke!";
 				    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
 				        JOptionPane.ERROR_MESSAGE);
 				}
+				else {
+					if (consumable instanceof Athlete) {
+						manager.getTeam().buyPlayer((Athlete) consumable);
+						manager.changeMoney(-((Athlete) consumable).getPrice());
+					}
+					else {
+						manager.getTeam().buyConsumable((Item) consumable);
+						manager.changeMoney(-((Item) consumable).getPrice());
+					}
+				}
 			}
 		});
-		btnStart.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnBuy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -189,7 +201,7 @@ public class ShopScreen {
 					.addGap(52)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnStart, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnBuy, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)
 							.addGap(23))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 391, GroupLayout.PREFERRED_SIZE)
@@ -203,7 +215,7 @@ public class ShopScreen {
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-							.addComponent(btnStart, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnBuy, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 							.addGap(14))
 						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(18))
@@ -212,19 +224,7 @@ public class ShopScreen {
 		JLabel nameLabel = new JLabel("Click an item to see its description");
 		nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
-		JLabel offLabel = new JLabel("");
-		offLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		
 		JSeparator separator = new JSeparator();
-		
-		JLabel defLabel = new JLabel("");
-		defLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		
-		JLabel stamLabel = new JLabel("");
-		stamLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-		
-		JLabel agilLabel = new JLabel("");
-		agilLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		
 		JLabel ovrLabel = new JLabel("");
 		ovrLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -243,37 +243,25 @@ public class ShopScreen {
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(stamLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(defLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addGap(6)
-							.addComponent(stamValue))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(agilLabel)
-							.addGap(18)
-							.addComponent(agilValue))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(offLabel)
-							.addGap(6)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(defValue)
-								.addComponent(offValue))))
-					.addContainerGap(226, Short.MAX_VALUE))
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(10)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+							.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
 							.addGap(16))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
 							.addComponent(ovrLabel)
 							.addContainerGap())))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(agilValue)
+						.addComponent(offValue)
+						.addComponent(stamValue)
+						.addComponent(defValue))
+					.addContainerGap(355, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -285,23 +273,14 @@ public class ShopScreen {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(9)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(offLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-						.addComponent(offValue))
-					.addGap(5)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(defLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(stamLabel)
-								.addComponent(stamValue))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(agilLabel)
-								.addComponent(agilValue)))
-						.addComponent(defValue))
-					.addContainerGap(56, Short.MAX_VALUE))
+					.addComponent(offValue)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(defValue)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(stamValue)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(agilValue)
+					.addContainerGap(40, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -362,22 +341,30 @@ public class ShopScreen {
 		
 		JSeparator separator_1 = new JSeparator();
 		
+		JButton btnBack = new JButton("<");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
+		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(btnItem1, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+									.addComponent(btnItem1, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
 									.addGap(6))
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(btnPlayer1, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+									.addComponent(btnPlayer1, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
 									.addGap(3)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -387,14 +374,16 @@ public class ShopScreen {
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnPlayer3, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
 								.addComponent(btnItem3, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addGap(274)
-							.addComponent(lblShop, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(9)
+							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+							.addGap(238)
+							.addComponent(lblShop, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
 							.addGap(265))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblItems, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
@@ -402,8 +391,14 @@ public class ShopScreen {
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblShop)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblShop))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(9)
+							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(5)))
 					.addGap(8)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)

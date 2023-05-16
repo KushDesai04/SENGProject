@@ -199,13 +199,13 @@ public class GameManager {
 	 	stadiumWindow.closeWindow();
 	 	launchMainScreen();
 	 }
-//	 public void gameScreen() {
-//		 GameScreen gameWindow = new GameScreen(this);
-//	 }
-//	 public void closeGameScreen(GameScreen gameWindow) {
-//		 gameWindow.closeWindow();
-//		 launchMainScreen();
-//	 }
+	 public void gameScreen() {
+		 GameScreen gameWindow = new GameScreen(this);
+	 }
+	 public void closeGameScreen(GameScreen gameWindow) {
+		 gameWindow.closeWindow();
+		 launchMainScreen();
+	 }
 	
 	public static void main(String args[]) {
 		GameManager manager = new GameManager();
