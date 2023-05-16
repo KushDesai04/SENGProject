@@ -56,7 +56,7 @@ public class Team{
 	 */
 	public boolean useConsumable(Item consumable, Athlete athlete) {
 		if (consumables.contains(consumable)) {
-			athlete.increase(consumable.getValue(), consumable.getStat());
+			athlete.changeStat(consumable.getValue(), consumable.getStat());
 			consumables.remove(consumable);
 			return true;
 		}

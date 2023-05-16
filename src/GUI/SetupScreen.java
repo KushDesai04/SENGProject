@@ -1,5 +1,5 @@
-
-package main;
+package GUI;
+import main.*;
 import java.util.regex.*;
 import java.awt.EventQueue;
 

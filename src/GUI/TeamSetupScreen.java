@@ -1,4 +1,5 @@
-package main;
+package GUI;
+import main.*;
 
 import java.awt.EventQueue;
 
@@ -22,6 +23,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Locale.Category;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.JOptionPane;
@@ -127,10 +129,10 @@ public class TeamSetupScreen {
 			name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
 			pos.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getPosition()));
 			ovr.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getRating()));
-			off.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.O)));
-			def.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.D)));
-			stam.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.S)));
-			agil.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(STATS.A)));
+			off.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.O)));
+			def.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.D)));
+			stam.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.S)));
+			agil.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.A)));
 		}
 		else if (!btn.isSelected()) {
 			manager.getTeam().removePlayer(manager.getMarket().getPurchasableAthletes().get(index));

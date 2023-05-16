@@ -22,18 +22,25 @@ public class Gameplay {
 		for (int i=0; i<5; i++) {
 			if (playerTeam.getPlayers().get(i).getRating() > opposingTeam.getPlayers().get(i).getRating()) {
 				playerPoints += 1;
+				playerTeam.getPlayers().get(i).changeStat(-2, Athlete.STATS.S);
 			}
 			else if (playerTeam.getPlayers().get(i).getRating() < opposingTeam.getPlayers().get(i).getRating()) {
 				opposingPoints += 1;
+				playerTeam.getPlayers().get(i).changeStat(-5, Athlete.STATS.S);
 			}		
 		}
 	}
-	public Team declareWinner() {
+	public String declareWinner() {
 		if (playerPoints > opposingPoints) {
-			return playerTeam;
+			return "player";
 		}
+		
+		else if (playerPoints == opposingPoints) {
+			return "draw";
+		}
+		
 		else {
-			return opposingTeam; // TODO: change this :)
+			return "opponent";
 		}
 			
 	}

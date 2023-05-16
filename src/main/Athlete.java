@@ -1,21 +1,7 @@
 package main;
 import java.util.*;
 
-/**
- * Enum to represent possible player positions
- */
-enum POSITION {
-	PG, PF, C, SF, SG;
-}
 
-/**
- * Enum to all player stats:
- * Offence
- * Defence
- * Stamina
- * Agility
- */
-enum STATS {O, D, S, A}
 
 /**
  * This is the Athlete class which represents a single Athlete.
@@ -59,6 +45,24 @@ public class Athlete {
 		
 	}
 	
+
+	/**
+	 * Enum to all player stats:
+	 * Offence
+	 * Defence
+	 * Stamina
+	 * Agility
+	 */
+	public enum POSITION {
+		PG, PF, C, SF, SG;
+	}
+	
+	/**
+	 * Enum to represent possible player positions
+	 */
+	public enum STATS {
+		O, D, S, A;
+		}
 	/**
 	 * Set player nickname
 	 * @param newName    The nickname to call the player
@@ -68,12 +72,12 @@ public class Athlete {
 	}
 	
 	/**
-	 * Increase a certain stat of a player
-	 * Used when consuming Items
-	 * @param value   The amount to increase the stat by
-	 * @param stat    The stat to increase
+	 * Change a certain stat of a player
+	 * Used when consuming Items or playing a match
+	 * @param value   The amount to change the stat by
+	 * @param stat    The stat to change
 	 */
-	public void increase(int value, STATS stat) {
+	public void changeStat(int value, STATS stat) {
 		Stats.put(stat, (getStat(stat) + value));
 	}	
 	

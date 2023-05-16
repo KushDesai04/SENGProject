@@ -1,4 +1,5 @@
-package main;
+package GUI;
+import main.*;
 
 import java.awt.EventQueue;
 
@@ -64,7 +65,7 @@ public class MainScreen {
 	public void closeWindow() {
 		frame.dispose();
 	}
-	public void finishedWindow(GOTOSCREEN screen) {
+	public void finishedWindow(GameManager.GOTOSCREEN screen) {
 		manager.closeMainScreen(this, screen);
 	}
 	/**
@@ -78,7 +79,7 @@ public class MainScreen {
 		JButton btnShop = new JButton("Shop");
 		btnShop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishedWindow(GOTOSCREEN.SHOP);
+				finishedWindow(GameManager.GOTOSCREEN.SHOP);
 			}
 		});
 		btnShop.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -86,7 +87,7 @@ public class MainScreen {
 		JButton btnStadium = new JButton("Stadium");
 		btnStadium.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishedWindow(GOTOSCREEN.STADIUM);
+				finishedWindow(GameManager.GOTOSCREEN.STADIUM);
 			}
 		});
 		btnStadium.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -95,7 +96,7 @@ public class MainScreen {
 		btnTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("TEAM");
-				finishedWindow(GOTOSCREEN.TEAM);
+				finishedWindow(GameManager.GOTOSCREEN.TEAM);
 			}
 		});
 		btnTeam.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -103,7 +104,7 @@ public class MainScreen {
 		JButton btnBack = new JButton("<");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishedWindow(GOTOSCREEN.MAIN);
+				finishedWindow(GameManager.GOTOSCREEN.MAIN);
 			}
 		});
 		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));

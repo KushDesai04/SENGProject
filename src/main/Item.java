@@ -10,10 +10,10 @@ package main;
  */
 public class Item {
 	private String name;
-	private STATS stat;
+	private Athlete.STATS stat;
 	private int value;
 	private String description;
-	public Item(String name, STATS stat, int value) {
+	public Item(String name, Athlete.STATS stat, int value) {
 		this.name = name;
 		this.stat = stat;
 		this.value = value;
@@ -43,12 +43,12 @@ public class Item {
 		}
 	}
 	
-	public STATS getStat() {
+	public Athlete.STATS getStat() {
 		return (this.stat);
 	}
 	
 	public static void main(String[] args) {
-		Item item = new Item("Cake", STATS.D, 12);
+		Item item = new Item("Cake", Athlete.STATS.D, 12);
 		System.out.println(item);
 	}
 
