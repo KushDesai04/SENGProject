@@ -44,6 +44,7 @@ public class ShopScreen {
 	private JFrame frame;
 	private GameManager manager;
 	private Object consumable;
+	private JButton bought;
 	
 	/**
 	 * Constructor
@@ -117,6 +118,7 @@ public class ShopScreen {
 		stam.setText("Stamina: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.S)));
 		agil.setText("Agility: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.A)));
 		consumable = manager.getMarket().getPurchasableAthletes().get(index);
+		bought = btn;
 	}
 	
 	public void itemButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
@@ -128,6 +130,7 @@ public class ShopScreen {
 		stam.setText("");
 		agil.setText("");
 		consumable = manager.getMarket().getPurchasableItems().get(index);
+		bought = btn;
 		
 	}
 
@@ -169,28 +172,48 @@ public class ShopScreen {
 		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShop.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
+		JLabel lblMoney = new JLabel("Money: ");
+		lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
+		lblMoney.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMoney.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		
 		JButton btnBuy = new JButton("Buy");
 
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("BUY");
-				if (manager.getMoney() < ((Athlete) consumable).getPrice() | manager.getMoney() < ((Item) consumable).getPrice()) {
-					String message = "You broke!";
-				    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
-				        JOptionPane.ERROR_MESSAGE);
-				}
-				else {
-					if (consumable instanceof Athlete) {
-						manager.getTeam().buyPlayer((Athlete) consumable);
-						manager.changeMoney(-((Athlete) consumable).getPrice());
+				System.out.println(consumable instanceof Item);
+
+				if (consumable instanceof Athlete) {
+					if (manager.getMoney() < ((Athlete) consumable).getPrice()){
+						String message = "You broke!";
+					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						manager.getTeam().buyConsumable((Item) consumable);
-						manager.changeMoney(-((Item) consumable).getPrice());
+					manager.getTeam().buyPlayer((Athlete) consumable);
+					manager.changeMoney(-((Athlete) consumable).getPrice());
+					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
+					bought.setEnabled(false);
+					
+					}
+				}
+				else {
+					if (manager.getMoney() < ((Item) consumable).getPrice()){
+						String message = "You broke!";
+					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+					        JOptionPane.ERROR_MESSAGE);
+					    }
+					else {
+					manager.getTeam().buyConsumable((Item) consumable);
+					manager.changeMoney(-((Item) consumable).getPrice());
+					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
+					bought.setEnabled(false);
 					}
 				}
 			}
 		});
+		
 		btnBuy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -356,7 +379,7 @@ public class ShopScreen {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
+							.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -368,18 +391,19 @@ public class ShopScreen {
 									.addGap(3)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnPlayer2, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-								.addComponent(btnItem2, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+								.addComponent(btnPlayer2, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+								.addComponent(btnItem2, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnPlayer3, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
 								.addComponent(btnItem3, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(9)
-							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
 							.addGap(238)
-							.addComponent(lblShop, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-							.addGap(265))
+							.addComponent(lblShop, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+							.addGap(73)
+							.addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
@@ -393,12 +417,14 @@ public class ShopScreen {
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblShop))
-						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(9)
 							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(5)))
+							.addGap(5))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblShop))))
 					.addGap(8)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)

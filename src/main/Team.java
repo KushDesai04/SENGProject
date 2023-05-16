@@ -66,7 +66,7 @@ public class Team {
 	public boolean canPlay() {
 		if (players.size() == 5) {
 			for (Athlete athlete : players) {
-				if (athlete.getInjuryStatus()) {
+				if (athlete.isInjured()) {
 					return false;
 				}
 			return true;

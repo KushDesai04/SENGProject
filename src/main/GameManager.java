@@ -96,14 +96,14 @@ public class GameManager {
 		ArrayList<Integer> stats1= new ArrayList<Integer>();
 		stats1.add(99);
 		stats1.add(99);
+		stats1.add(10);
 		stats1.add(99);
-		stats1.add(99);
-		Athlete athlete1 =  new Athlete("Athlete 1", 70, Athlete.POSITION.PG, stats1);
-		Athlete athlete2 =  new Athlete("Athlete 2", 80, Athlete.POSITION.SG, stats1);
-		Athlete athlete3 =  new Athlete("Athlete 3", 79, Athlete.POSITION.SF, stats1);
-		Athlete athlete4 =  new Athlete("Athlete 4", 76, Athlete.POSITION.PF, stats1);
-		Athlete athlete5 =  new Athlete("Athlete 5", 89, Athlete.POSITION.C, stats1);
-		Athlete athlete6 =  new Athlete("Athlete 6", 99, Athlete.POSITION.PG, stats1);
+		Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
+		Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
+		Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
+		Athlete athlete4 =  new Athlete("Athlete 4", Athlete.POSITION.PF, stats1);
+		Athlete athlete5 =  new Athlete("Athlete 5", Athlete.POSITION.C, stats1);
+		Athlete athlete6 =  new Athlete("Athlete 6", Athlete.POSITION.PG, stats1);
 		market.getPurchasableAthletes().add(athlete1);
 		market.getPurchasableAthletes().add(athlete2);
 		market.getPurchasableAthletes().add(athlete3);
@@ -162,9 +162,9 @@ public class GameManager {
 		 stats1.add(99);
 		 stats1.add(99);
 		 stats1.add(99);
-		 Athlete athlete1 =  new Athlete("Athlete 1", 70, Athlete.POSITION.PG, stats1);
-		 Athlete athlete2 =  new Athlete("Athlete 2", 80, Athlete.POSITION.SG, stats1);
-		 Athlete athlete3 =  new Athlete("Athlete 3", 79, Athlete.POSITION.SF, stats1);
+		 Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
+		 Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
+		 Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
 		 Item item1 = new Item("ZAZA", Athlete.STATS.A, 5, 1000);
 		 Item item2 = new Item("KUSH", Athlete.STATS.O, 43, 5000);
 		 Item item3 = new Item("KANG ZHENG CHEN", Athlete.STATS.D, 60, 7000);
@@ -199,20 +199,20 @@ public class GameManager {
 		 stadiumWindow.closeWindow();
 	 }
 	 
-	 public void LaunchOpponentSelectorScreen() {
-		 OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
-	 }
-	 public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
-		 	opponentSelectorWindow.closeWindow();
-		}
-	 
-	 public void launchGameScreen() {
-		 GameScreen gameWindow = new GameScreen(this);
-	 }
-	 public void closeGameScreen(GameScreen gameWindow) {
-		 gameWindow.closeWindow();
-		 launchMainScreen();
-	 }
+//	 public void LaunchOpponentSelectorScreen() {
+//		 OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
+//	 }
+//	 public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
+//		 	opponentSelectorWindow.closeWindow();
+//		}
+//	 
+//	 public void launchGameScreen() {
+//		 GameScreen gameWindow = new GameScreen(this);
+//	 }
+//	 public void closeGameScreen(GameScreen gameWindow) {
+//		 gameWindow.closeWindow();
+//		 launchMainScreen();
+//	 }
 	
 	public static void main(String args[]) {
 		GameManager manager = new GameManager();

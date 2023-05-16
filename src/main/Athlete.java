@@ -18,7 +18,6 @@ public class Athlete {
 	private int price;
 	private int rating;
 	private POSITION position;
-	private boolean isInjured = false;
 	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 	
 	public Athlete() {
@@ -28,15 +27,15 @@ public class Athlete {
 	/**
 	 * Constructor to create Athlete
 	 */
-	public Athlete (String tempName, int tempRating, POSITION tempPosition, ArrayList<Integer> tempStats) {
+	public Athlete (String tempName, POSITION tempPosition, ArrayList<Integer> tempStats) {
 		name = tempName;
-		rating = tempRating;
 		position = tempPosition;
-		price = tempRating * 20;
 		int offence = tempStats.get(0);
 		int defence = tempStats.get(1);
 		int stamina = tempStats.get(2);
 		int agility = tempStats.get(3);
+		rating = (offence + defence + stamina + agility) / 4;
+		price = rating * 20;
 		Stats.put(STATS.O, offence);
 		Stats.put(STATS.D, defence);
 		Stats.put(STATS.S, stamina);
@@ -101,8 +100,8 @@ public class Athlete {
 	public POSITION getPosition() {
 		return position;
 	}
-	public boolean getInjuryStatus() {
-		return isInjured;
+	public boolean isInjured() {
+		return Stats.get(STATS.S) == 0;
 	}
 	
 	public static void main(String args[]) {
@@ -112,7 +111,7 @@ public class Athlete {
 		statListsA.add(95);
 		statListsA.add(94);
 		
-		Athlete a = new Athlete("A", 99, POSITION.PG, statListsA);
+		Athlete a = new Athlete("A", POSITION.PG, statListsA);
 		
 //		System.out.println(a.Stats.get(STATS.O));
 //	
