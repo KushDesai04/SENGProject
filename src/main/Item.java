@@ -12,16 +12,26 @@ public class Item {
 	private String name;
 	private Athlete.STATS stat;
 	private int value;
+	private int price;
 	private String description;
-	public Item(String name, Athlete.STATS stat, int value) {
+	public Item(String name, Athlete.STATS stat, int value, int price) {
 		this.name = name;
 		this.stat = stat;
 		this.value = value;
-		this.description = name + ". This item increases a players " + getStatName() + " by " + value;
+		this.price = price;
+		this.description = "This item increases a players " + getStatName() + " by " + value;
 	}
 
 	public int getValue() {
 		return value;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public String toString() {
+		return description;
 	}
 	
 	/**
@@ -42,7 +52,9 @@ public class Item {
 			return "error";
 		}
 	}
-	
+	public String getName() {
+		return name;
+	}
 	public Athlete.STATS getStat() {
 		return (this.stat);
 	}

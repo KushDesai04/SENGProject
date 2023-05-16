@@ -14,7 +14,7 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.EnumSel
  * 
  */
 public class GameManager {
-	
+	private int money = 30000;
 	private String teamName;
 	private int numWeeks;
 	private int currentWeek = 1;
@@ -33,6 +33,12 @@ public class GameManager {
 	
 	public String getTeamName() {
 		return teamName;
+	}
+	public int getMoney() {
+		return money;
+	}
+	public void changeMoney(int amount) {
+		money += amount;
 	}
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
@@ -150,6 +156,26 @@ public class GameManager {
 	 }
 	 
 	 public void launchShopScreen() {
+		 market.resetShop();
+		 ArrayList<Integer> stats1= new ArrayList<Integer>();
+		 stats1.add(99);
+		 stats1.add(99);
+		 stats1.add(99);
+		 stats1.add(99);
+		 Athlete athlete1 =  new Athlete("Athlete 1", 70, Athlete.POSITION.PG, stats1);
+		 Athlete athlete2 =  new Athlete("Athlete 2", 80, Athlete.POSITION.SG, stats1);
+		 Athlete athlete3 =  new Athlete("Athlete 3", 79, Athlete.POSITION.SF, stats1);
+		 Item item1 = new Item("ZAZA", Athlete.STATS.A, 5, 1000);
+		 Item item2 = new Item("KUSH", Athlete.STATS.O, 43, 5000);
+		 Item item3 = new Item("KANG ZHENG CHEN", Athlete.STATS.D, 60, 7000);
+		
+		market.getPurchasableAthletes().add(athlete1);
+		market.getPurchasableAthletes().add(athlete2);
+		market.getPurchasableAthletes().add(athlete3);
+		market.getPurchasableItems().add(item1);
+		market.getPurchasableItems().add(item2);
+		market.getPurchasableItems().add(item3);
+		
 	 	ShopScreen shopWindow = new ShopScreen(this);
 	 }
 	 public void closeShopScreen(ShopScreen shopWindow) {

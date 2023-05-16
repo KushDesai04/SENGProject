@@ -33,6 +33,7 @@ public class Athlete {
 		name = tempName;
 		rating = tempRating;
 		position = tempPosition;
+		price = tempRating * 20;
 		int offence = tempStats.get(0);
 		int defence = tempStats.get(1);
 		int stamina = tempStats.get(2);

@@ -27,5 +27,13 @@ public class Market {
 	public ArrayList<Athlete> getPurchasableAthletes() {
 		return purchasableAthletes;
 	}
+	public ArrayList<Item> getPurchasableItems() {
+		return purchasableItems;
+	}
+	public void resetShop() {
+		purchasableAthletes = new ArrayList<Athlete>();
+		purchasableItems = new ArrayList<Item>();
+	}
+	
 
 }
