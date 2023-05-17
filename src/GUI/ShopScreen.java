@@ -181,8 +181,6 @@ public class ShopScreen {
 
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("BUY");
-				System.out.println(consumable instanceof Item);
 
 				if (consumable instanceof Athlete) {
 					if (manager.getMoney() < ((Athlete) consumable).getPrice()){
