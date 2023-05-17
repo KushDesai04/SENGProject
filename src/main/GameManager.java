@@ -22,11 +22,13 @@ public class GameManager {
 	private String difficulty;
 	private Market market = new Market();
 	private boolean isSetup = false;
+	private ArrayList<Team> weeklyTeams;
 	GOTOSCREEN screen;
 	
 	public GameManager() {
 		market.setPurchasableAthletes();
 		market.setPurchasableItems();
+		generateRandomTeams();
 	}
 	/**
 	* Enum to select next screen
@@ -50,15 +52,22 @@ public class GameManager {
 	public int getCurrentWeek() {
 		return currentWeek;
 	}
+	public void generateRandomTeams() {
+		GenerateRandom random = new GenerateRandom();
+		weeklyTeams = random.generateTeams();
+	}
+	public ArrayList<Team> getWeeklyTeams() {
+		return weeklyTeams;
+	}
 	public void incrementWeek() {
 		currentWeek += 1;
 		market.setPurchasableAthletes();
 		market.setPurchasableItems();
+		generateRandomTeams();
 	}
 	public int getNumWeeks() {
 		return numWeeks;
 	}
-
 	public void setNumWeeks(int numWeeks) {
 		this.numWeeks = numWeeks;
 	}
@@ -203,23 +212,22 @@ public class GameManager {
 	   
 	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
 		 stadiumWindow.closeWindow();
-		 launchMainScreen();
 	 }
 	 
-//	 public void LaunchOpponentSelectorScreen() {
-//		 OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
-//	 }
-//	 public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
-//		 	opponentSelectorWindow.closeWindow();
-//		}
-//	 
-//	 public void launchGameScreen() {
-//		 GameScreen gameWindow = new GameScreen(this);
-//	 }
-//	 public void closeGameScreen(GameScreen gameWindow) {
-//		 gameWindow.closeWindow();
-//		 launchMainScreen();
-//	 }
+	 public void LaunchOpponentSelectorScreen() {
+		 OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
+	 }
+	 public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
+		 	opponentSelectorWindow.closeWindow();
+		}
+
+	 public void launchGameScreen() {
+		 GameScreen gameWindow = new GameScreen(this);
+	 }
+	 public void closeGameScreen(GameScreen gameWindow) {
+		 gameWindow.closeWindow();
+		 launchMainScreen();
+	 }
 	
 	public static void main(String args[]) {
 		GameManager manager = new GameManager();

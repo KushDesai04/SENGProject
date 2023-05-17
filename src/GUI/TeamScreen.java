@@ -18,6 +18,8 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * This is the Team Screen class. The team screen will 
@@ -164,6 +166,11 @@ public class TeamScreen {
 		btnNewButton_5_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnNewButton_6 = new JButton("Back");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		btnNewButton_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -218,21 +225,21 @@ public class TeamScreen {
 		
 		JToggleButton btnNewButton_4 = new JToggleButton("New button");
 		
-		JLabel lblNewLabel = new JLabel("Point Guard");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblPointGuard = new JLabel("Point Guard");
+		lblPointGuard.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblStarters = new JLabel("Starters");
 		lblStarters.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblStarters.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblCenter = new JLabel("Shooting Gaurd");
+		JLabel lblShootingGuard = new JLabel("Shooting Guard");
+		lblShootingGuard.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblCenter = new JLabel("Center");
 		lblCenter.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblCenter_1 = new JLabel("Center");
-		lblCenter_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JLabel lblSmallForwad = new JLabel("Small Forward");
-		lblSmallForwad.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblSmallForward = new JLabel("Small Forward");
+		lblSmallForward.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblPowerForward = new JLabel("Power Forward");
 		lblPowerForward.setHorizontalAlignment(SwingConstants.CENTER);
@@ -251,29 +258,28 @@ public class TeamScreen {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+								.addComponent(lblPointGuard, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
 								.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
 							.addGap(54)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-								.addComponent(lblCenter, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+								.addComponent(lblShootingGuard, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
 							.addGap(48)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblCenter_1, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+								.addComponent(lblCenter, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
 								.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(82)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton_5_1, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
 								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblSmallForward, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+										.addComponent(btnNewButton_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
 									.addGap(50)
 									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPowerForward, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-										.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(lblSmallForwad, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-									.addGap(140))
-								.addComponent(btnNewButton_5_1, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+										.addComponent(lblPowerForward, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+										.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))))
 							.addGap(50)))
 					.addContainerGap())
 		);
@@ -284,18 +290,18 @@ public class TeamScreen {
 					.addComponent(lblStarters, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 					.addGap(87)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-						.addComponent(lblCenter_1, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-						.addComponent(lblCenter, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+						.addComponent(lblPointGuard, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+						.addComponent(lblCenter, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+						.addComponent(lblShootingGuard, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-						.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+						.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
 					.addGap(52)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(lblSmallForwad, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblSmallForward, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
 						.addGroup(gl_panel_1.createSequentialGroup()

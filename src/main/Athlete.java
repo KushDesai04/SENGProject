@@ -78,10 +78,27 @@ public class Athlete {
 		Stats.put(stat, (getStat(stat) + value));
 	}	
 	
-	
 	public String toString() {
-		return super.toString();
+		POSITION athletePosition = position;
+		String positionText = null;
+		switch (athletePosition) {
+			case PG:
+				positionText = "Point Guard";
+			case SG:
+				positionText = "Shooting Guard";
+			case SF:
+				positionText = "Small Forward";
+			case PF:
+				positionText = "Power Forward";
+			case C:
+				positionText = "Center";
+			default:
+				break;
+		}
+		return String.format("%s, %s, %d", name, positionText, rating);
 	}
+	
+
 	
 	//Getter methods
 	public int getStat(STATS stat) {
@@ -103,6 +120,7 @@ public class Athlete {
 	public boolean isInjured() {
 		return Stats.get(STATS.S) == 0;
 	}
+	
 	
 //	public static void main(String args[]) {
 //		ArrayList<Integer> statListsA = new ArrayList<Integer>();
