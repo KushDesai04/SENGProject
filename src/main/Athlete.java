@@ -27,13 +27,13 @@ public class Athlete {
 	/**
 	 * Constructor to create Athlete
 	 */
-	public Athlete (String tempName, POSITION tempPosition, ArrayList<Integer> tempStats) {
+	public Athlete (String tempName, POSITION tempPosition, HashMap<STATS, Integer> tempStats) {
 		name = tempName;
 		position = tempPosition;
-		int offence = tempStats.get(0);
-		int defence = tempStats.get(1);
-		int stamina = tempStats.get(2);
-		int agility = tempStats.get(3);
+		int offence = tempStats.get(STATS.O);
+		int defence = tempStats.get(STATS.D);
+		int stamina = tempStats.get(STATS.S);
+		int agility = tempStats.get(STATS.A);
 		rating = (offence + defence + stamina + agility) / 4;
 		price = rating * 20;
 		Stats.put(STATS.O, offence);
@@ -104,14 +104,14 @@ public class Athlete {
 		return Stats.get(STATS.S) == 0;
 	}
 	
-	public static void main(String args[]) {
-		ArrayList<Integer> statListsA = new ArrayList<Integer>();
-		statListsA.add(99);
-		statListsA.add(96);
-		statListsA.add(95);
-		statListsA.add(94);
-		
-		Athlete a = new Athlete("A", POSITION.PG, statListsA);
+//	public static void main(String args[]) {
+//		ArrayList<Integer> statListsA = new ArrayList<Integer>();
+//		statListsA.(99);
+//		statListsA.add(96);
+//		statListsA.add(95);
+//		statListsA.add(94);
+//		
+//		Athlete a = new Athlete("A", POSITION.PG, statListsA);
 		
 //		System.out.println(a.Stats.get(STATS.O));
 //	
@@ -123,8 +123,8 @@ public class Athlete {
 //		
 //		System.out.println(a.getStat(STATS.O));
 //		System.out.println(a.Stats);
-		System.out.println(a);
-	}
+//		System.out.println(a);
+//	}
 	
 }
 

@@ -157,11 +157,11 @@ public class GameManager {
 	 
 	 public void launchShopScreen() {
 		 market.resetShop();
-		 ArrayList<Integer> stats1= new ArrayList<Integer>();
-		 stats1.add(99);
-		 stats1.add(99);
-		 stats1.add(99);
-		 stats1.add(99);
+		 HashMap<Athlete.STATS, Integer> stats1= new HashMap<Athlete.STATS, Integer>();
+		 stats1.put(Athlete.STATS.O, 99);
+		 stats1.put(Athlete.STATS.D, 99);
+		 stats1.put(Athlete.STATS.S, 99);
+		 stats1.put(Athlete.STATS.A, 99);
 		 Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
 		 Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
 		 Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
