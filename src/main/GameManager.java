@@ -24,6 +24,10 @@ public class GameManager {
 	private boolean isSetup = false;
 	GOTOSCREEN screen;
 	
+	public GameManager() {
+		market.setPurchasableAthletes();
+		market.setPurchasableItems();
+	}
 	/**
 	* Enum to select next screen
 	*/
@@ -48,6 +52,8 @@ public class GameManager {
 	}
 	public void incrementWeek() {
 		currentWeek += 1;
+		market.setPurchasableAthletes();
+		market.setPurchasableItems();
 	}
 	public int getNumWeeks() {
 		return numWeeks;
@@ -93,23 +99,23 @@ public class GameManager {
 	}
 //	
 	public void launchTeamSetupScreen() {
-		ArrayList<Integer> stats1= new ArrayList<Integer>();
-		stats1.add(99);
-		stats1.add(99);
-		stats1.add(10);
-		stats1.add(99);
+		HashMap<Athlete.STATS, Integer> stats1= new HashMap<Athlete.STATS, Integer>();
+		stats1.put(Athlete.STATS.O, 99);
+		stats1.put(Athlete.STATS.D, 99);
+		stats1.put(Athlete.STATS.S, 99);
+		stats1.put(Athlete.STATS.A, 99);
 		Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
 		Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
 		Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
 		Athlete athlete4 =  new Athlete("Athlete 4", Athlete.POSITION.PF, stats1);
 		Athlete athlete5 =  new Athlete("Athlete 5", Athlete.POSITION.C, stats1);
 		Athlete athlete6 =  new Athlete("Athlete 6", Athlete.POSITION.PG, stats1);
-		market.getPurchasableAthletes().add(athlete1);
-		market.getPurchasableAthletes().add(athlete2);
-		market.getPurchasableAthletes().add(athlete3);
-		market.getPurchasableAthletes().add(athlete4);
-		market.getPurchasableAthletes().add(athlete5);
-		market.getPurchasableAthletes().add(athlete6);
+		market.getStarterAthletes().add(athlete1);
+		market.getStarterAthletes().add(athlete2);
+		market.getStarterAthletes().add(athlete3);
+		market.getStarterAthletes().add(athlete4);
+		market.getStarterAthletes().add(athlete5);
+		market.getStarterAthletes().add(athlete6);
 		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
 	}
 	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
@@ -156,28 +162,28 @@ public class GameManager {
 	 }
 	 
 	 public void launchShopScreen() {
-		 market.resetShop();
-		 HashMap<Athlete.STATS, Integer> stats1= new HashMap<Athlete.STATS, Integer>();
-		 stats1.put(Athlete.STATS.O, 99);
-		 stats1.put(Athlete.STATS.D, 99);
-		 stats1.put(Athlete.STATS.S, 99);
-		 stats1.put(Athlete.STATS.A, 99);
-		 Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
-		 Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
-		 Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
-		 Item item1 = new Item("ZAZA", Athlete.STATS.A, 5, 1000);
-		 Item item2 = new Item("KUSH", Athlete.STATS.O, 43, 5000);
-		 Item item3 = new Item("KANG ZHENG CHEN", Athlete.STATS.D, 60, 7000);
-		
-		market.getPurchasableAthletes().add(athlete1);
-		market.getPurchasableAthletes().add(athlete2);
-		market.getPurchasableAthletes().add(athlete3);
-		market.getPurchasableItems().add(item1);
-		market.getPurchasableItems().add(item2);
-		market.getPurchasableItems().add(item3);
+//		 HashMap<Athlete.STATS, Integer> stats1= new HashMap<Athlete.STATS, Integer>();
+//		 stats1.put(Athlete.STATS.O, 99);
+//		 stats1.put(Athlete.STATS.D, 99);
+//		 stats1.put(Athlete.STATS.S, 99);
+//		 stats1.put(Athlete.STATS.A, 99);
+//		 Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
+//		 Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
+//		 Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
+//		 Item item1 = new Item("ZAZA", Athlete.STATS.A, 5, 1000);
+//		 Item item2 = new Item("KUSH", Athlete.STATS.O, 43, 5000);
+//		 Item item3 = new Item("KANG ZHENG CHEN", Athlete.STATS.D, 60, 7000);
+//		
+//		market.getPurchasableAthletes().add(athlete1);
+//		market.getPurchasableAthletes().add(athlete2);
+//		market.getPurchasableAthletes().add(athlete3);
+//		market.getPurchasableItems().add(item1);
+//		market.getPurchasableItems().add(item2);
+//		market.getPurchasableItems().add(item3);
 		
 	 	ShopScreen shopWindow = new ShopScreen(this);
 	 }
+	 
 	 public void closeShopScreen(ShopScreen shopWindow) {
 	 	shopWindow.closeWindow();
 	 	launchMainScreen();
@@ -197,6 +203,7 @@ public class GameManager {
 	   
 	 public void closeStadiumScreen(StadiumScreen stadiumWindow) {
 		 stadiumWindow.closeWindow();
+		 launchMainScreen();
 	 }
 	 
 //	 public void LaunchOpponentSelectorScreen() {

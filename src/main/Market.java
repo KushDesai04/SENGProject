@@ -11,8 +11,9 @@ import java.util.ArrayList;
  * 
  */
 public class Market {
-	private ArrayList<Athlete> purchasableAthletes = new ArrayList<Athlete>();
-	private ArrayList<Item> purchasableItems = new ArrayList<Item>();
+	private ArrayList<Athlete> purchasableAthletes;
+	private ArrayList<Item> purchasableItems;
+	private ArrayList<Athlete> starterAthletes = new ArrayList<Athlete>();
 	
 	public Market() {
 		// TODO Auto-generated constructor stub
@@ -27,13 +28,20 @@ public class Market {
 	public ArrayList<Athlete> getPurchasableAthletes() {
 		return purchasableAthletes;
 	}
+	public void setPurchasableAthletes() {
+		GenerateRandom randomAthlete = new GenerateRandom();
+		purchasableAthletes = randomAthlete.generateWeeklyAthletes();
+		System.out.println(purchasableAthletes);
+	}
+	
 	public ArrayList<Item> getPurchasableItems() {
 		return purchasableItems;
 	}
-	public void resetShop() {
-		purchasableAthletes = new ArrayList<Athlete>();
-		purchasableItems = new ArrayList<Item>();
+	public void setPurchasableItems() {
+		GenerateRandom randomItem = new GenerateRandom();
+		purchasableItems = randomItem.generateWeeklyItems();
 	}
-	
-
+	public ArrayList<Athlete> getStarterAthletes() {
+		return starterAthletes;
+	}
 }

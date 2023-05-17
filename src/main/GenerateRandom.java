@@ -7,11 +7,13 @@ public class GenerateRandom {
 			"Michael", "Jordan", "Steph", "Kush", "Droopy", "Hoi Fung", "Ray", 
 			"Zaza", "Archibold", "Freddie", "Wij", "Richard", "Kang", "Zheng",
 			"Rundle", "Tim", "Sum", "Ting", "Wong", "Jake", "Tuffy"));
+	private ArrayList<String> possibleItemNames = new ArrayList<String>(Arrays.asList(
+			"Apple", "Blue Pot", "Sushi", "Katsu Chicken Sandwich", "Protein Shake",
+			"Trenbolone Acetate"));
 	public GenerateRandom() {
 		random = new Random();
 		
 	}
-	
 	
 	public ArrayList<Athlete> generateWeeklyAthletes() {
 		ArrayList<Athlete> weeklyAthletes = new ArrayList<Athlete>();
@@ -52,6 +54,37 @@ public class GenerateRandom {
 			Athlete athlete = new Athlete(name, p, statValues); 
 			weeklyAthletes.add(athlete);
 		}
-		return weeklyAthletes;	
+		return weeklyAthletes;
+	}
+	public ArrayList<Item> generateWeeklyItems() {
+		ArrayList<Item> weeklyItems = new ArrayList<Item>();
+		while (weeklyItems.size()<3) {
+			int index = random.nextInt(possibleItemNames.size());
+			int statIndex = random.nextInt(4);
+			Athlete.STATS s = Athlete.STATS.O;
+			String name = possibleItemNames.get(index);
+			possibleItemNames.remove(index);
+			int increaseBy = (int) (random.nextInt(10) * multiplier);
+			int price = increaseBy * 100;
+			switch (statIndex) {
+			case 0:
+				s = Athlete.STATS.O;
+				break;
+			case 1:
+				s = Athlete.STATS.D;
+				break;
+			case 2:
+				s = Athlete.STATS.S;
+				break;
+			case 3:
+				s = Athlete.STATS.A;
+				break;
+			default:
+				break;
+			}
+			Item item = new Item(name, s, increaseBy, price);
+			weeklyItems.add(item);
+		}	
+		return weeklyItems;
 	}
 }

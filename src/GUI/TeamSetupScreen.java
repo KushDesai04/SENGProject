@@ -125,23 +125,23 @@ public class TeamSetupScreen {
 	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		if (btn.isSelected()) {
-			manager.getTeam().addPlayer(manager.getMarket().getPurchasableAthletes().get(index)); //Add player from array to starters
-			name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
-			pos.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getPosition()));
-			ovr.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getRating()));
-			off.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.O)));
-			def.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.D)));
-			stam.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.S)));
-			agil.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.A)));
+			manager.getTeam().addPlayer(manager.getMarket().getStarterAthletes().get(index)); //Add player from array to starters
+			name.setText(manager.getMarket().getStarterAthletes().get(index).getName()); //Set name label to athlete name
+			pos.setText(String.valueOf(manager.getMarket().getStarterAthletes().get(index).getPosition()));
+			ovr.setText(String.valueOf(manager.getMarket().getStarterAthletes().get(index).getRating()));
+			off.setText(String.valueOf(manager.getMarket().getStarterAthletes().get(index).getStat(Athlete.STATS.O)));
+			def.setText(String.valueOf(manager.getMarket().getStarterAthletes().get(index).getStat(Athlete.STATS.D)));
+			stam.setText(String.valueOf(manager.getMarket().getStarterAthletes().get(index).getStat(Athlete.STATS.S)));
+			agil.setText(String.valueOf(manager.getMarket().getStarterAthletes().get(index).getStat(Athlete.STATS.A)));
 		}
 		else if (!btn.isSelected()) {
-			manager.getTeam().removePlayer(manager.getMarket().getPurchasableAthletes().get(index));
+			manager.getTeam().removePlayer(manager.getMarket().getStarterAthletes().get(index));
 		}
 	}
 	
 	public void setAthleteButtons(ArrayList<JToggleButton> btns) {
 		for (int i=0; i < btns.size();i++) {
-			btns.get(i).setText(manager.getMarket().getPurchasableAthletes().get(i).getName());
+			btns.get(i).setText(manager.getMarket().getStarterAthletes().get(i).getName());
 		}
 	}
 	/**
