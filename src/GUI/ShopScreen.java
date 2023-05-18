@@ -111,8 +111,8 @@ public class ShopScreen {
 	 * @param index  the index of the player in the team
 	 */
 	public void athleteButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
-		name.setText(manager.getMarket().getPurchasableAthletes().get(index).getName()); //Set name label to athlete name
-		ovr.setText(String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getRating()));
+		name.setText(manager.getMarket().getPurchasableAthletes().get(index).toString()); //Set name label to athlete name
+		ovr.setText("$" + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getPrice()));
 		off.setText("Offence: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.O)));
 		def.setText("Defence: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.D)));
 		stam.setText("Stamina: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.S)));
@@ -124,7 +124,7 @@ public class ShopScreen {
 	public void itemButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		
 		name.setText(manager.getMarket().getPurchasableItems().get(index).getName()); //Set name label to athlete name
-		ovr.setText(String.valueOf(manager.getMarket().getPurchasableItems().get(index).getPrice()));
+		ovr.setText("$" + String.valueOf(manager.getMarket().getPurchasableItems().get(index).getPrice()));
 		off.setText(String.valueOf(manager.getMarket().getPurchasableItems().get(index).toString()));
 		def.setText("");
 		stam.setText("");
@@ -254,12 +254,12 @@ public class ShopScreen {
 		);
 		
 		JLabel nameLabel = new JLabel("Click an item to see its description");
-		nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		
 		JSeparator separator = new JSeparator();
 		
-		JLabel ovrLabel = new JLabel("");
-		ovrLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		JLabel priceLabel = new JLabel("");
+		priceLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel offValue = new JLabel("");
 		offValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -284,7 +284,7 @@ public class ShopScreen {
 							.addGap(16))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
-							.addComponent(ovrLabel)
+							.addComponent(priceLabel)
 							.addContainerGap())))
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(6)
@@ -301,7 +301,7 @@ public class ShopScreen {
 					.addGap(181)
 					.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 					.addGap(26)
-					.addComponent(ovrLabel)
+					.addComponent(priceLabel)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(9)
@@ -319,7 +319,7 @@ public class ShopScreen {
 		JButton btnPlayer1 = new JButton("Player1");
 		btnPlayer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				athleteButtonEvent(btnPlayer1, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 0);
+				athleteButtonEvent(btnPlayer1, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
 		btnPlayer1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -328,7 +328,7 @@ public class ShopScreen {
 		
 		btnPlayer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				athleteButtonEvent(btnPlayer2, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 1);
+				athleteButtonEvent(btnPlayer2, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
 		btnPlayer2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -336,7 +336,7 @@ public class ShopScreen {
 		JButton btnPlayer3 = new JButton("Player3");
 		btnPlayer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				athleteButtonEvent(btnPlayer3, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 2);
+				athleteButtonEvent(btnPlayer3, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
 		btnPlayer3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -344,7 +344,7 @@ public class ShopScreen {
 		JButton btnItem1 = new JButton("Item1");
 		btnItem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemButtonEvent(btnItem1, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 0);
+				itemButtonEvent(btnItem1, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
 		btnItem1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -352,7 +352,7 @@ public class ShopScreen {
 		JButton btnItem2 = new JButton("Item2");
 		btnItem2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemButtonEvent(btnItem2, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 1);
+				itemButtonEvent(btnItem2, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
 		btnItem2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -360,7 +360,7 @@ public class ShopScreen {
 		JButton btnItem3 = new JButton("Item3");
 		btnItem3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemButtonEvent(btnItem3, nameLabel, ovrLabel, offValue, defValue, stamValue, agilValue, 2);
+				itemButtonEvent(btnItem3, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
 		btnItem3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));

@@ -97,7 +97,7 @@ public class Athlete {
 			default:
 				break;
 		}
-		return String.format("%s, %s, %d", name, positionText, rating);
+		return String.format("%s, %s, %d OVR", name, positionText, rating);
 	}
 	
 

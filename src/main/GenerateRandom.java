@@ -81,7 +81,7 @@ public class GenerateRandom {
 			Athlete.STATS s = Athlete.STATS.O;
 			String name = possibleItemNames.get(index);
 			possibleItemNames.remove(index);
-			int increaseBy = (int) (random.nextInt(10) * multiplier);
+			int increaseBy = (int) (random.nextInt(1, 10) * multiplier);
 			int price = increaseBy * 100;
 			switch (statIndex) {
 			case 0:
