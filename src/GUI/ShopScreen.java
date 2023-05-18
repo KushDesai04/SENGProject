@@ -200,13 +200,13 @@ public class ShopScreen {
 		JLabel lblShop = new JLabel("Shop");
 		lblShop.setForeground(new Color(255, 255, 255));
 		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
-		lblShop.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		lblShop.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel lblMoney = new JLabel("Money: ");
 		lblMoney.setForeground(new Color(255, 255, 255));
-		lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
+		lblMoney.setText("$" + String.valueOf(manager.getMoney()));
 		lblMoney.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMoney.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnBuy = new JButton("Buy");
 
@@ -215,30 +215,30 @@ public class ShopScreen {
 
 				if (consumable instanceof Athlete) {
 					if (manager.getMoney() < ((Athlete) consumable).getPrice()){
-						String message = "You broke!";
-					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+						String message = "You do not have enough money!";
+					    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
 					        JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 					manager.getTeam().buyPlayer((Athlete) consumable);
 					manager.changeMoney(-((Athlete) consumable).getPrice());
-					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
+					lblMoney.setText("$" + String.valueOf(manager.getMoney()));
 					bought.setEnabled(false);
 					manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
 					consumable = null;
-					
+					//TODO: Make sure nothing happens when consumable == null!
 					}
 				}
 				else {
 					if (manager.getMoney() < ((Item) consumable).getPrice()){
-						String message = "You broke!";
-					    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog",
+						String message = "You do not have enough money!";
+					    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
 					        JOptionPane.ERROR_MESSAGE);
 					    }
 					else {
 					manager.getTeam().buyConsumable((Item) consumable);
 					manager.changeMoney(-((Item) consumable).getPrice());
-					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
+					lblMoney.setText("$" + String.valueOf(manager.getMoney()));
 					bought.setEnabled(false);
 					manager.getMarket().addWeeklyPurchasedItems((Item) consumable);
 					consumable = null;
@@ -247,7 +247,7 @@ public class ShopScreen {
 			}
 		});
 		
-		btnBuy.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnBuy.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -278,24 +278,24 @@ public class ShopScreen {
 		);
 		
 		JLabel nameLabel = new JLabel("Click an item to see its description");
-		nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JSeparator separator = new JSeparator();
 		
 		JLabel priceLabel = new JLabel("");
-		priceLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel offValue = new JLabel("");
-		offValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		offValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel defValue = new JLabel("");
-		defValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		defValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel stamValue = new JLabel("");
-		stamValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		stamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel agilValue = new JLabel("");
-		agilValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		agilValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -346,7 +346,7 @@ public class ShopScreen {
 				athleteButtonEvent(btnPlayer1, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
-		btnPlayer1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnPlayer1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnPlayer2 = new JButton("Player2");
 		
@@ -355,7 +355,7 @@ public class ShopScreen {
 				athleteButtonEvent(btnPlayer2, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
-		btnPlayer2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnPlayer2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnPlayer3 = new JButton("Player3");
 		btnPlayer3.addActionListener(new ActionListener() {
@@ -363,7 +363,7 @@ public class ShopScreen {
 				athleteButtonEvent(btnPlayer3, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
-		btnPlayer3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnPlayer3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnItem1 = new JButton("Item1");
 		btnItem1.addActionListener(new ActionListener() {
@@ -371,7 +371,7 @@ public class ShopScreen {
 				itemButtonEvent(btnItem1, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
-		btnItem1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnItem1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnItem2 = new JButton("Item2");
 		btnItem2.addActionListener(new ActionListener() {
@@ -379,7 +379,7 @@ public class ShopScreen {
 				itemButtonEvent(btnItem2, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
-		btnItem2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnItem2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JButton btnItem3 = new JButton("Item3");
 		btnItem3.addActionListener(new ActionListener() {
@@ -387,15 +387,15 @@ public class ShopScreen {
 				itemButtonEvent(btnItem3, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
-		btnItem3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btnItem3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel = new JLabel("Athletes");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel lblItems = new JLabel("Items");
 		lblItems.setForeground(new Color(255, 255, 255));
-		lblItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		lblItems.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JSeparator separator_1 = new JSeparator();
 		
@@ -405,7 +405,7 @@ public class ShopScreen {
 				finishedWindow();
 			}
 		});
-		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(

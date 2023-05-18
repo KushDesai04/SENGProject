@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import java.awt.List;
@@ -123,36 +124,59 @@ public class TeamScreen {
 		
 		JSeparator separator = new JSeparator();
 		
-		JLabel nameLabel = new JLabel("Click an item to see description");
-		nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		JLabel nameLabel = new JLabel("Click an item to see its description");
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel priceLabel = new JLabel("");
-		priceLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JLabel agilValue = new JLabel("");
-		agilValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		agilValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel offValue = new JLabel("");
-		offValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		offValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel stamValue = new JLabel("");
-		stamValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		stamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel defValue = new JLabel("");
-		defValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		defValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JButton btnSell = new JButton("Sell");
+		btnSell.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String message = "Are you sure? This cannot be undone!";
+			    int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Player",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			    if (result == JOptionPane.YES_OPTION) {
+			    	//TODO: Sell if yes, else do nothing
+			    }
+			}
+		});
+		btnSell.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JButton btnTrain = new JButton("Train");
+		btnTrain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String message = "Please select a stat to train:";
+				String[] choices = {"Offence", "Defence", "Stamina", "Agility", "Cancel"}; 
+				    JOptionPane.showOptionDialog(new JFrame(), message, "Train Player",
+				        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, choices, null);
+			}
+		});
+		btnTrain.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 391, Short.MAX_VALUE)
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(10)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+							.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
 							.addGap(16))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
 							.addComponent(priceLabel)
 							.addContainerGap())))
 				.addGroup(gl_panel.createSequentialGroup()
@@ -162,11 +186,18 @@ public class TeamScreen {
 						.addComponent(offValue)
 						.addComponent(stamValue)
 						.addComponent(defValue))
-					.addContainerGap(385, Short.MAX_VALUE))
+					.addContainerGap(311, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnTrain, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnSell, GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 397, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(181)
 					.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
@@ -182,7 +213,11 @@ public class TeamScreen {
 					.addComponent(stamValue)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(agilValue)
-					.addContainerGap(125, Short.MAX_VALUE))
+					.addGap(118)
+					.addComponent(btnTrain, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(3)
+					.addComponent(btnSell, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 		
