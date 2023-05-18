@@ -59,21 +59,6 @@ public class Team {
 		consumables.remove(consumable);
 	}
 	
-	/**
-	 * Given an item and player, consume the item and increase player stats
-	 * @param consumable    The item to consume
-	 * @param athlete       The athlete whose stats should increase
-	 */
-	public boolean useConsumable(Item consumable, Athlete athlete) {
-		if (consumables.contains(consumable)) {
-			athlete.changeStat(consumable.getValue(), consumable.getStat());
-			consumables.remove(consumable);
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	public boolean canPlay() {
 		if (players.size() == 5) {
 			for (Athlete athlete : players.values()) {
@@ -102,6 +87,10 @@ public class Team {
 	}
 	public ArrayList<Item> getItems() {
 		return consumables;
+	}
+
+	public void removeItem(Item item) {
+		consumables.remove(item);
 	}
 
 

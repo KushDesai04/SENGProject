@@ -222,6 +222,7 @@ public class ShopScreen {
 					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
 					bought.setEnabled(false);
 					manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
+					consumable = null;
 					
 					}
 				}
@@ -237,6 +238,7 @@ public class ShopScreen {
 					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
 					bought.setEnabled(false);
 					manager.getMarket().addWeeklyPurchasedItems((Item) consumable);
+					consumable = null;
 					}
 				}
 			}

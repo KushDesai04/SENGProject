@@ -207,7 +207,7 @@ public class TeamScreen {
 			public void actionPerformed(ActionEvent e) {
 				Athlete athlete = athleteList.getSelectedValue();
 				
-				System.out.println(athlete);
+//				System.out.println(athlete);
 				
 				manager.getTeam().replacePlayer(athlete, manager.getTeam().getPlayersMap().get(athlete.getPosition()));
 				
@@ -254,6 +254,8 @@ public class TeamScreen {
 				Item item = itemList.getSelectedValue();
 				
 				System.out.println(item);
+				item.consume(lastSelectedAthlete);
+				manager.getTeam().removeItem(item);
 				
 				JList<Item> itemList = new JList<Item>();
 				itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -269,16 +271,9 @@ public class TeamScreen {
 				itemList.clearSelection();
 				itemList.repaint();
 				itemList.revalidate();
-				scrollPane.repaint();
-				scrollPane.revalidate();
-				setStarterButtons(starters);				
-				itemList.clearSelection();
-				itemList.repaint();
-				itemList.revalidate();
-				scrollPane.repaint();
-				scrollPane.revalidate();
+				scrollPane_1.repaint();
+				scrollPane_1.revalidate();
 				setStarterButtons(starters);
-				
 			}
 			}
 		);

@@ -40,7 +40,7 @@ public class Item {
 	
 	/**
 	 * Method to represent a stat as a string
-	 * @param stat    takes an enum value to return as a string
+	 * @param stat takes an enum value to return as a string
 	 */
 	public String getStatName() {
 		switch (this.stat){
@@ -61,6 +61,10 @@ public class Item {
 	}
 	public Athlete.STATS getStat() {
 		return (this.stat);
+	}
+	public void consume(Athlete athlete) {
+		athlete.changeStat(value, stat);
+		
 	}
 	
 	public static void main(String[] args) {
