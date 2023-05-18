@@ -187,6 +187,7 @@ public class ShopScreen {
 	private void initialize() {
 		
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 64));
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -194,13 +195,15 @@ public class ShopScreen {
 		panel.setBackground(new Color(255, 255, 255));
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
+		panel_1.setBackground(new Color(0, 0, 64));
 		
 		JLabel lblShop = new JLabel("Shop");
+		lblShop.setForeground(new Color(255, 255, 255));
 		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShop.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblMoney = new JLabel("Money: ");
+		lblMoney.setForeground(new Color(255, 255, 255));
 		lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
 		lblMoney.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMoney.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -387,9 +390,11 @@ public class ShopScreen {
 		btnItem3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel = new JLabel("Athletes");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblItems = new JLabel("Items");
+		lblItems.setForeground(new Color(255, 255, 255));
 		lblItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JSeparator separator_1 = new JSeparator();

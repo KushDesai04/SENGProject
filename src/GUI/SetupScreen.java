@@ -98,6 +98,7 @@ public class SetupScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 64));
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -107,7 +108,8 @@ public class SetupScreen {
 		txtTeamName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTeamName.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Select Team Name:");
+		JLabel lblNewLabel = new JLabel("Team Name:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		

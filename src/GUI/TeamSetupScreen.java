@@ -152,6 +152,7 @@ public class TeamSetupScreen {
 	private void initialize() {
 		
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 64));
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -159,9 +160,10 @@ public class TeamSetupScreen {
 		panel.setBackground(new Color(255, 255, 255));
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
+		panel_1.setBackground(new Color(0, 0, 64));
 		
 		JLabel lblErrorMsg = new JLabel("Select 5 Players");
+		lblErrorMsg.setForeground(new Color(255, 255, 255));
 		lblErrorMsg.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorMsg.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		

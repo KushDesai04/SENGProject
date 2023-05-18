@@ -114,6 +114,7 @@ public class TeamScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 64));
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -186,6 +187,7 @@ public class TeamScreen {
 		panel.setLayout(gl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 0, 64));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		JList<Athlete> athleteList = new JList<Athlete>();
@@ -331,22 +333,28 @@ public class TeamScreen {
 		
 		
 		JLabel lblPointGuard = new JLabel("Point Guard");
+		lblPointGuard.setForeground(new Color(255, 255, 255));
 		lblPointGuard.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblStarters = new JLabel("Starters");
+		lblStarters.setForeground(new Color(255, 255, 255));
 		lblStarters.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblStarters.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblShootingGuard = new JLabel("Shooting Guard");
+		lblShootingGuard.setForeground(new Color(255, 255, 255));
 		lblShootingGuard.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblCenter = new JLabel("Center");
+		lblCenter.setForeground(new Color(255, 255, 255));
 		lblCenter.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblSmallForward = new JLabel("Small Forward");
+		lblSmallForward.setForeground(new Color(255, 255, 255));
 		lblSmallForward.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblPowerForward = new JLabel("Power Forward");
+		lblPowerForward.setForeground(new Color(255, 255, 255));
 		lblPowerForward.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btnPG = new JButton("PG");

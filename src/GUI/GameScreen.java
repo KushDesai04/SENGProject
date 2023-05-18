@@ -59,6 +59,7 @@ public class GameScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 64));
 		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -66,37 +67,47 @@ public class GameScreen {
 		panel.setBackground(new Color(255, 255, 255));
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_1 = new JLabel("New label");
+		lblNewLabel_3_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_3_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_2 = new JLabel("New label");
+		lblNewLabel_3_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_3 = new JLabel("New label");
+		lblNewLabel_3_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_3.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_3_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_4 = new JLabel("New label");
+		lblNewLabel_3_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_5 = new JLabel("New label");
+		lblNewLabel_3_5.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_5.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_3_5.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_6 = new JLabel("New label");
+		lblNewLabel_3_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_6.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_7 = new JLabel("New label");
+		lblNewLabel_3_7.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_7.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_3_7.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_8 = new JLabel("New label");
+		lblNewLabel_3_8.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_8.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		JLabel lblNewLabel_3_9 = new JLabel("New label");
+		lblNewLabel_3_9.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3_9.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_3_9.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
