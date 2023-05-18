@@ -45,6 +45,8 @@ public class ShopScreen {
 	private GameManager manager;
 	private Object consumable;
 	private JButton bought;
+	private ArrayList<JButton> athleteBtns = new ArrayList<JButton>();
+	private ArrayList<JButton> itemBtns = new ArrayList<JButton>();
 	
 	/**
 	 * Constructor
@@ -119,19 +121,36 @@ public class ShopScreen {
 		agil.setText("Agility: " + String.valueOf(manager.getMarket().getPurchasableAthletes().get(index).getStat(Athlete.STATS.A)));
 		consumable = manager.getMarket().getPurchasableAthletes().get(index);
 		bought = btn;
+		for (JButton athleteBtn: athleteBtns) {
+			athleteBtn.setForeground(Color.black);
+		}
+		
+		for (JButton itemBtn: itemBtns) {
+			itemBtn.setForeground(Color.black);
+		}
+		
+		btn.setForeground(Color.red);
 	}
 	
 	public void itemButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		
 		name.setText(manager.getMarket().getPurchasableItems().get(index).getName()); //Set name label to athlete name
 		ovr.setText("$" + String.valueOf(manager.getMarket().getPurchasableItems().get(index).getPrice()));
-		off.setText(String.valueOf(manager.getMarket().getPurchasableItems().get(index).toString()));
+		off.setText(String.valueOf(manager.getMarket().getPurchasableItems().get(index).getDescription()));
 		def.setText("");
 		stam.setText("");
 		agil.setText("");
 		consumable = manager.getMarket().getPurchasableItems().get(index);
 		bought = btn;
 		
+		for (JButton athleteBtn: athleteBtns) {
+			athleteBtn.setForeground(Color.black);
+		}
+		
+		for (JButton itemBtn: itemBtns) {
+			itemBtn.setForeground(Color.black);
+		}
+		btn.setForeground(Color.red);
 	}
 
 	public Athlete returnAthlete(int index) {
@@ -455,11 +474,11 @@ public class ShopScreen {
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
 		
-		ArrayList<JButton> athleteBtns = new ArrayList<JButton>();
+		
 		athleteBtns.add(btnPlayer1);
 		athleteBtns.add(btnPlayer2);
 		athleteBtns.add(btnPlayer3);
-		ArrayList<JButton> itemBtns = new ArrayList<JButton>();
+		
 		itemBtns.add(btnItem1);
 		itemBtns.add(btnItem2);
 		itemBtns.add(btnItem3);

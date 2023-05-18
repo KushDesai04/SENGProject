@@ -40,7 +40,8 @@ public class TeamScreen {
 
 	private JFrame frame;
 	private GameManager manager;
-	private ArrayList<JToggleButton> starters = new ArrayList<JToggleButton>();
+	private ArrayList<JButton> starters = new ArrayList<JButton>();
+	private Athlete lastSelectedAthlete;
 	
 	public TeamScreen(GameManager gameManager) {
 		manager = gameManager;
@@ -61,7 +62,7 @@ public class TeamScreen {
 		manager.closeTeamScreen(this);
 	}
 	
-	public void starterButtonEvent(JToggleButton btn, Athlete.POSITION pos, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
+	public void starterButtonEvent(JButton btn, Athlete.POSITION pos, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
         Athlete athlete = manager.getTeam().getPlayersMap().get(pos);
 		name.setText(athlete.toString()); //Set name label to athlete name
 		price.setText("$" + String.valueOf(athlete.getPrice()));
@@ -69,9 +70,15 @@ public class TeamScreen {
 		def.setText("Defence: " + String.valueOf(athlete.getStat(Athlete.STATS.D)));
 		stam.setText("Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.S)));
 		agil.setText("Agility: " + String.valueOf(athlete.getStat(Athlete.STATS.A)));
+		lastSelectedAthlete = athlete;
+		for (JButton starterBtn : starters) {
+			starterBtn.setForeground(Color.black);
+		}
+		btn.setForeground(Color.red);
 	}
 	
-	public void setStarterButtons(ArrayList<JToggleButton> btns) {
+	public void setStarterButtons(ArrayList<JButton> btns) {
+//		System.out.println(manager.getTeam().getPlayersMap());
 		btns.get(0).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.PG).getName()));
 		btns.get(1).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.SG).getName()));
 		btns.get(2).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.C).getName()));
@@ -181,9 +188,9 @@ public class TeamScreen {
 		JPanel panel_1 = new JPanel();
 		
 		JScrollPane scrollPane = new JScrollPane();
-		JList<Athlete> list = new JList<Athlete>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setModel(new AbstractListModel<Athlete>() {
+		JList<Athlete> athleteList = new JList<Athlete>();
+		athleteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		athleteList.setModel(new AbstractListModel<Athlete>() {
 			ArrayList<Athlete> values = manager.getTeam().getReserves();
 			public int getSize() {
 				return values.size();
@@ -192,21 +199,21 @@ public class TeamScreen {
 				return values.get(index);
 			}
 		});
-		scrollPane.setViewportView(list);
+		scrollPane.setViewportView(athleteList);
 		
 		JButton tglBtnPG_5 = new JButton("Make Starter");
 		tglBtnPG_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglBtnPG_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Athlete athlete = list.getSelectedValue();
+				Athlete athlete = athleteList.getSelectedValue();
 				
 				System.out.println(athlete);
 				
 				manager.getTeam().replacePlayer(athlete, manager.getTeam().getPlayersMap().get(athlete.getPosition()));
 				
-				JList<Athlete> list = new JList<Athlete>();
-				list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				list.setModel(new AbstractListModel<Athlete>() {
+				JList<Athlete> athletelist = new JList<Athlete>();
+				athleteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				athleteList.setModel(new AbstractListModel<Athlete>() {
 					ArrayList<Athlete> values = manager.getTeam().getReserves();
 					public int getSize() {
 						return values.size();
@@ -215,9 +222,9 @@ public class TeamScreen {
 						return values.get(index);
 					}
 				});
-				list.clearSelection();
-				list.repaint();
-				list.revalidate();
+				athleteList.clearSelection();
+				athleteList.repaint();
+				athleteList.revalidate();
 				scrollPane.repaint();
 				scrollPane.revalidate();
 				setStarterButtons(starters);
@@ -225,8 +232,56 @@ public class TeamScreen {
 			}
 		});
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		JList<Item> itemList = new JList<Item>();
+		
+		itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		itemList.setModel(new AbstractListModel<Item>() {
+			ArrayList<Item> values = manager.getTeam().getItems();
+			public int getSize() {
+				return values.size();
+			}
+			public Item getElementAt(int index) {
+				return values.get(index);
+			}
+		});
+		scrollPane_1.setViewportView(itemList);
+		
 		JButton tglBtnPG_5_2 = new JButton("Use Item");
 		tglBtnPG_5_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        tglBtnPG_5_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+				Item item = itemList.getSelectedValue();
+				
+				System.out.println(item);
+				
+				JList<Item> itemList = new JList<Item>();
+				itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				itemList.setModel(new AbstractListModel<Item>() {
+					ArrayList<Item> values = manager.getTeam().getItems();
+					public int getSize() {
+						return values.size();
+					}
+					public Item getElementAt(int index) {
+						return values.get(index);
+					}
+				});
+				itemList.clearSelection();
+				itemList.repaint();
+				itemList.revalidate();
+				scrollPane.repaint();
+				scrollPane.revalidate();
+				setStarterButtons(starters);				
+				itemList.clearSelection();
+				itemList.repaint();
+				itemList.revalidate();
+				scrollPane.repaint();
+				scrollPane.revalidate();
+				setStarterButtons(starters);
+				
+			}
+			}
+		);
 		
 		JButton tglBtnPG_6 = new JButton("Back");
 		tglBtnPG_6.addActionListener(new ActionListener() {
@@ -236,7 +291,7 @@ public class TeamScreen {
 		});
 		tglBtnPG_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -280,7 +335,6 @@ public class TeamScreen {
 		);
 		
 		
-		
 		JLabel lblPointGuard = new JLabel("Point Guard");
 		lblPointGuard.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -300,38 +354,38 @@ public class TeamScreen {
 		JLabel lblPowerForward = new JLabel("Power Forward");
 		lblPowerForward.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JToggleButton tglBtnPG = new JToggleButton("PG");
-		tglBtnPG.addActionListener(new ActionListener() {
+		JButton btnPG = new JButton("PG");
+		btnPG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(tglBtnPG, Athlete.POSITION.PG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
+				starterButtonEvent(btnPG, Athlete.POSITION.PG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
 			}
 		});
 		
-		JToggleButton tglBtnSG = new JToggleButton("SG");
-		tglBtnSG.addActionListener(new ActionListener() {
+		JButton btnSG = new JButton("SG");
+		btnSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(tglBtnSG, Athlete.POSITION.SG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
+				starterButtonEvent(btnSG, Athlete.POSITION.SG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
 			}
 		});
 		
-		JToggleButton tglBtnC = new JToggleButton("C");
-		tglBtnC.addActionListener(new ActionListener() {
+		JButton btnC = new JButton("C");
+		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(tglBtnC, Athlete.POSITION.C, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 4);
+				starterButtonEvent(btnC, Athlete.POSITION.C, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 4);
 			}
 		});
 		
-		JToggleButton tglBtnSF = new JToggleButton("SF");
-		tglBtnSF.addActionListener(new ActionListener() {
+		JButton btnSF = new JButton("SF");
+		btnSF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(tglBtnSF, Athlete.POSITION.SF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
+				starterButtonEvent(btnSF, Athlete.POSITION.SF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
 			}
 		});
 		
-		JToggleButton tglBtnPF = new JToggleButton("PF");
-		tglBtnPF.addActionListener(new ActionListener() {
+		JButton btnPF = new JButton("PF");
+		btnPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(tglBtnPF, Athlete.POSITION.PF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 3);
+				starterButtonEvent(btnPF, Athlete.POSITION.PF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 3);
 			}
 		});
 		
@@ -348,24 +402,24 @@ public class TeamScreen {
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblPointGuard, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-								.addComponent(tglBtnPG, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+								.addComponent(btnPG, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
 							.addGap(54)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(tglBtnSG, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+								.addComponent(btnSG, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 								.addComponent(lblShootingGuard, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
 							.addGap(48)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblCenter, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-								.addComponent(tglBtnC, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+								.addComponent(btnC, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(82)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblSmallForward, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-								.addComponent(tglBtnSF, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+								.addComponent(btnSF, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
 							.addGap(50)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblPowerForward, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-								.addComponent(tglBtnPF, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+								.addComponent(btnPF, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
 							.addGap(50)))
 					.addContainerGap())
 		);
@@ -381,30 +435,30 @@ public class TeamScreen {
 						.addComponent(lblShootingGuard, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(tglBtnPG, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-						.addComponent(tglBtnSG, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-						.addComponent(tglBtnC, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
+						.addComponent(btnPG, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+						.addComponent(btnSG, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+						.addComponent(btnC, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
 					.addGap(52)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblSmallForward, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(tglBtnSF, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+							.addComponent(btnSF, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblPowerForward, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(tglBtnPF, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnPF, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
 					.addGap(123))
 		);
 		
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
 		
-		starters.add(tglBtnPG);
-		starters.add(tglBtnSG);
-		starters.add(tglBtnC);
-		starters.add(tglBtnSF);
-		starters.add(tglBtnPF);
+		starters.add(btnPG);
+		starters.add(btnSG);
+		starters.add(btnC);
+		starters.add(btnSF);
+		starters.add(btnPF);
 		setStarterButtons(starters);
 
 

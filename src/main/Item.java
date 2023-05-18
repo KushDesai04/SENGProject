@@ -31,6 +31,10 @@ public class Item {
 	}
 	
 	public String toString() {
+		return name;
+	}
+	
+	public String getDescription() {
 		return description;
 	}
 	
