@@ -18,18 +18,18 @@ public class Gameplay {
 	public int getOpposingPoints() {
 		return opposingPoints;	
 	}
-	public void play() {
-		for (int i=0; i<5; i++) {
-			if (playerTeam.getPlayers().get(i).getRating() > opposingTeam.getPlayers().get(i).getRating()) {
-				playerPoints += 1;
-				playerTeam.getPlayers().get(i).changeStat(-2, Athlete.STATS.S);
-			}
-			else if (playerTeam.getPlayers().get(i).getRating() < opposingTeam.getPlayers().get(i).getRating()) {
-				opposingPoints += 1;
-				playerTeam.getPlayers().get(i).changeStat(-5, Athlete.STATS.S);
-			}		
-		}
-	}
+//	public void play() {
+//		for (int i=0; i<5; i++) {
+//			if (playerTeam.getPlayers().get(i).getRating() > opposingTeam.getPlayers().get(i).getRating()) {
+//				playerPoints += 1;
+//				playerTeam.getPlayers().get(i).changeStat(-2, Athlete.STATS.S);
+//			}
+//			else if (playerTeam.getPlayers().get(i).getRating() < opposingTeam.getPlayers().get(i).getRating()) {
+//				opposingPoints += 1;
+//				playerTeam.getPlayers().get(i).changeStat(-5, Athlete.STATS.S);
+//			}		
+//		}
+//	}
 	public String declareWinner() {
 		if (playerPoints > opposingPoints) {
 			return "player";
