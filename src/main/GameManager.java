@@ -2,9 +2,6 @@ package main;
 import GUI.*;
 import java.util.*;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.EnumSelector;
-
-
 /**
  * This is the GameManager class which controls the logic for the game
  * such as opening/closing windows.
