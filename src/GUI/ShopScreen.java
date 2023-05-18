@@ -144,13 +144,22 @@ public class ShopScreen {
 	
 	public void setAthleteButtons(ArrayList<JButton> btns) {
 		for (int i=0; i < btns.size();i++) {
-			btns.get(i).setText(manager.getMarket().getPurchasableAthletes().get(i).getName());
+			Athlete athlete = manager.getMarket().getPurchasableAthletes().get(i);
+			btns.get(i).setText(athlete.getName());
+			if (manager.getMarket().getWeeklyPurchasedAthletes().contains(athlete)) {
+				btns.get(i).setEnabled(false);
+			}
+			
 		}
 	}
 	
 	public void setItemButtons(ArrayList<JButton> btns) {
 		for (int i=0; i < btns.size();i++) {
-			btns.get(i).setText(manager.getMarket().getPurchasableItems().get(i).getName());
+			Item item = manager.getMarket().getPurchasableItems().get(i);
+			btns.get(i).setText(item.getName());
+			if (manager.getMarket().getWeeklyPurchasedItems().contains(item)) {
+				btns.get(i).setEnabled(false);
+			}
 		}
 	}
 	/**
@@ -193,6 +202,7 @@ public class ShopScreen {
 					manager.changeMoney(-((Athlete) consumable).getPrice());
 					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
 					bought.setEnabled(false);
+					manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
 					
 					}
 				}
@@ -207,6 +217,7 @@ public class ShopScreen {
 					manager.changeMoney(-((Item) consumable).getPrice());
 					lblMoney.setText("Money: " +String.valueOf(manager.getMoney()));
 					bought.setEnabled(false);
+					manager.getMarket().addWeeklyPurchasedItems((Item) consumable);
 					}
 				}
 			}

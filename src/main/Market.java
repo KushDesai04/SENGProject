@@ -14,6 +14,8 @@ public class Market {
 	private ArrayList<Athlete> purchasableAthletes;
 	private ArrayList<Item> purchasableItems;
 	private ArrayList<Athlete> starterAthletes = new ArrayList<Athlete>();
+	private ArrayList<Athlete> weeklyPurchasedAthletes = new ArrayList<Athlete>();
+	private ArrayList<Item> weeklyPurchasedItems = new ArrayList<Item>();
 	
 	public Market() {
 		// TODO Auto-generated constructor stub
@@ -43,5 +45,26 @@ public class Market {
 	}
 	public ArrayList<Athlete> getStarterAthletes() {
 		return starterAthletes;
+	}
+	
+	public ArrayList<Athlete> getWeeklyPurchasedAthletes() {
+		return weeklyPurchasedAthletes;
+	}
+	
+	public ArrayList<Item> getWeeklyPurchasedItems() {
+		return weeklyPurchasedItems;
+	}
+	
+	public void addWeeklyPurchasedAthletes(Athlete athlete) {
+		weeklyPurchasedAthletes.add(athlete);
+	}
+	
+	public void addWeeklyPurchasedItems(Item item) {
+		weeklyPurchasedItems.add(item);
+	}
+	
+	public void clearWeeklyPurchases() {
+		weeklyPurchasedAthletes.clear();
+		weeklyPurchasedItems.clear();
 	}
 }

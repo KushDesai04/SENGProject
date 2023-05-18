@@ -104,6 +104,7 @@ public class GenerateRandom {
 		}	
 		return weeklyItems;
 	}
+	
 	public ArrayList<Team> generateTeams() {
 		ArrayList<Team> opposingTeams = new ArrayList<Team>();
 		while (opposingTeams.size()<3) {
@@ -117,6 +118,10 @@ public class GenerateRandom {
 				opposingTeams.add(team);
 			}
 		return opposingTeams;
+	}
+	
+	public int getRandomNumber(int upper) {
+		return random.nextInt(upper);
 	}
 	
 }

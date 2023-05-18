@@ -61,6 +61,7 @@ public class GameManager {
 		currentWeek += 1;
 		market.setPurchasableAthletes();
 		market.setPurchasableItems();
+		market.clearWeeklyPurchases();
 		generateRandomTeams();
 	}
 	public int getNumWeeks() {
@@ -115,23 +116,24 @@ public class GameManager {
 	}
 //	
 	public void launchTeamSetupScreen() {
-		HashMap<Athlete.STATS, Integer> stats1= new HashMap<Athlete.STATS, Integer>();
-		stats1.put(Athlete.STATS.O, 99);
-		stats1.put(Athlete.STATS.D, 99);
-		stats1.put(Athlete.STATS.S, 99);
-		stats1.put(Athlete.STATS.A, 99);
-		Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
-		Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
-		Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
-		Athlete athlete4 =  new Athlete("Athlete 4", Athlete.POSITION.PF, stats1);
-		Athlete athlete5 =  new Athlete("Athlete 5", Athlete.POSITION.C, stats1);
-		Athlete athlete6 =  new Athlete("Athlete 6", Athlete.POSITION.PG, stats1);
-		market.getStarterAthletes().add(athlete1);
-		market.getStarterAthletes().add(athlete2);
-		market.getStarterAthletes().add(athlete3);
-		market.getStarterAthletes().add(athlete4);
-		market.getStarterAthletes().add(athlete5);
-		market.getStarterAthletes().add(athlete6);
+//		HashMap<Athlete.STATS, Integer> stats1= new HashMap<Athlete.STATS, Integer>();
+//		stats1.put(Athlete.STATS.O, 99);
+//		stats1.put(Athlete.STATS.D, 99);
+//		stats1.put(Athlete.STATS.S, 99);
+//		stats1.put(Athlete.STATS.A, 99);
+//		Athlete athlete1 =  new Athlete("Athlete 1", Athlete.POSITION.PG, stats1);
+//		Athlete athlete2 =  new Athlete("Athlete 2", Athlete.POSITION.SG, stats1);
+//		Athlete athlete3 =  new Athlete("Athlete 3", Athlete.POSITION.SF, stats1);
+//		Athlete athlete4 =  new Athlete("Athlete 4", Athlete.POSITION.PF, stats1);
+//		Athlete athlete5 =  new Athlete("Athlete 5", Athlete.POSITION.C, stats1);
+//		Athlete athlete6 =  new Athlete("Athlete 6", Athlete.POSITION.PG, stats1);
+		GenerateRandom random = new GenerateRandom();
+		market.getStarterAthletes().add(random.generateAthlete(0));
+		market.getStarterAthletes().add(random.generateAthlete(1));
+		market.getStarterAthletes().add(random.generateAthlete(2));
+		market.getStarterAthletes().add(random.generateAthlete(3));
+		market.getStarterAthletes().add(random.generateAthlete(4));
+		market.getStarterAthletes().add(random.generateAthlete(random.getRandomNumber(5)));
 		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
 	}
 	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) { 
