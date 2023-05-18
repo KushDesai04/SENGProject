@@ -23,6 +23,7 @@ public class GameManager {
 	private Market market = new Market();
 	private boolean isSetup = false;
 	private ArrayList<Team> weeklyTeams;
+	private Team opposingTeam;
 	GOTOSCREEN screen;
 	
 	public GameManager() {
@@ -56,9 +57,6 @@ public class GameManager {
 		GenerateRandom random = new GenerateRandom();
 		weeklyTeams = random.generateTeams();
 	}
-	public ArrayList<Team> getWeeklyTeams() {
-		return weeklyTeams;
-	}
 	public void incrementWeek() {
 		currentWeek += 1;
 		market.setPurchasableAthletes();
@@ -82,6 +80,15 @@ public class GameManager {
 	}
 	public Market getMarket() {
 		return market;
+	}
+	public ArrayList<Team> getWeeklyTeams() {
+		return weeklyTeams;
+	}
+	public Team getOpposingTeam() {
+		return opposingTeam;
+	}
+	public void setOpposingTeam(Team team) {
+		opposingTeam = team;
 	}
 	
 	public void launchStartScreen() {

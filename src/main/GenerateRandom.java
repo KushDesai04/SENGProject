@@ -1,6 +1,7 @@
 package main;
 import java.util.*;
 
+
 public class GenerateRandom {
 	private Random random;
 	private float multiplier = 1.0f;
@@ -22,42 +23,52 @@ public class GenerateRandom {
 		random = new Random();
 		
 	}
+	public Athlete generateAthlete(int index) {
+		HashMap<Athlete.STATS, Integer> statValues = new HashMap<Athlete.STATS, Integer>();
+		int nameIndex = random.nextInt(possibleNames.size());
+		String name = possibleNames.get(nameIndex);
+		possibleNames.remove(nameIndex);
+		int offence = (int) (random.nextInt(60, 70) * multiplier);
+		statValues.put(Athlete.STATS.O, offence);
+		int defence = (int) (random.nextInt(60, 70) * multiplier);
+		statValues.put(Athlete.STATS.D, defence);
+		int stamina = (int) (random.nextInt(60, 70) * multiplier);
+		statValues.put(Athlete.STATS.S, stamina);
+		int agility = (int) (random.nextInt(60, 70) * multiplier);
+		statValues.put(Athlete.STATS.A, agility);
+		Athlete.POSITION p = generatePosition(index);
+		return new Athlete(name, p, statValues);
+	}
 	public Athlete.POSITION generatePosition(int index) {
+		Athlete.POSITION p;
 		switch (index) {
 			case 0:
-				return Athlete.POSITION.PG;
+				p = Athlete.POSITION.PG;
+				break;
 			case 1:
-				return Athlete.POSITION.SG;
+				p = Athlete.POSITION.SG;
+				break;
 			case 2:
-				return Athlete.POSITION.SF;
+				p = Athlete.POSITION.SF;
+				break;
 			case 3:
-				return Athlete.POSITION.PF;
+				p = Athlete.POSITION.PF;
+				break;
 			case 4:
-				return Athlete.POSITION.C;
+				p = Athlete.POSITION.C;
+				break;
 			default:
 				return null;
 			}
+		return p;
 	}
 	
 	
 	public ArrayList<Athlete> generateWeeklyAthletes() {
 		ArrayList<Athlete> weeklyAthletes = new ArrayList<Athlete>();
-		HashMap<Athlete.STATS, Integer> statValues = new HashMap<Athlete.STATS, Integer>();
 		while (weeklyAthletes.size()<3) {
-			int index = random.nextInt(possibleNames.size());
 			int positionIndex = random.nextInt(5);
-			String name = possibleNames.get(index);
-			possibleNames.remove(index);
-			int offence = (int) (random.nextInt(60, 70) * multiplier);
-			statValues.put(Athlete.STATS.O, offence);
-			int defence = (int) (random.nextInt(60, 70) * multiplier);
-			statValues.put(Athlete.STATS.D, defence);
-			int stamina = (int) (random.nextInt(60, 70) * multiplier);
-			statValues.put(Athlete.STATS.S, stamina);
-			int agility = (int) (random.nextInt(60, 70) * multiplier);
-			statValues.put(Athlete.STATS.A, agility);
-			Athlete.POSITION p = generatePosition(positionIndex);
-			Athlete athlete = new Athlete(name, p, statValues); 
+			Athlete athlete = generateAthlete(positionIndex);
 			weeklyAthletes.add(athlete);
 		}
 		return weeklyAthletes;
@@ -100,20 +111,7 @@ public class GenerateRandom {
 			Team team = new Team(possibleTeamNames.get(teamIndex));
 			possibleTeamNames.remove(teamIndex);
 				for (int i=0; i<5; i++) {
-					HashMap<Athlete.STATS, Integer> statValues = new HashMap<Athlete.STATS, Integer>();
-					int nameIndex = random.nextInt(possibleNames.size());
-					String name = possibleNames.get(nameIndex);
-					possibleNames.remove(nameIndex);
-					int offence = (int) (random.nextInt(60, 70) * multiplier);
-					statValues.put(Athlete.STATS.O, offence);
-					int defence = (int) (random.nextInt(60, 70) * multiplier);
-					statValues.put(Athlete.STATS.D, defence);
-					int stamina = (int) (random.nextInt(60, 70) * multiplier);
-					statValues.put(Athlete.STATS.S, stamina);
-					int agility = (int) (random.nextInt(60, 70) * multiplier);
-					statValues.put(Athlete.STATS.A, agility);
-					Athlete.POSITION p = generatePosition(i);
-					Athlete athlete = new Athlete(name, p, statValues); 	
+					Athlete athlete = generateAthlete(i);
 					team.addPlayer(athlete);
 				}
 				opposingTeams.add(team);

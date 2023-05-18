@@ -25,6 +25,9 @@ public class Team {
 	public void addPlayer(Athlete player) {
 		players.add(player);
 	}
+	public void addReserves(Athlete player) {
+		reserves.add(player);
+	}
 	
 	public void buyPlayer(Athlete player) {
 		reserves.add(player);

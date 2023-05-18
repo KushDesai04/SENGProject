@@ -26,6 +26,7 @@ public class OpponentSelectorScreen {
 
 	private JFrame frame;
 	private GameManager manager;
+	private Team opposingTeam;
 	
 	public OpponentSelectorScreen(GameManager gameManager) {
 		manager = gameManager;
@@ -72,6 +73,7 @@ public class OpponentSelectorScreen {
 		player3.setText(manager.getWeeklyTeams().get(index).getPlayers().get(2).toString());
 		player4.setText(manager.getWeeklyTeams().get(index).getPlayers().get(3).toString());
 		player5.setText(manager.getWeeklyTeams().get(index).getPlayers().get(4).toString());
+		opposingTeam = manager.getWeeklyTeams().get(index);
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -100,6 +102,8 @@ public class OpponentSelectorScreen {
 				}
 				else {
 					manager.launchGameScreen();
+					System.out.println(opposingTeam.getTeamName());
+					manager.setOpposingTeam(opposingTeam);
 					finishedWindow();
 				}
 			}

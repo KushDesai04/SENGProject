@@ -20,10 +20,6 @@ public class Athlete {
 	private POSITION position;
 	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 	
-	public Athlete() {
-		//TODO
-	}
-	
 	/**
 	 * Constructor to create Athlete
 	 */
@@ -43,19 +39,20 @@ public class Athlete {
 	}
 	
 
+
 	/**
-	 * Enum to all player stats:
-	 * Offence
-	 * Defence
-	 * Stamina
-	 * Agility
+	 * Enum to represent possible player positions
 	 */
 	public enum POSITION {
 		PG, PF, C, SF, SG;
 	}
 	
 	/**
-	 * Enum to represent possible player positions
+	 * Enum to all player stats:
+	 * Offence
+	 * Defence
+	 * Stamina
+	 * Agility
 	 */
 	public enum STATS {
 		O, D, S, A;
@@ -84,14 +81,19 @@ public class Athlete {
 		switch (athletePosition) {
 			case PG:
 				positionText = "Point Guard";
+				break;
 			case SG:
 				positionText = "Shooting Guard";
+				break;
 			case SF:
 				positionText = "Small Forward";
+				break;
 			case PF:
 				positionText = "Power Forward";
+				break;
 			case C:
 				positionText = "Center";
+				break;
 			default:
 				break;
 		}
