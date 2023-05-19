@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 /**
  * This is the Stadium Screen class. The stadium screen will allow players to
@@ -110,33 +111,42 @@ public class StadiumScreen {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-										.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGap(875))
-								.addGroup(groupLayout.createSequentialGroup().addGap(258)
-										.addComponent(btnPlay, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE).addGap(6)
-										.addComponent(btnBye, GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
-						.addGap(121).addComponent(panel, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap()
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup().addComponent(btnBack).addGap(151)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(btnBye, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190,
-												Short.MAX_VALUE)
-										.addComponent(btnPlay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190,
-												Short.MAX_VALUE))
-								.addGap(187)))));
+							.addContainerGap()
+							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(875))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(258)
+							.addComponent(btnPlay, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(btnBye, GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+					.addGap(121)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnBack)
+							.addGap(151)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnBye, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+								.addComponent(btnPlay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+							.addGap(187))))
+		);
 
 		JLabel lblCurrentWeek = new JLabel(String.format("Week: %d", manager.getCurrentWeek()));
+		lblCurrentWeek.setHorizontalAlignment(SwingConstants.CENTER);
 
 		lblCurrentWeek.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);

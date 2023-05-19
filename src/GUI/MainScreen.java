@@ -5,6 +5,8 @@ import main.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.naming.ldap.ManageReferralControl;
@@ -21,6 +23,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  * This is the Main Screen class. The main screen will allow players to access
@@ -112,25 +115,64 @@ public class MainScreen {
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JPanel panel = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(262)
-						.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnStadium, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnTeam, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE).addGap(210))
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGap(1133)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE).addGap(42)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(262)
+					.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnStadium, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnTeam, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+					.addGap(210))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(1022)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+							.addGap(42)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
 								.addComponent(btnStadium, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
 								.addComponent(btnTeam, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
-						.addGap(81)));
+							.addGap(81))))
+		);
+		
+		JLabel lblCurrentWeek = new JLabel("Week: 30");
+		lblCurrentWeek.setText("Week: " + String.valueOf(manager.getCurrentWeek()));
+		lblCurrentWeek.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurrentWeek.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblCurrentWeek, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(21))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(9)
+					.addComponent(lblCurrentWeek, GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+					.addGap(8))
+		);
+		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }

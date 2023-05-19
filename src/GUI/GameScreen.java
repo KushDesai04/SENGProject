@@ -10,6 +10,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -177,8 +179,14 @@ public class GameScreen {
 		opponentPF.setHorizontalAlignment(SwingConstants.TRAILING);
 		opponentPF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JButton btnNewButton = new JButton("<");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JButton backButton = new JButton("<");
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("VS");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -218,7 +226,7 @@ public class GameScreen {
 					.addGap(329))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+					.addComponent(backButton, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 					.addGap(1131))
 		);
 		groupLayout.setVerticalGroup(
@@ -255,7 +263,7 @@ public class GameScreen {
 					.addGap(38))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnNewButton)
+					.addComponent(backButton)
 					.addContainerGap(528, Short.MAX_VALUE))
 		);
 
