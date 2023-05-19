@@ -271,6 +271,7 @@ public class GameScreen {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JLabel lblNewLabel_1 = new JLabel("Opponent");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JLabel playerTeam = new JLabel("New label");
@@ -282,29 +283,34 @@ public class GameScreen {
 		opponentTeam.setHorizontalAlignment(SwingConstants.TRAILING);
 		opponentTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel
-						.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE).addGap(142)
-								.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+							.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+							.addGap(142)
+							.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE).addGap(224)
-								.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)))
-						.addContainerGap()));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-								.addComponent(opponentTeam, GroupLayout.PREFERRED_SIZE, 92,
-										GroupLayout.PREFERRED_SIZE))
-						.addContainerGap()));
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE, false)
+						.addComponent(lblNewLabel)
+						.addComponent(lblNewLabel_1))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+						.addComponent(opponentTeam, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 		

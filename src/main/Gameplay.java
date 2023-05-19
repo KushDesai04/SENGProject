@@ -38,6 +38,7 @@ public class Gameplay {
 	public String declareWinner() {
 		if (playerPoints > opponentPoints) {
 			return "player";
+			
 		}
 
 		else if (playerPoints == opponentPoints) {

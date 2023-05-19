@@ -23,7 +23,9 @@ public class GameManager {
 	private Team opposingTeam;
 	private GenerateRandom random;
 	private Market market;
+	private int finalScore = 0;
 	GOTOSCREEN screen;
+	
 
 	public GameManager() {
 		random = new GenerateRandom();
@@ -139,7 +141,6 @@ public class GameManager {
 	}
 
 	public void launchTeamSetupScreen() {
-		GenerateRandom random = new GenerateRandom();
 		market.getStarterAthletes().add(random.generateAthlete(0));
 		market.getStarterAthletes().add(random.generateAthlete(1));
 		market.getStarterAthletes().add(random.generateAthlete(2));
@@ -238,11 +239,26 @@ public class GameManager {
 	public void launchGameScreen() {
 		Gameplay gamePlay = new Gameplay(team, opposingTeam);
 		gamePlay.play();
+		String result = gamePlay.declareWinner();
+		switch (result) {
+		case "player":
+			finalScore += 3;
+			money += 2000;
+			break;
+		case "draw":
+			finalScore += 1;
+			money += 1000;
+			break;
+		case "opponent":
+			money += 500;
+			break;
+		}
 		GameScreen gameWindow = new GameScreen(this);
 	}
 
 	public void closeGameScreen(GameScreen gameWindow) {
 		gameWindow.closeWindow();
+		incrementWeek();
 		launchMainScreen();
 	}
 

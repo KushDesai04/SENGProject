@@ -18,6 +18,10 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+
+import org.hamcrest.core.IsInstanceOf;
+import org.hamcrest.core.IsNull;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -176,8 +180,9 @@ public class TeamScreen {
 			public void actionPerformed(ActionEvent e) {
 				Athlete athlete = athleteList.getSelectedValue();
 				
-//				System.out.println(athlete);
 				
+//				System.out.println(athlete);
+				try {
 				manager.getTeam().replacePlayer(athlete, manager.getTeam().getPlayersMap().get(athlete.getPosition()));
 				lastSelectedAthlete = athlete;
 				JList<Athlete> athletelist = new JList<Athlete>();
@@ -198,7 +203,11 @@ public class TeamScreen {
 				scrollPane.repaint();
 				refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
 				setStarterButtons(starters);
-				
+				}
+				catch (NullPointerException error) {
+			    	String message = "Please select a Reserve Player first!";
+			    	JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		
@@ -220,17 +229,30 @@ public class TeamScreen {
 		JButton btnSellAthlete = new JButton("Sell Athlete");
 		btnSellAthlete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String message = "Are you sure? This cannot be undone!";
-			    int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Athlete",
-			        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-			    if (result == JOptionPane.YES_OPTION) {
-			    	lastSelectedReserve = athleteList.getSelectedValue();
-			    	manager.getTeam().sellPlayer(lastSelectedReserve);
-			    	manager.changeMoney(lastSelectedReserve.getPrice()*3/4);
-			    	//TODO: Sell if yes, else do nothing
+			    try {
+				    	lastSelectedReserve = athleteList.getSelectedValue();
+				    	if (lastSelectedAthlete instanceof Athlete) {
+					    	String message = "Are you sure? This cannot be undone!";
+						    int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Athlete",
+						        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+						    if (result == JOptionPane.YES_OPTION) {
+					    	manager.getTeam().sellPlayer(lastSelectedReserve);
+					    	manager.changeMoney(lastSelectedReserve.getPrice()*3/4);
+					    }
+						
+						else {
+							throw new NullPointerException();
+						}
+			    	}
 			    }
-			}
+			    	
+			    catch (NullPointerException error) {
+			    	String message = "Please select an Athlete first!";
+			    	JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+				}
+		    }
 		});
+		
 		btnSellAthlete.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnSellItem = new JButton("Sell Item");
