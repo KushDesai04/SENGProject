@@ -30,6 +30,8 @@ import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import java.awt.List;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  * This is the Team Screen class. The team screen will 
@@ -162,6 +164,13 @@ public class TeamScreen {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		JList<Athlete> athleteList = new JList<Athlete>();
+//		athleteList.addListSelectionListener(new ListSelectionListener() {
+//			public void valueChanged(ListSelectionEvent e) {
+//				lastSelectedReserve = athleteList.getSelectedValue();
+//				Athlete athlete = lastSelectedReserve;
+//				
+//			}
+//		});
 		athleteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		athleteList.setModel(new AbstractListModel<Athlete>() {
 			ArrayList<Athlete> values = manager.getTeam().getReserves();
@@ -179,9 +188,7 @@ public class TeamScreen {
 		tglBtnPG_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Athlete athlete = athleteList.getSelectedValue();
-				
-				
-//				System.out.println(athlete);
+
 				try {
 				manager.getTeam().replacePlayer(athlete, manager.getTeam().getPlayersMap().get(athlete.getPosition()));
 				lastSelectedAthlete = athlete;
@@ -230,42 +237,55 @@ public class TeamScreen {
 		btnSellAthlete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try {
-				    	lastSelectedReserve = athleteList.getSelectedValue();
-				    	if (lastSelectedAthlete instanceof Athlete) {
-					    	String message = "Are you sure? This cannot be undone!";
-						    int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Athlete",
-						        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-						    if (result == JOptionPane.YES_OPTION) {
-					    	manager.getTeam().sellPlayer(lastSelectedReserve);
-					    	manager.changeMoney(lastSelectedReserve.getPrice()*3/4);
-					    }
-						
-						else {
-							throw new NullPointerException();
+				    lastSelectedReserve = athleteList.getSelectedValue();
+				    if (lastSelectedReserve instanceof Athlete) {
+					    String message = "Are you sure? This cannot be undone!";
+						int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Athlete",
+						    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+						if (result == JOptionPane.YES_OPTION) {
+						    manager.getTeam().sellPlayer(lastSelectedReserve);
+						    manager.changeMoney(lastSelectedReserve.getPrice()*3/4);
+						    athleteList.clearSelection();
+							athleteList.revalidate();
+							athleteList.repaint();
+							scrollPane.revalidate();
+							scrollPane.repaint();
 						}
-			    	}
+				    }
 			    }
-			    	
 			    catch (NullPointerException error) {
 			    	String message = "Please select an Athlete first!";
 			    	JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
 				}
 		    }
 		});
-		
 		btnSellAthlete.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnSellItem = new JButton("Sell Item");
 		btnSellItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String message = "Are you sure? This cannot be undone!";
-			    int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Item",
-			        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-			    if (result == JOptionPane.YES_OPTION) {
-			    	lastSelectedItem = itemList.getSelectedValue();
-			    	manager.getTeam().sellConsumable((lastSelectedItem));
-			    	manager.changeMoney(lastSelectedItem.getPrice()*3/4);
-			    }
+				try {
+					lastSelectedItem = itemList.getSelectedValue();
+					if (lastSelectedItem instanceof Item) {
+						String message = "Are you sure? This cannot be undone!";
+					    int result = JOptionPane.showConfirmDialog(new JFrame(), message, "Sell Item",
+					        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+					    if (result == JOptionPane.YES_OPTION) {
+					    	lastSelectedItem = itemList.getSelectedValue();
+					    	manager.getTeam().sellConsumable(lastSelectedItem);
+					    	manager.changeMoney(lastSelectedItem.getPrice()*3/4);
+					    	itemList.clearSelection();
+							itemList.revalidate();
+							itemList.repaint();
+							scrollPane.revalidate();
+							scrollPane.repaint();
+					    }
+					}
+				}
+				catch (NullPointerException error) {
+					String message = "Please select an Item first!";
+			    	JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnSellItem.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -331,30 +351,36 @@ public class TeamScreen {
 		tglBtnPG_5_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
         tglBtnPG_5_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-				Item item = itemList.getSelectedValue();
-				
-				System.out.println(item);
-				item.consume(lastSelectedAthlete);
-				manager.getTeam().removeItem(item);
-				
-				JList<Item> itemList = new JList<Item>();
-				itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				itemList.setModel(new AbstractListModel<Item>() {
-					ArrayList<Item> values = manager.getTeam().getItems();
-					public int getSize() {
-						return values.size();
-					}
-					public Item getElementAt(int index) {
-						return values.get(index);
-					}
-				});
-				itemList.clearSelection();
-				itemList.revalidate();
-				itemList.repaint();
-				scrollPane_1.revalidate();
-				scrollPane_1.repaint();
-				refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
-				setStarterButtons(starters);
+        		try {
+					Item item = itemList.getSelectedValue();
+					
+//					System.out.println(item);
+					item.consume(lastSelectedAthlete);
+					manager.getTeam().removeItem(item);
+					
+					JList<Item> itemList = new JList<Item>();
+					itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					itemList.setModel(new AbstractListModel<Item>() {
+						ArrayList<Item> values = manager.getTeam().getItems();
+						public int getSize() {
+							return values.size();
+						}
+						public Item getElementAt(int index) {
+							return values.get(index);
+						}
+					});
+					itemList.clearSelection();
+					itemList.revalidate();
+					itemList.repaint();
+					scrollPane_1.revalidate();
+					scrollPane_1.repaint();
+					refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+					setStarterButtons(starters);
+        		}
+        		catch (NullPointerException error) {
+        			String message = "Please select a starter first!";
+			    	JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+        		}
 			}
 			}
 		);

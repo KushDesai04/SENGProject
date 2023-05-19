@@ -180,18 +180,17 @@ public class GameScreen {
 		opponentPF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JButton backButton = new JButton("<");
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 			}
 		});
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		
-		JLabel lblNewLabel_2 = new JLabel("VS");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		JLabel lblVs = new JLabel("VS");
+		lblVs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVs.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblVs.setForeground(new Color(255, 255, 255));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -214,7 +213,7 @@ public class GameScreen {
 									.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
 									.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblVs, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
 							.addGap(3)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(opponentPG, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
@@ -259,7 +258,7 @@ public class GameScreen {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 								.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+						.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
 					.addGap(38))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
@@ -267,12 +266,12 @@ public class GameScreen {
 					.addContainerGap(528, Short.MAX_VALUE))
 		);
 
-		JLabel lblNewLabel = new JLabel("Player");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblPlayerHeader = new JLabel("Player");
+		lblPlayerHeader.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_1 = new JLabel("Opponent");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblOpponentHeader = new JLabel("Opponent");
+		lblOpponentHeader.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblOpponentHeader.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JLabel playerTeam = new JLabel("New label");
 		playerTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -293,9 +292,9 @@ public class GameScreen {
 							.addGap(142)
 							.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblPlayerHeader, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(lblOpponentHeader, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -303,8 +302,8 @@ public class GameScreen {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE, false)
-						.addComponent(lblNewLabel)
-						.addComponent(lblNewLabel_1))
+						.addComponent(lblPlayerHeader)
+						.addComponent(lblOpponentHeader))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)

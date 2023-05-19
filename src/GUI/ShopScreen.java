@@ -208,43 +208,58 @@ public class ShopScreen {
 		lblMoney.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
+		JLabel nameLabel = new JLabel("Click an item to see its description");
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
 		JButton btnBuy = new JButton("Buy");
 
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				if (consumable instanceof Athlete) {
-					if (manager.getMoney() < ((Athlete) consumable).getPrice()){
-						String message = "You do not have enough money!";
-					    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
-					        JOptionPane.ERROR_MESSAGE);
+				try {
+					if (consumable instanceof Athlete) {
+						if (manager.getMoney() < ((Athlete) consumable).getPrice()){
+							String message = "You do not have enough money!";
+						    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
+						        JOptionPane.ERROR_MESSAGE);
+						}
+						else if (manager.getTeam().getReserves().size() == 5) {
+							String message = "You have too many reserves, the maximum amount is 5.";
+						    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
+						        JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+						manager.getTeam().buyPlayer((Athlete) consumable);
+						manager.changeMoney(-((Athlete) consumable).getPrice());
+						lblMoney.setText("$" + String.valueOf(manager.getMoney()));
+						bought.setEnabled(false);
+						manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
+						consumable = null;
+						//TODO: Make sure nothing happens when consumable == null!
+						}
 					}
 					else {
-					manager.getTeam().buyPlayer((Athlete) consumable);
-					manager.changeMoney(-((Athlete) consumable).getPrice());
-					lblMoney.setText("$" + String.valueOf(manager.getMoney()));
-					bought.setEnabled(false);
-					manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
-					consumable = null;
-					//TODO: Make sure nothing happens when consumable == null!
+						if (manager.getMoney() < ((Item) consumable).getPrice()){
+							String message = "You do not have enough money!";
+						    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
+						        JOptionPane.ERROR_MESSAGE);
+						    }
+						else {
+						manager.getTeam().buyConsumable((Item) consumable);
+						manager.changeMoney(-((Item) consumable).getPrice());
+						lblMoney.setText("$" + String.valueOf(manager.getMoney()));
+						bought.setEnabled(false);
+						manager.getMarket().addWeeklyPurchasedItems((Item) consumable);
+						consumable = null;
+						}
 					}
 				}
-				else {
-					if (manager.getMoney() < ((Item) consumable).getPrice()){
-						String message = "You do not have enough money!";
-					    JOptionPane.showMessageDialog(new JFrame(), message, "Purchase Error",
-					        JOptionPane.ERROR_MESSAGE);
-					    }
-					else {
-					manager.getTeam().buyConsumable((Item) consumable);
-					manager.changeMoney(-((Item) consumable).getPrice());
-					lblMoney.setText("$" + String.valueOf(manager.getMoney()));
-					bought.setEnabled(false);
-					manager.getMarket().addWeeklyPurchasedItems((Item) consumable);
-					consumable = null;
-					}
+				catch (NullPointerException error) {
+					nameLabel.setForeground(Color.RED);
+					nameLabel.setText("Please select a player or item!");
+					
 				}
 			}
+			
 		});
 		
 		btnBuy.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -277,8 +292,6 @@ public class ShopScreen {
 					.addGap(18))
 		);
 		
-		JLabel nameLabel = new JLabel("Click an item to see its description");
-		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JSeparator separator = new JSeparator();
 		

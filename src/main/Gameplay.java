@@ -5,11 +5,13 @@ public class Gameplay {
 	private Team opposingTeam;
 	private int playerPoints;
 	private int opponentPoints;
+	private String difficulty;
 
-	public Gameplay(Team playerTeam, Team opposingTeam) {
+	public Gameplay(Team playerTeam, Team opposingTeam, String difficulty) {
 		// TODO Auto-generated constructor stub
 		this.playerTeam = playerTeam;
 		this.opposingTeam = opposingTeam;
+		this.difficulty = difficulty;
 	}
 
 	public int getPlayerPoints() {
@@ -25,12 +27,22 @@ public class Gameplay {
 			Athlete opponent = opposingTeam.getPlayersMap().get(player.getPosition());
 			if (player.getRating() > opponent.getRating()) {
 				playerPoints += 1;
-				player.changeStat(-2, Athlete.STATS.S);
+				if (difficulty == "easy") {
+					player.changeStat(-10, Athlete.STATS.S);
+				}
+				else {
+					player.changeStat(-20, Athlete.STATS.S);
+				}
 			}
 			
 			else if (player.getRating() < opponent.getRating()) {
 				opponentPoints += 1;
-				player.changeStat(-5, Athlete.STATS.S);
+				if (difficulty == "easy") {
+					player.changeStat(-20, Athlete.STATS.S);
+				}
+				else {
+					player.changeStat(-40, Athlete.STATS.S);
+				}
 			}
 			
 		}

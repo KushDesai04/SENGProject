@@ -237,7 +237,7 @@ public class GameManager {
 	}
 
 	public void launchGameScreen() {
-		Gameplay gamePlay = new Gameplay(team, opposingTeam);
+		Gameplay gamePlay = new Gameplay(team, opposingTeam, difficulty);
 		gamePlay.play();
 		String result = gamePlay.declareWinner();
 		switch (result) {
@@ -258,8 +258,8 @@ public class GameManager {
 
 	public void closeGameScreen(GameScreen gameWindow) {
 		gameWindow.closeWindow();
-		incrementWeek();
 		launchMainScreen();
+		incrementWeek();
 	}
 
 	public static void main(String args[]) {

@@ -134,7 +134,7 @@ public class GenerateRandom {
 		while (opposingTeams.size() < 3) {
 			int teamIndex = random.nextInt(possibleTeamNames.size());
 			String name = possibleTeamNames.get(teamIndex);
-			while (usedItemNames.contains(name)) {
+			while (usedTeamNames.contains(name)) {
 				teamIndex = random.nextInt(possibleTeamNames.size());
 				name = possibleTeamNames.get(teamIndex);
 			}
@@ -145,6 +145,7 @@ public class GenerateRandom {
 				team.addPlayer(athlete);
 			}
 			opposingTeams.add(team);
+			usedNames.clear();
 		}
 		usedTeamNames.clear();
 		return opposingTeams;
