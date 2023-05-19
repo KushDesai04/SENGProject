@@ -18,7 +18,7 @@ public class RandomEvent {
 	public ArrayList<Object> generateEvent(Boolean run) {
 		ArrayList<Object> output = new ArrayList<Object>();
 		if (run) {
-			int i = random.nextInt(5);
+			int i = random.nextInt(50);
 			switch (i) {
 			case 0:
 				output.add(3);

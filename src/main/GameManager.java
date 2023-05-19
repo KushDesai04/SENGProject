@@ -236,6 +236,8 @@ public class GameManager {
 	}
 
 	public void launchGameScreen() {
+		Gameplay gamePlay = new Gameplay(team, opposingTeam);
+		gamePlay.play();
 		GameScreen gameWindow = new GameScreen(this);
 	}
 

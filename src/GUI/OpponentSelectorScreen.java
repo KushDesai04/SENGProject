@@ -108,9 +108,9 @@ public class OpponentSelectorScreen {
 					String message = "Not all starters are ready!";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
 				} else {
+					manager.setOpposingTeam(opposingTeam);
 					manager.launchGameScreen();
 					System.out.println(opposingTeam.getTeamName());
-					manager.setOpposingTeam(opposingTeam);
 					finishedWindow();
 				}
 			}
@@ -121,6 +121,7 @@ public class OpponentSelectorScreen {
 		panel.setBackground(new Color(255, 255, 255));
 
 		JLabel lblNewLabel = new JLabel("Choose a team to play against");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 

@@ -1,11 +1,8 @@
 package GUI;
-
 import main.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-
-import main.GameManager;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
@@ -13,6 +10,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
@@ -20,11 +20,14 @@ public class GameScreen {
 
 	private JFrame frame;
 	private GameManager manager;
+	private ArrayList<JLabel> playerStarters = new ArrayList<JLabel>();
+	private ArrayList<JLabel> opponentStarters = new ArrayList<JLabel>();
 
 	public GameScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
 		frame.setVisible(true);
+		setWinners(playerStarters, opponentStarters);
 	}
 
 	/**
@@ -57,6 +60,65 @@ public class GameScreen {
 	public void finishedWindow() {
 		manager.closeGameScreen(this);
 	}
+	
+	public void setPlayerLabels(ArrayList<JLabel> btns) {
+		HashMap<Athlete.POSITION, Athlete> players = manager.getTeam().getPlayersMap();
+		btns.get(0).setText(String.valueOf(players.get(Athlete.POSITION.PG).getName() + " - " + players.get(Athlete.POSITION.PG).getRating()));
+		btns.get(1).setText(String.valueOf(players.get(Athlete.POSITION.SG).getName() + " - " + players.get(Athlete.POSITION.SG).getRating()));
+		btns.get(2).setText(String.valueOf(players.get(Athlete.POSITION.C).getName() + " - " + players.get(Athlete.POSITION.C).getRating()));
+		btns.get(3).setText(String.valueOf(players.get(Athlete.POSITION.SF).getName() + " - " + players.get(Athlete.POSITION.SF).getRating()));
+		btns.get(4).setText(String.valueOf(players.get(Athlete.POSITION.PF).getName() + " - " + players.get(Athlete.POSITION.PF).getRating()));
+	}
+	
+	public void setOpponentLabels(ArrayList<JLabel> btns) {
+		HashMap<Athlete.POSITION, Athlete> opponents = manager.getOpposingTeam().getPlayersMap();
+		btns.get(0).setText(String.valueOf(opponents.get(Athlete.POSITION.PG).getName() + " - " + opponents.get(Athlete.POSITION.PG).getRating()));
+		btns.get(1).setText(String.valueOf(opponents.get(Athlete.POSITION.SG).getName()+ " - " + opponents.get(Athlete.POSITION.SG).getRating()));
+		btns.get(2).setText(String.valueOf(opponents.get(Athlete.POSITION.C).getName() + " - " + opponents.get(Athlete.POSITION.C).getRating()));
+		btns.get(3).setText(String.valueOf(opponents.get(Athlete.POSITION.SF).getName() + " - " + opponents.get(Athlete.POSITION.SF).getRating()));
+		btns.get(4).setText(String.valueOf(opponents.get(Athlete.POSITION.PF).getName() + " - " + opponents.get(Athlete.POSITION.PF).getRating()));
+	}
+	
+	public void setWinners(ArrayList<JLabel> playerLabels, ArrayList<JLabel> opponentLabels) {
+		for (int i=0; i<5; i++) {
+			Athlete player = manager.getTeam().getPlayersArray().get(i);
+			Athlete opponent = manager.getOpposingTeam().getPlayersMap().get(player.getPosition());
+			Athlete.POSITION pos = opponent.getPosition();
+			int index = 0;
+			switch (pos) {
+			    case PG:
+				    index = 0;
+				    break;
+			    case SG:
+			    	index = 1;
+			    	break;
+			    case C:
+			    	index = 2;
+			    	break;
+			    case SF:
+			    	index = 3;
+			    	break;
+			    case PF:
+			    	index = 4;
+			    	break;
+			    default:
+			    	break;
+			}
+
+			if (player.getRating() > opponent.getRating()) {
+				playerLabels.get(index).setForeground(Color.green);
+			}
+			
+			else if (player.getRating() < opponent.getRating()) {
+				opponentLabels.get(index).setForeground(Color.green);
+			}
+			
+			else {
+				playerLabels.get(index).setForeground(Color.orange);
+				opponentLabels.get(index).setForeground(Color.orange);
+			}
+		}
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -70,121 +132,132 @@ public class GameScreen {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel playerPG = new JLabel("New label");
+		playerPG.setForeground(new Color(255, 255, 255));
+		playerPG.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_1 = new JLabel("New label");
-		lblNewLabel_3_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel opponentPG = new JLabel("New label");
+		opponentPG.setForeground(new Color(255, 255, 255));
+		opponentPG.setHorizontalAlignment(SwingConstants.TRAILING);
+		opponentPG.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_2 = new JLabel("New label");
-		lblNewLabel_3_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel playerSG = new JLabel("New label");
+		playerSG.setForeground(new Color(255, 255, 255));
+		playerSG.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_3 = new JLabel("New label");
-		lblNewLabel_3_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_3.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_3_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel opponentSG = new JLabel("New label");
+		opponentSG.setForeground(new Color(255, 255, 255));
+		opponentSG.setHorizontalAlignment(SwingConstants.TRAILING);
+		opponentSG.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_4 = new JLabel("New label");
-		lblNewLabel_3_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel playerC = new JLabel("New label");
+		playerC.setForeground(new Color(255, 255, 255));
+		playerC.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_5 = new JLabel("New label");
-		lblNewLabel_3_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_5.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_3_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel opponentC = new JLabel("New label");
+		opponentC.setForeground(new Color(255, 255, 255));
+		opponentC.setHorizontalAlignment(SwingConstants.TRAILING);
+		opponentC.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_6 = new JLabel("New label");
-		lblNewLabel_3_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel playerSF = new JLabel("New label");
+		playerSF.setForeground(new Color(255, 255, 255));
+		playerSF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_7 = new JLabel("New label");
-		lblNewLabel_3_7.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_7.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_3_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel opponentSF = new JLabel("New label");
+		opponentSF.setForeground(new Color(255, 255, 255));
+		opponentSF.setHorizontalAlignment(SwingConstants.TRAILING);
+		opponentSF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_8 = new JLabel("New label");
-		lblNewLabel_3_8.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel playerPF = new JLabel("New label");
+		playerPF.setForeground(new Color(255, 255, 255));
+		playerPF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_3_9 = new JLabel("New label");
-		lblNewLabel_3_9.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3_9.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_3_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel opponentPF = new JLabel("New label");
+		opponentPF.setForeground(new Color(255, 255, 255));
+		opponentPF.setHorizontalAlignment(SwingConstants.TRAILING);
+		opponentPF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JButton btnNewButton = new JButton("<");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblNewLabel_2 = new JLabel("VS");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(411)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(411)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblNewLabel_3_8, GroupLayout.PREFERRED_SIZE, 114,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 134, Short.MAX_VALUE).addComponent(
-										lblNewLabel_3_9, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+							.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+							.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblNewLabel_3_6, GroupLayout.PREFERRED_SIZE, 114,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 134, Short.MAX_VALUE).addComponent(
-										lblNewLabel_3_7, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+							.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+							.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblNewLabel_3_4, GroupLayout.PREFERRED_SIZE, 114,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 134, Short.MAX_VALUE).addComponent(
-										lblNewLabel_3_5, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblNewLabel_3_2, GroupLayout.PREFERRED_SIZE, 114,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 134, Short.MAX_VALUE).addComponent(
-										lblNewLabel_3_3, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE).addGap(134)
-								.addComponent(lblNewLabel_3_1, GroupLayout.PREFERRED_SIZE, 114,
-										GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
-				.addGap(411))
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGap(1131)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(36)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(playerPG, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+									.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+							.addGap(3)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(opponentPG, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel_3_2,
-												GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+									.addGap(25)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(opponentC, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+										.addComponent(opponentSG, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))))))
+					.addGap(329))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+					.addGap(1131))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(36)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblNewLabel_3_1, GroupLayout.PREFERRED_SIZE, 63,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel_3_3,
-												GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3_4, GroupLayout.PREFERRED_SIZE, 63,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_3_5, GroupLayout.PREFERRED_SIZE, 63,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3_6, GroupLayout.PREFERRED_SIZE, 63,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_3_7, GroupLayout.PREFERRED_SIZE, 63,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3_8, GroupLayout.PREFERRED_SIZE, 63,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_3_9, GroupLayout.PREFERRED_SIZE, 63,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(38))
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(btnNewButton)
-						.addContainerGap(525, Short.MAX_VALUE)));
+									.addComponent(opponentPG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addComponent(playerPG, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(3)
+									.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+								.addComponent(opponentSG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+								.addComponent(opponentC, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+								.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+								.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+					.addGap(38))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnNewButton)
+					.addContainerGap(528, Short.MAX_VALUE))
+		);
 
 		JLabel lblNewLabel = new JLabel("Player");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -192,19 +265,21 @@ public class GameScreen {
 		JLabel lblNewLabel_1 = new JLabel("Opponent");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel playerTeam = new JLabel("New label");
+		playerTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		playerTeam.setText(manager.getTeamName());
 
-		JLabel lblNewLabel_2_1 = new JLabel("New label");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel opponentTeam = new JLabel("New label");
+		opponentTeam.setText(manager.getOpposingTeam().getTeamName());
+		opponentTeam.setHorizontalAlignment(SwingConstants.TRAILING);
+		opponentTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup().addContainerGap().addGroup(gl_panel
 						.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE).addGap(142)
-								.addComponent(lblNewLabel_2_1, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+								.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE).addGap(142)
+								.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
 						.addGroup(gl_panel.createSequentialGroup()
 								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE).addGap(224)
 								.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)))
@@ -218,11 +293,26 @@ public class GameScreen {
 										Short.MAX_VALUE))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 92,
+								.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+								.addComponent(opponentTeam, GroupLayout.PREFERRED_SIZE, 92,
 										GroupLayout.PREFERRED_SIZE))
 						.addContainerGap()));
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
+		
+		playerStarters.add(playerPG);
+		playerStarters.add(playerSG);
+		playerStarters.add(playerC);
+		playerStarters.add(playerSF);
+		playerStarters.add(playerPF);
+		
+		opponentStarters.add(opponentPG);
+		opponentStarters.add(opponentSG);
+		opponentStarters.add(opponentC);
+		opponentStarters.add(opponentSF);
+		opponentStarters.add(opponentPF);
+		
+		setPlayerLabels(playerStarters);
+		setOpponentLabels(opponentStarters);
 	}
 }
