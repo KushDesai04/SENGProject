@@ -98,5 +98,11 @@ public class Team {
 	public void removeItem(Item item) {
 		consumables.remove(item);
 	}
+	
+	public void restoreStamina() {
+		for (Athlete athlete : players.values()) {
+			athlete.restoreCurrentStamina();
+		}
+	}
 
 }

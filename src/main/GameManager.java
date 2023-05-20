@@ -255,7 +255,6 @@ public class GameManager {
 				money += 2000;
 				if (difficulty == "hard") {
 				    finalScore += 3;
-				    money += 2000;
 				}
 				break;
 			case "draw":
@@ -263,7 +262,6 @@ public class GameManager {
 				money += 1000;
 				if (difficulty == "hard") {
 				    finalScore += 1;
-				    money += 1000;
 				}
 				break;
 			case "opponent":

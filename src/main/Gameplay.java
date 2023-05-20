@@ -28,20 +28,20 @@ public class Gameplay {
 			if (player.getRating() > opponent.getRating()) {
 				playerPoints += 1;
 				if (difficulty == "easy") {
-					player.changeStat(-10, Athlete.STATS.S);
+					player.changeCurrentStamina(-10);
 				}
 				else {
-					player.changeStat(-20, Athlete.STATS.S);
+					player.changeCurrentStamina(-20);
 				}
 			}
 			
 			else if (player.getRating() < opponent.getRating()) {
 				opponentPoints += 1;
 				if (difficulty == "easy") {
-					player.changeStat(-20, Athlete.STATS.S);
+					player.changeCurrentStamina(-20);
 				}
 				else {
-					player.changeStat(-40, Athlete.STATS.S);
+					player.changeCurrentStamina(-40);
 				}
 			}
 			

@@ -77,7 +77,7 @@ public class GameOverScreen {
 		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScore.setText("Score: " + String.valueOf(manager.getScore()));
 		lblScore.setForeground(Color.WHITE);
-		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.addActionListener(new ActionListener() {
@@ -87,6 +87,24 @@ public class GameOverScreen {
 			}
 		});
 		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JLabel lblMoney = new JLabel("Money: 0");
+		lblMoney.setText("Money: " + String.valueOf(manager.getMoney()));
+		lblMoney.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMoney.setForeground(Color.WHITE);
+		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblTeamname = new JLabel("TeamName");
+		lblTeamname.setText(manager.getTeamName());
+		lblTeamname.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTeamname.setForeground(Color.WHITE);
+		lblTeamname.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JLabel lblDurationWeeks = new JLabel("Duration: 7 Weeks");
+		lblDurationWeeks.setText("Duration: " + String.valueOf(manager.getNumWeeks()) + " Weeks");
+		lblDurationWeeks.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDurationWeeks.setForeground(Color.WHITE);
+		lblDurationWeeks.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -100,17 +118,30 @@ public class GameOverScreen {
 					.addGap(546))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(527)
-					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblTeamname, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(526, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(501)
+					.addComponent(lblDurationWeeks, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(501, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(87)
 					.addComponent(lblGameOver)
-					.addPreferredGap(ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+					.addComponent(lblTeamname, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(143)
+					.addGap(10)
+					.addComponent(lblDurationWeeks, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(108)
 					.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addGap(97))
 		);

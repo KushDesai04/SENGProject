@@ -178,6 +178,7 @@ public class SetupScreen {
 		lblSeasonLength.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JSlider slider = new JSlider();
+		slider.setMinorTickSpacing(1);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				manager.setNumWeeks(slider.getValue());
@@ -189,8 +190,8 @@ public class SetupScreen {
 		slider.setSnapToTicks(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
-		slider.setMaximum(30);
-		slider.setValue(30);
+		slider.setMaximum(15);
+		slider.setValue(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()

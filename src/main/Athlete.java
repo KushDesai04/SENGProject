@@ -17,6 +17,7 @@ public class Athlete {
 	private int rating;
 	private POSITION position;
 	private int injuries = 0;
+	private int currentStamina;
 	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 
 	/**
@@ -35,6 +36,7 @@ public class Athlete {
 		Stats.put(STATS.D, defence);
 		Stats.put(STATS.S, stamina);
 		Stats.put(STATS.A, agility);
+		currentStamina = Stats.get(Athlete.STATS.S);
 	}
 
 	/**
@@ -102,6 +104,14 @@ public class Athlete {
 	public int getStat(STATS stat) {
 		return Stats.get(stat);
 	}
+	
+	public void changeCurrentStamina(int value) {
+		currentStamina -= value;
+	}
+	
+	public void restoreCurrentStamina() {
+		currentStamina = getStat(Athlete.STATS.S);
+	}
 
 	public String getName() {
 		return name;
@@ -124,7 +134,7 @@ public class Athlete {
 	}
 
 	public boolean isInjured() {
-		if (Stats.get(STATS.S) == 0) {
+		if (currentStamina == 0) {
 			injuries += 1;
 			return true;
 		}

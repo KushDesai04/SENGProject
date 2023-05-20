@@ -93,6 +93,7 @@ public class StadiumScreen {
 		btnBye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.incrementWeek();
+				manager.getTeam().restoreStamina();
 				manager.launchTrainAthleteScreen();
 				manager.launchRandomEvent();
 				finishedWindow();

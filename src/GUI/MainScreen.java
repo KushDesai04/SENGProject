@@ -117,22 +117,51 @@ public class MainScreen {
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JPanel panel = new JPanel();
+		
+		JPanel panel_1 = new JPanel();
+		
+		JLabel lblWeeksRemaining = new JLabel("Weeks Remaining: 10");
+		lblWeeksRemaining.setText("Weeks Remaining: " + String.valueOf((manager.getNumWeeks() - manager.getCurrentWeek())));
+		lblWeeksRemaining.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWeeksRemaining.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 100, Short.MAX_VALUE)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblWeeksRemaining, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+					.addGap(21))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 35, Short.MAX_VALUE)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(9)
+					.addComponent(lblWeeksRemaining, GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+					.addGap(8))
+		);
+		panel_1.setLayout(gl_panel_1);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(262)
-					.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnStadium, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnTeam, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-					.addGap(210))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(1022)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(262)
+							.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnStadium, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnTeam, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+							.addGap(22))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+							.addGap(944)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -142,6 +171,8 @@ public class MainScreen {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
