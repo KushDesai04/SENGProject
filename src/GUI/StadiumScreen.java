@@ -93,7 +93,8 @@ public class StadiumScreen {
 		btnBye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manager.incrementWeek();
-				manager.launchMainScreen();
+				manager.launchTrainAthleteScreen();
+				manager.launchRandomEvent();
 				finishedWindow();
 			}
 		});

@@ -22,6 +22,7 @@ public class GameScreen {
 
 	private JFrame frame;
 	private GameManager manager;
+	private Gameplay gamePlay;
 	private ArrayList<JLabel> playerStarters = new ArrayList<JLabel>();
 	private ArrayList<JLabel> opponentStarters = new ArrayList<JLabel>();
 
@@ -29,7 +30,6 @@ public class GameScreen {
 		manager = gameManager;
 		initialize();
 		frame.setVisible(true);
-		setWinners(playerStarters, opponentStarters);
 	}
 
 	/**
@@ -81,7 +81,8 @@ public class GameScreen {
 		btns.get(4).setText(String.valueOf(opponents.get(Athlete.POSITION.PF).getName() + " - " + opponents.get(Athlete.POSITION.PF).getRating()));
 	}
 	
-	public void setWinners(ArrayList<JLabel> playerLabels, ArrayList<JLabel> opponentLabels) {
+	public void setWinners(ArrayList<JLabel> playerLabels, ArrayList<JLabel> opponentLabels, JLabel playerWinnerLbl, JLabel opponentWinnerLbl) {
+		int playerScore = 0;
 		for (int i=0; i<5; i++) {
 			Athlete player = manager.getTeam().getPlayersArray().get(i);
 			Athlete opponent = manager.getOpposingTeam().getPlayersMap().get(player.getPosition());
@@ -109,16 +110,30 @@ public class GameScreen {
 
 			if (player.getRating() > opponent.getRating()) {
 				playerLabels.get(index).setForeground(Color.green);
+				playerScore += 1;
 			}
 			
 			else if (player.getRating() < opponent.getRating()) {
 				opponentLabels.get(index).setForeground(Color.green);
+				playerScore -= 1;
 			}
 			
 			else {
 				playerLabels.get(index).setForeground(Color.orange);
 				opponentLabels.get(index).setForeground(Color.orange);
 			}
+		}
+		
+		if (playerScore > 0) {
+		    playerWinnerLbl.setText("Winner");
+		}
+		
+		else if (playerScore < 0){
+		    opponentWinnerLbl.setText("Winner");
+		    	
+		}
+		else {
+		   	playerWinnerLbl.setText("Draw!");
 		}
 	}
 
@@ -199,19 +214,18 @@ public class GameScreen {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
 							.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
 							.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(playerPG, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-									.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+								.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblVs, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
 							.addGap(3)
@@ -225,14 +239,14 @@ public class GameScreen {
 					.addGap(329))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(backButton, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+					.addComponent(backButton, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
 					.addGap(1131))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(36)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -240,7 +254,7 @@ public class GameScreen {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(opponentPG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED))
-								.addComponent(playerPG, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+								.addComponent(playerPG, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(3)
@@ -258,7 +272,7 @@ public class GameScreen {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 								.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+						.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
 					.addGap(38))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
@@ -281,19 +295,39 @@ public class GameScreen {
 		opponentTeam.setText(manager.getOpposingTeam().getTeamName());
 		opponentTeam.setHorizontalAlignment(SwingConstants.TRAILING);
 		opponentTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JLabel lblPlayerWinner = new JLabel("");
+		lblPlayerWinner.setForeground(new Color(0, 255, 0));
+		lblPlayerWinner.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JLabel lblOpponentWinner = new JLabel("");
+		lblOpponentWinner.setForeground(new Color(0, 255, 0));
+		lblOpponentWinner.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblOpponentWinner.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-							.addGap(142)
-							.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGap(142))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblPlayerWinner, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)))
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(104)
+									.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblOpponentWinner, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblPlayerHeader, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
 							.addComponent(lblOpponentHeader, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
@@ -304,10 +338,14 @@ public class GameScreen {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE, false)
 						.addComponent(lblPlayerHeader)
 						.addComponent(lblOpponentHeader))
+					.addGap(29)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPlayerWinner, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOpponentWinner, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-						.addComponent(opponentTeam, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+						.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
@@ -327,5 +365,6 @@ public class GameScreen {
 		
 		setPlayerLabels(playerStarters);
 		setOpponentLabels(opponentStarters);
+		setWinners(playerStarters, opponentStarters, lblPlayerWinner, lblOpponentWinner);
 	}
 }

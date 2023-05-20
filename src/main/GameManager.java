@@ -3,6 +3,8 @@ package main;
 import GUI.*;
 import java.util.*;
 
+import org.hamcrest.core.IsInstanceOf;
+
 /**
  * This is the GameManager class which controls the logic for the game such as
  * opening/closing windows.
@@ -152,6 +154,7 @@ public class GameManager {
 
 	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) {
 		teamSetupWindow.closeWindow();
+		team.getReserves().clear();
 		launchMainScreen();
 	}
 
@@ -241,25 +244,57 @@ public class GameManager {
 		gamePlay.play();
 		String result = gamePlay.declareWinner();
 		switch (result) {
-		case "player":
-			finalScore += 3;
-			money += 2000;
-			break;
-		case "draw":
-			finalScore += 1;
-			money += 1000;
-			break;
-		case "opponent":
-			money += 500;
-			break;
+			case "player":
+				finalScore += 3;
+				money += 2000;
+				if (difficulty == "hard") {
+				    finalScore += 3;
+				    money += 2000;
+				}
+				break;
+			case "draw":
+				finalScore += 1;
+				money += 1000;
+				if (difficulty == "hard") {
+				    finalScore += 1;
+				    money += 1000;
+				}
+				break;
+			case "opponent":
+				money += 500;
+				if (difficulty == "hard") {
+				    money += 500;
+				}
+				break;
 		}
 		GameScreen gameWindow = new GameScreen(this);
+	}
+	
+	public void closeTrainAthleteScreen(TrainAthleteScreen trainAthleteScreen) {
+		trainAthleteScreen.closeWindow();
+		launchMainScreen();
+	}
+	
+	public void launchTrainAthleteScreen() {
+		TrainAthleteScreen trainAthleteWindow = new TrainAthleteScreen(this);
+	}
+	
+	public void launchDialogueBox(String message) {
+		DialogueBox dialogueBox = new DialogueBox(this, message);
+	}
+	
+	public void launchRandomEvent() {
+		RandomEvent randomEvent = new RandomEvent(team);
+		String message = randomEvent.generateEvent(randomEvent.generateRandom());
+		if (message instanceof String) {
+			launchDialogueBox(message);
+		}
 	}
 
 	public void closeGameScreen(GameScreen gameWindow) {
 		gameWindow.closeWindow();
-		launchMainScreen();
 		incrementWeek();
+		launchMainScreen();
 	}
 
 	public static void main(String args[]) {

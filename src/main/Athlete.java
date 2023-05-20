@@ -16,6 +16,7 @@ public class Athlete {
 	private int price;
 	private int rating;
 	private POSITION position;
+	private int injuries = 0;
 	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
 
 	/**
@@ -68,6 +69,8 @@ public class Athlete {
 	 */
 	public void changeStat(int value, STATS stat) {
 		Stats.put(stat, (getStat(stat) + value));
+		rating = (getStat(STATS.O) + getStat(STATS.D) + getStat(STATS.A) + getStat(STATS.S)) / 4;
+		
 	}
 
 	public String toString() {
@@ -115,9 +118,17 @@ public class Athlete {
 	public POSITION getPosition() {
 		return position;
 	}
+	
+	public int getInjuries() {
+		return injuries;
+	}
 
 	public boolean isInjured() {
-		return Stats.get(STATS.S) == 0;
+		if (Stats.get(STATS.S) == 0) {
+			injuries += 1;
+			return true;
+		}
+		return false;
 	}
 
 //	public static void main(String args[]) {

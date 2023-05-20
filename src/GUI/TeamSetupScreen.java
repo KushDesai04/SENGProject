@@ -127,17 +127,32 @@ public class TeamSetupScreen {
 	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def,
 			JLabel stam, JLabel agil, int index) {
+		
+		System.out.println(manager.getTeam().getReserves());
+		
 		if (btn.isSelected()) {
+			
 			Athlete athlete = manager.getMarket().getStarterAthletes().get(index);
-			manager.getTeam().addPlayer(athlete); // Add player from array to starters
-			name.setText(athlete.getName()); // Set name label to athlete name
-			pos.setText(String.valueOf(athlete.getPosition()));
-			ovr.setText(String.valueOf(athlete.getRating()));
-			off.setText(String.valueOf(athlete.getStat(Athlete.STATS.O)));
-			def.setText(String.valueOf(athlete.getStat(Athlete.STATS.D)));
-			stam.setText(String.valueOf(athlete.getStat(Athlete.STATS.S)));
-			agil.setText(String.valueOf(athlete.getStat(Athlete.STATS.A)));
-		} else if (!btn.isSelected()) {
+			if (manager.getTeam().getPlayersMap().get(athlete.getPosition()) instanceof Athlete) {
+			    // another player in same position already in team
+				btn.setSelected(false);
+				String message = "Another player is already in that position!";
+				JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			else {
+				manager.getTeam().addPlayer(athlete); // Add player from array to starters
+				name.setText(athlete.getName()); // Set name label to athlete name
+				pos.setText(String.valueOf(athlete.getPosition()));
+				ovr.setText(String.valueOf(athlete.getRating()));
+				off.setText(String.valueOf(athlete.getStat(Athlete.STATS.O)));
+				def.setText(String.valueOf(athlete.getStat(Athlete.STATS.D)));
+				stam.setText(String.valueOf(athlete.getStat(Athlete.STATS.S)));
+				agil.setText(String.valueOf(athlete.getStat(Athlete.STATS.A)));
+			}
+		} 
+		
+		else if (!btn.isSelected()) {
 			manager.getTeam().removePlayer(manager.getMarket().getStarterAthletes().get(index));
 		}
 	}
@@ -304,7 +319,7 @@ public class TeamSetupScreen {
 		});
 		tglbtnPlayer1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JToggleButton tglbtnPlayer2 = new JToggleButton("Player1");
+		JToggleButton tglbtnPlayer2 = new JToggleButton("Player2");
 
 		tglbtnPlayer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -314,7 +329,7 @@ public class TeamSetupScreen {
 		});
 		tglbtnPlayer2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JToggleButton tglbtnPlayer3 = new JToggleButton("Player1");
+		JToggleButton tglbtnPlayer3 = new JToggleButton("Player3");
 		tglbtnPlayer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tglButtonEvent(tglbtnPlayer3, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue,
@@ -323,7 +338,7 @@ public class TeamSetupScreen {
 		});
 		tglbtnPlayer3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JToggleButton tglbtnPlayer4 = new JToggleButton("Player1");
+		JToggleButton tglbtnPlayer4 = new JToggleButton("Player4");
 		tglbtnPlayer4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tglButtonEvent(tglbtnPlayer4, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue,
@@ -332,7 +347,7 @@ public class TeamSetupScreen {
 		});
 		tglbtnPlayer4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JToggleButton tglbtnPlayer5 = new JToggleButton("Player1");
+		JToggleButton tglbtnPlayer5 = new JToggleButton("Player5");
 		tglbtnPlayer5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tglButtonEvent(tglbtnPlayer5, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue,
@@ -341,7 +356,7 @@ public class TeamSetupScreen {
 		});
 		tglbtnPlayer5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JToggleButton tglbtnPlayer6 = new JToggleButton("Player1");
+		JToggleButton tglbtnPlayer6 = new JToggleButton("Player6");
 		tglbtnPlayer6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tglButtonEvent(tglbtnPlayer6, positionLabel, nameLabel, ovrLabel, offValue, defValue, stamValue,

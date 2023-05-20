@@ -105,7 +105,7 @@ public class OpponentSelectorScreen {
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!manager.getTeam().canPlay()) {
-					String message = "Not all starters are ready!";
+					String message = "Not all starters are ready to play!";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
 				} else {
 					manager.setOpposingTeam(opposingTeam);
