@@ -159,7 +159,13 @@ public class GameManager {
 	}
 
 	public void launchMainScreen() {
-		MainScreen mainWindow = new MainScreen(this);
+		if (currentWeek < numWeeks) {
+		    MainScreen mainWindow = new MainScreen(this);
+		}
+		
+		else {
+			launchGameOverScreen();
+		}
 	}
 
 	/**
@@ -295,6 +301,18 @@ public class GameManager {
 		gameWindow.closeWindow();
 		incrementWeek();
 		launchMainScreen();
+	}
+	
+	public int getScore() {
+		return finalScore;
+	}
+	
+	public void closeGameOverScreen(GameOverScreen gameOverScreen) {
+		gameOverScreen.closeWindow();
+	}
+	
+	public void launchGameOverScreen() {
+		GameOverScreen gameOverScreen = new GameOverScreen(this);
 	}
 
 	public static void main(String args[]) {

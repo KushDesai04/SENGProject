@@ -165,13 +165,13 @@ public class TrainAthleteScreen {
 		);
 		panel.setLayout(gl_panel);
 		
-		JButton tglBtnPG_6 = new JButton("Back");
+		JButton tglBtnPG_6 = new JButton("<");
 		tglBtnPG_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 			}
 		});
-		tglBtnPG_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglBtnPG_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JButton trainAthleteBtn = new JButton("Train Athlete");
 		trainAthleteBtn.addActionListener(new ActionListener() {
@@ -202,6 +202,11 @@ public class TrainAthleteScreen {
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		
+		JLabel lblNewLabel_2 = new JLabel("Training Room");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -213,31 +218,40 @@ public class TrainAthleteScreen {
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
 							.addGap(43)
 							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
-							.addGap(137)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(trainAthleteBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-								.addComponent(panel, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)))
-						.addComponent(tglBtnPG_6, Alignment.TRAILING))
+							.addGap(137))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(tglBtnPG_6)
+							.addPreferredGap(ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
+							.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+							.addGap(146)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(trainAthleteBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(13)
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 506, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(scrollPane, Alignment.LEADING)
+							.addGap(39)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(panel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(trainAthleteBtn, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(tglBtnPG_6)
-							.addGap(5))))
+									.addComponent(trainAthleteBtn, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE)
+										.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE))
+									.addGap(39))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(tglBtnPG_6)))
+					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		
 		JLabel lblNewLabel_1 = new JLabel("Starters");

@@ -1,0 +1,120 @@
+package GUI;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.SwingConstants;
+
+import main.GameManager;
+
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+public class GameOverScreen {
+
+	private JFrame frame;
+    private GameManager manager;
+    
+    public GameOverScreen(GameManager gameManager){
+    	manager = gameManager;
+    	initialize();
+    	frame.setVisible(true);
+    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GameOverScreen window = new GameOverScreen();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public GameOverScreen() {
+		initialize();
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+
+	public void finishedWindow() {
+		manager.closeGameOverScreen(this);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 64));
+		frame.setBounds(100, 100, 1200, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel lblGameOver = new JLabel("Game Over!");
+		lblGameOver.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGameOver.setForeground(new Color(255, 255, 255));
+		lblGameOver.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JLabel lblScore = new JLabel("Score: 1");
+		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScore.setText("Score: " + String.valueOf(manager.getScore()));
+		lblScore.setForeground(Color.WHITE);
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
+		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(527)
+					.addComponent(lblGameOver, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+					.addGap(526))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(547)
+					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+					.addGap(546))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(527)
+					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(526, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(87)
+					.addComponent(lblGameOver)
+					.addPreferredGap(ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(143)
+					.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(97))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+
+}
