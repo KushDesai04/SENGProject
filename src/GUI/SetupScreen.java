@@ -117,18 +117,18 @@ public class SetupScreen {
 				if (txtTeamName.getText().length() >= 3 && txtTeamName.getText().length() <= 15) {
 					manager.setTeamName(txtTeamName.getText());
 					String name = txtTeamName.getText();
-					if (!name.isBlank() && name.matches("([a-zA-Z0-9]+[ ]*)+")) {
+					if (!name.isBlank() && name.matches("([a-zA-Z]+[ ]*)+")) {
 						finishedWindow();
 					} else {
 						String message = "No special characters are allowed in the team name"
 								+ "\n and name should be between 3-15 characters long";
-						JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), message, "Name Selection Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 
 				else {
 					String message = "Please enter a team name that is between 3 and 15 characters long";
-					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(), message, "Name Selection Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

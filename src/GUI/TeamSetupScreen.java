@@ -137,7 +137,7 @@ public class TeamSetupScreen {
 			    // another player in same position already in team
 				btn.setSelected(false);
 				String message = "Another player is already in that position!";
-				JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(new JFrame(), message, "Selection Error", JOptionPane.ERROR_MESSAGE);
 			}
 			
 			else {
@@ -192,7 +192,7 @@ public class TeamSetupScreen {
 				if (!maxSize()) {
 					lblErrorMsg.setForeground(Color.red);
 					String message = "Please select exactly 5 players from different positions!";
-					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(), message, "Selection Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					finishedWindow();
 				}

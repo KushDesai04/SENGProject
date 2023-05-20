@@ -1,6 +1,7 @@
 package GUI;
 import main.*;
 
+import java.util.regex.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -299,8 +300,6 @@ public class TeamScreen {
         	public void actionPerformed(ActionEvent e) {
         		try {
 					Item item = itemList.getSelectedValue();
-					
-//					System.out.println(item);
 					item.consume(lastSelectedAthlete);
 					manager.getTeam().removeItem(item);
 
@@ -395,14 +394,20 @@ public class TeamScreen {
 			public void actionPerformed(ActionEvent e) {
 				String name = textNickname.getText();
 				if (lastSelectedAthlete instanceof Athlete) {
-				    lastSelectedAthlete.setNickname(name);
-				    setStarterButtons(starters);
-				    refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+					if (name.length() == 0 | !name.matches("([a-zA-Z]+[ ]*)+")) {
+						String message = "The name cannot be empty nor contain any special characters!";
+			    	    JOptionPane.showMessageDialog(new JFrame(), message, "Name Change Error", JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+					    lastSelectedAthlete.setNickname(name);
+					    setStarterButtons(starters);
+					    refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+				    }
 				}
 				
 				else {
 				    String message = "Please select a Starter Player first!";
-		    	    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+		    	    JOptionPane.showMessageDialog(new JFrame(), message, "Name Change Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

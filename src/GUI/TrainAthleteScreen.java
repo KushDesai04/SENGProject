@@ -190,7 +190,7 @@ public class TrainAthleteScreen {
 				
 				catch (NullPointerException error) {
 					String message = "Please select an Athlete!";
-					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(), message, "Training Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}

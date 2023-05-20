@@ -305,12 +305,13 @@ public class GameManager {
 		return finalScore;
 	}
 	
-	public void closeGameOverScreen(GameOverScreen gameOverScreen) {
-		gameOverScreen.closeWindow();
-	}
-	
 	public void launchGameOverScreen() {
 		GameOverScreen gameOverScreen = new GameOverScreen(this);
+	}
+	
+	public void closeGameOverScreen(GameOverScreen gameOverScreen) {
+		gameOverScreen.closeWindow();
+		System.exit(0);
 	}
 
 	public static void main(String args[]) {

@@ -7,9 +7,11 @@ public class GenerateRandom {
 	private float multiplier = 1.0f;
 	private ArrayList<String> possibleNames = new ArrayList<String>(Arrays.asList("Michael", "Jordan", "Steph", "Kush",
 			"Droopy", "Hoi Fung", "Ray", "Zaza", "Archibold", "Freddie", "Wij", "Richard", "Kang", "Zheng", "Rundle",
-			"Tim", "Sum", "Ting", "Wong", "Jake", "Tuffy", "Stevo"));
+			"Tim", "Sum", "Ting", "Wong", "Jake", "Tuffy", "Stevo", "Gavin", "Miguel", "Andy", "Giancarlo", "Gus",
+			"Walter", "Jesse", "Hank", "Cornelius", "Erik", "Bjorn", "Steve", "Alex", "Lucas", "Lars", "Jaron", "Kel"));
 	private ArrayList<String> possibleItemNames = new ArrayList<String>(Arrays.asList("Apple", "Blue Pot", "Sushi",
-			"Katsu Chicken Sandwich", "Protein Shake", "Trenbolone Acetate"));
+			"Katsu Chicken Sandwich", "Protein Shake", "Trenbolone Acetate", "Energy Drink", "Preworkout", "Ghost Pepper",
+			"Protein Bar", "Can of Spinach", "Pot of Greed", "Chicken Dinner", "Stardrop"));
 	private ArrayList<String> possibleTeamNames = new ArrayList<String>(Arrays.asList("Celtics", "Nets", "Knicks",
 			"76ers", "Raptors", "Bulls", "Cavaliers", "Pistons", "Pacers", "Bucks", "Hawks", "Hornets", "Heat", "Magic",
 			"Wizards", "Nuggets", "Timberwolves", "Thunder", "Trail Blazers", "Jazz", "Warriors", "Clippers", "Lakers",

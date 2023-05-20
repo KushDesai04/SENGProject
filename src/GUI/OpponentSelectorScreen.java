@@ -106,7 +106,7 @@ public class OpponentSelectorScreen {
 			public void actionPerformed(ActionEvent e) {
 				if (!manager.getTeam().canPlay()) {
 					String message = "Not all starters are ready to play!";
-					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(), message, "Team Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					manager.setOpposingTeam(opposingTeam);
 					manager.launchGameScreen();
@@ -208,21 +208,21 @@ public class OpponentSelectorScreen {
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addComponent(btnPlay, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE).addGap(29)));
 
-		JButton btnTeam1 = new JButton("New button");
+		JButton btnTeam1 = new JButton("Team 1");
 		btnTeam1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEvent(lblTeamName, lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4, lblPlayer5, 0);
 			}
 		});
 
-		JButton btnTeam2 = new JButton("New button");
+		JButton btnTeam2 = new JButton("Team 2");
 		btnTeam2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEvent(lblTeamName, lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4, lblPlayer5, 1);
 			}
 		});
 
-		JButton btnTeam3 = new JButton("New button");
+		JButton btnTeam3 = new JButton("Team 3");
 		btnTeam3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEvent(lblTeamName, lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4, lblPlayer5, 2);
