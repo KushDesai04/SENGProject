@@ -32,6 +32,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.List;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JTextField;
 
 /**
  * This is the Team Screen class. The team screen will 
@@ -51,6 +52,7 @@ public class TeamScreen {
 	private Athlete lastSelectedAthlete;
 	private Athlete lastSelectedReserve;
 	private Item lastSelectedItem;
+	private JTextField textNickname;
 	
 	public TeamScreen(GameManager gameManager) {
 		manager = gameManager;
@@ -202,6 +204,7 @@ public class TeamScreen {
 		tglBtnPG_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Athlete athlete = reservesList.getSelectedValue();
+				lastSelectedReserve = athlete;
 				
 				try {
 					manager.getTeam().replacePlayer(athlete, manager.getTeam().getPlayersMap().get(athlete.getPosition()));
@@ -213,7 +216,7 @@ public class TeamScreen {
 					setStarterButtons(starters);
 				}
 				catch (NullPointerException error) {
-					System.out.println(error);
+
 			    	String message = "Please select a Reserve Player first!";
 			    	JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
 				}
@@ -381,6 +384,29 @@ public class TeamScreen {
 		});
 		btnSellAthlete.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
+		textNickname = new JTextField();
+		textNickname.setColumns(10);
+		
+		JButton btnSetName = new JButton("Set Name");
+		btnSetName.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnSetName.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = textNickname.getText();
+				if (lastSelectedAthlete instanceof Athlete) {
+				    lastSelectedAthlete.setNickname(name);
+				    setStarterButtons(starters);
+				    refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+				}
+				
+				else {
+				    String message = "Please select a Starter Player first!";
+		    	    JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -393,21 +419,21 @@ public class TeamScreen {
 							.addComponent(tglBtnPG_5, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(btnSellAthlete, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(tglBtnPG_5_2, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnSellItem, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
-							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(12)
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(tglBtnPG_5_2, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(tglBtnPG_6)))
+							.addComponent(btnSellItem, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+						.addComponent(tglBtnPG_6, Alignment.TRAILING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(textNickname, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnSetName)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -417,22 +443,23 @@ public class TeamScreen {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(tglBtnPG_5, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnSellAthlete, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+								.addComponent(tglBtnPG_5, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnSellAthlete, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
 							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnSellItem, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 								.addComponent(tglBtnPG_5_2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 401, GroupLayout.PREFERRED_SIZE)
+							.addGap(25)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(textNickname)
+								.addComponent(btnSetName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
 							.addComponent(tglBtnPG_6))
 						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 539, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
