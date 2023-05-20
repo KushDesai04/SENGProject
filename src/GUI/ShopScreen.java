@@ -228,13 +228,27 @@ public class ShopScreen {
 						        JOptionPane.ERROR_MESSAGE);
 						}
 						else {
-						manager.getTeam().buyPlayer((Athlete) consumable);
-						manager.changeMoney(-((Athlete) consumable).getPrice());
-						lblMoney.setText("$" + String.valueOf(manager.getMoney()));
-						bought.setEnabled(false);
-						manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
-						consumable = null;
-						//TODO: Make sure nothing happens when consumable == null!
+							String[] options = {"Starters", "Reserves"};
+							String message = "Where would you like to add this athlete to?";
+						    int choice = JOptionPane.showOptionDialog(new JFrame(), message, "Add Athlete",
+						        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+							if (choice == 0) {
+								manager.getTeam().buyPlayer((Athlete) consumable);
+								manager.getTeam().replacePlayer((Athlete) consumable, manager.getTeam().getPlayersMap().get(((Athlete) consumable).getPosition()));
+								manager.changeMoney(-((Athlete) consumable).getPrice());
+								lblMoney.setText("$" + String.valueOf(manager.getMoney()));
+								bought.setEnabled(false);
+								manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
+								consumable = null;
+							}
+							else if (choice == 1) {
+								manager.getTeam().buyPlayer((Athlete) consumable);
+								manager.changeMoney(-((Athlete) consumable).getPrice());
+								lblMoney.setText("$" + String.valueOf(manager.getMoney()));
+								bought.setEnabled(false);
+								manager.getMarket().addWeeklyPurchasedAthletes((Athlete) consumable);
+								consumable = null;
+							}
 						}
 					}
 					else {

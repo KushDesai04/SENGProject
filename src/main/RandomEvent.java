@@ -25,7 +25,6 @@ public class RandomEvent {
 		if (run) {
 			ArrayList<Athlete> reserves = team.getReserves();
 			int i = random.nextInt(50);
-			i = 1;
 			switch (i) {
 			case 0:
 				// random starter athlete gets a stat boost
