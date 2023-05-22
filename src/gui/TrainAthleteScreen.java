@@ -213,10 +213,10 @@ public class TrainAthleteScreen {
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 
-		JLabel lblNewLabel_2 = new JLabel("Training Room");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		JLabel lblTrainingRoom = new JLabel("Training Room");
+		lblTrainingRoom.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTrainingRoom.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblTrainingRoom.setForeground(new Color(255, 255, 255));
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
@@ -230,7 +230,7 @@ public class TrainAthleteScreen {
 						.addGroup(Alignment.TRAILING,
 								groupLayout.createSequentialGroup().addComponent(tglBtnPG_6)
 										.addPreferredGap(ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 190,
+										.addComponent(lblTrainingRoom, GroupLayout.PREFERRED_SIZE, 190,
 												GroupLayout.PREFERRED_SIZE)
 										.addGap(146)))
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -250,7 +250,7 @@ public class TrainAthleteScreen {
 												GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 								.addGroup(Alignment.TRAILING,
 										groupLayout.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 45,
+												.addComponent(lblTrainingRoom, GroupLayout.PREFERRED_SIZE, 45,
 														GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
 														Short.MAX_VALUE)
@@ -263,10 +263,10 @@ public class TrainAthleteScreen {
 						.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(tglBtnPG_6)))
 				.addContainerGap(18, Short.MAX_VALUE)));
 
-		JLabel lblNewLabel_1 = new JLabel("Starters");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		scrollPane_1.setColumnHeaderView(lblNewLabel_1);
+		JLabel lblStarters = new JLabel("Starters");
+		lblStarters.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblStarters.setHorizontalAlignment(SwingConstants.CENTER);
+		scrollPane_1.setColumnHeaderView(lblStarters);
 
 		JList<Athlete> startersList = new JList<Athlete>();
 		JList<Athlete> reservesList = new JList<Athlete>();
@@ -301,10 +301,10 @@ public class TrainAthleteScreen {
 		});
 		scrollPane_1.setViewportView(startersList);
 
-		JLabel lblNewLabel = new JLabel("Reserves");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		scrollPane.setColumnHeaderView(lblNewLabel);
+		JLabel lblReserves = new JLabel("Reserves");
+		lblReserves.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReserves.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		scrollPane.setColumnHeaderView(lblReserves);
 
 		reservesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		reservesList.setModel(new AbstractListModel<Athlete>() {

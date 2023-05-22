@@ -37,6 +37,18 @@ public class AthleteTest {
 		athlete.changeStat(changeValue, Athlete.STATS.O);
 		int expectedValue = initialValue + changeValue;
 		assertEquals(expectedValue, athlete.getStat(Athlete.STATS.O));
+		
+		// Check max stat is 99
+		initialValue = athlete.getStat(Athlete.STATS.O);
+		changeValue = 100;
+		athlete.changeStat(changeValue, Athlete.STATS.O);
+		assertEquals(99, athlete.getStat(Athlete.STATS.O));
+		
+		// Check min stat is 0
+		initialValue = athlete.getStat(Athlete.STATS.O);
+		changeValue = -(athlete.getStat(Athlete.STATS.O) + 50);
+		athlete.changeStat(changeValue, Athlete.STATS.O);
+		assertEquals(0, athlete.getStat(Athlete.STATS.O));
 	}
 
 	@Test

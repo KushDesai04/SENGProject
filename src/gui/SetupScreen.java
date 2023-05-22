@@ -127,13 +127,13 @@ public class SetupScreen {
 		txtTeamName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTeamName.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("Team Name:");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel lblTeamName = new JLabel("Team Name:");
+		lblTeamName.setForeground(new Color(255, 255, 255));
+		lblTeamName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTeamName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JButton btnNewButton = new JButton("Next");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnNext = new JButton("Next");
+		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtTeamName.getText().length() >= 3 && txtTeamName.getText().length() <= 15) {
 					manager.setTeamName(txtTeamName.getText());
@@ -156,26 +156,26 @@ public class SetupScreen {
 			}
 		});
 
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JPanel panel = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(481)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE).addGap(481))
+						.addComponent(lblTeamName, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE).addGap(481))
 				.addGroup(groupLayout.createSequentialGroup().addGap(254)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGap(47).addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+						.addGap(47).addComponent(btnNext, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
 						.addGap(13))
 				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup().addGap(254)
 						.addComponent(txtTeamName, GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE).addGap(253)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 				.createSequentialGroup()
 				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(496).addComponent(btnNewButton,
+						.addGroup(groupLayout.createSequentialGroup().addGap(496).addComponent(btnNext,
 								GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup().addGap(112)
-								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTeamName, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 								.addGap(53).addComponent(txtTeamName, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
 								.addGap(79).addComponent(panel, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
 								.addPreferredGap(ComponentPlacement.RELATED)))

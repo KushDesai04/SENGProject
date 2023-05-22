@@ -30,6 +30,7 @@ import java.awt.Component;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 /**
  * This is the StartScreen class. The start screen is the first screen that
@@ -110,18 +111,35 @@ public class StartScreen {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 64));
 
-		JLabel lblNewLabel = new JLabel("Basketball Manager");
+		JLabel lblNewLabel = new JLabel("HoopMaster");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel btnNewLabel_LOGO = new JLabel("");
+		btnNewLabel_LOGO.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewLabel_LOGO.setFont(new Font("Tahoma", Font.PLAIN, 5));
+		btnNewLabel_LOGO.setIcon(new ImageIcon(StartScreen.class.getResource("/gui/images/basketball_logo.png")));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup()
-						.addGap(451).addComponent(panel, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(451)));
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(451)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnNewLabel_LOGO, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 284, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+					.addGap(451))
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup()
-						.addGap(146).addComponent(panel, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE).addGap(146)));
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(30)
+					.addComponent(btnNewLabel_LOGO, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+					.addGap(146))
+		);
 
 		JButton btnNewButton = new JButton("Play");
 		btnNewButton.addActionListener(new ActionListener() {

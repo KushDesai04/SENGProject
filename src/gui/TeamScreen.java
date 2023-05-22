@@ -247,8 +247,8 @@ public class TeamScreen {
 
 		JSeparator separator = new JSeparator();
 
-		JLabel nameLabel = new JLabel("Click an item to see its description");
-		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JLabel lblName = new JLabel("Click an item to see its description");
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JLabel priceLabel = new JLabel("");
 		priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -277,7 +277,7 @@ public class TeamScreen {
 			public void valueChanged(ListSelectionEvent e) {
 				lastSelectedReserve = reservesList.getSelectedValue();
 				if (lastSelectedReserve instanceof Athlete) {
-					refreshLabels(lastSelectedReserve, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue,
+					refreshLabels(lastSelectedReserve, lblName, priceLabel, offValue, defValue, stamValue, agilValue,
 							currStamValue);
 				}
 			}
@@ -341,7 +341,7 @@ public class TeamScreen {
 			public void valueChanged(ListSelectionEvent e) {
 				lastSelectedItem = itemList.getSelectedValue();
 				if (lastSelectedItem instanceof Item) {
-					refreshItemLabels(lastSelectedItem, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue,
+					refreshItemLabels(lastSelectedItem, lblName, priceLabel, offValue, defValue, stamValue, agilValue,
 							currStamValue);
 				}
 			}
@@ -355,7 +355,7 @@ public class TeamScreen {
 				.addGroup(gl_panel.createSequentialGroup().addGap(10).addGroup(gl_panel
 						.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE).addGap(16))
+								.addComponent(lblName, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE).addGap(16))
 						.addGroup(gl_panel.createSequentialGroup()
 								.addPreferredGap(ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
 								.addComponent(priceLabel).addContainerGap())))
@@ -366,7 +366,7 @@ public class TeamScreen {
 						.addContainerGap(18, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup().addGap(181)
-						.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE).addGap(26)
+						.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE).addGap(26)
 						.addComponent(priceLabel).addPreferredGap(ComponentPlacement.UNRELATED)
 						.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
@@ -481,7 +481,7 @@ public class TeamScreen {
 					} else {
 						lastSelectedAthlete.setNickname(name);
 						setStarterButtons(starters);
-						refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue,
+						refreshLabels(lastSelectedAthlete, lblName, priceLabel, offValue, defValue, stamValue,
 								agilValue, currStamValue);
 					}
 				}
@@ -579,7 +579,7 @@ public class TeamScreen {
 		JButton btnPG = new JButton("PG");
 		btnPG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnPG, Athlete.POSITION.PG, nameLabel, priceLabel, offValue, defValue, stamValue,
+				starterButtonEvent(btnPG, Athlete.POSITION.PG, lblName, priceLabel, offValue, defValue, stamValue,
 						agilValue, itemList, reservesList, currStamValue);
 			}
 		});
@@ -587,7 +587,7 @@ public class TeamScreen {
 		JButton btnSG = new JButton("SG");
 		btnSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnSG, Athlete.POSITION.SG, nameLabel, priceLabel, offValue, defValue, stamValue,
+				starterButtonEvent(btnSG, Athlete.POSITION.SG, lblName, priceLabel, offValue, defValue, stamValue,
 						agilValue, itemList, reservesList, currStamValue);
 			}
 		});
@@ -595,7 +595,7 @@ public class TeamScreen {
 		JButton btnC = new JButton("C");
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnC, Athlete.POSITION.C, nameLabel, priceLabel, offValue, defValue, stamValue,
+				starterButtonEvent(btnC, Athlete.POSITION.C, lblName, priceLabel, offValue, defValue, stamValue,
 						agilValue, itemList, reservesList, currStamValue);
 			}
 		});
@@ -603,7 +603,7 @@ public class TeamScreen {
 		JButton btnSF = new JButton("SF");
 		btnSF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnSF, Athlete.POSITION.SF, nameLabel, priceLabel, offValue, defValue, stamValue,
+				starterButtonEvent(btnSF, Athlete.POSITION.SF, lblName, priceLabel, offValue, defValue, stamValue,
 						agilValue, itemList, reservesList, currStamValue);
 			}
 		});
@@ -611,7 +611,7 @@ public class TeamScreen {
 		JButton btnPF = new JButton("PF");
 		btnPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnPF, Athlete.POSITION.PF, nameLabel, priceLabel, offValue, defValue, stamValue,
+				starterButtonEvent(btnPF, Athlete.POSITION.PF, lblName, priceLabel, offValue, defValue, stamValue,
 						agilValue, itemList, reservesList, currStamValue);
 			}
 		});

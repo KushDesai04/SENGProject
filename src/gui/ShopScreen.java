@@ -274,8 +274,8 @@ public class ShopScreen {
 		lblMoney.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel nameLabel = new JLabel("Click an item to see its description");
-		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JLabel lblName = new JLabel("Click an item to see its description");
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JButton btnBuy = new JButton("Buy");
 
@@ -329,8 +329,8 @@ public class ShopScreen {
 						}
 					}
 				} catch (NullPointerException error) {
-					nameLabel.setForeground(Color.RED);
-					nameLabel.setText("Please select a player or item!");
+					lblName.setForeground(Color.RED);
+					lblName.setText("Please select a player or item!");
 
 				}
 			}
@@ -363,50 +363,50 @@ public class ShopScreen {
 
 		JSeparator separator = new JSeparator();
 
-		JLabel priceLabel = new JLabel("");
-		priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel lblPrice = new JLabel("");
+		lblPrice.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel offValue = new JLabel("");
-		offValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblOffValue = new JLabel("");
+		lblOffValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel defValue = new JLabel("");
-		defValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblDefValue = new JLabel("");
+		lblDefValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel stamValue = new JLabel("");
-		stamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblStamValue = new JLabel("");
+		lblStamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel agilValue = new JLabel("");
-		agilValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblagilValue = new JLabel("");
+		lblagilValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup().addGap(10).addGroup(gl_panel
 						.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE).addGap(16))
+								.addComponent(lblName, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE).addGap(16))
 						.addGroup(gl_panel.createSequentialGroup()
 								.addPreferredGap(ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
-								.addComponent(priceLabel).addContainerGap())))
+								.addComponent(lblPrice).addContainerGap())))
 				.addGroup(gl_panel.createSequentialGroup().addGap(6)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(agilValue)
-								.addComponent(offValue).addComponent(stamValue).addComponent(defValue))
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(lblagilValue)
+								.addComponent(lblOffValue).addComponent(lblStamValue).addComponent(lblDefValue))
 						.addContainerGap(355, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup().addGap(181)
-						.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE).addGap(26)
-						.addComponent(priceLabel).addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE).addGap(26)
+						.addComponent(lblPrice).addPreferredGap(ComponentPlacement.UNRELATED)
 						.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
-						.addGap(9).addComponent(offValue).addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(defValue).addPreferredGap(ComponentPlacement.RELATED).addComponent(stamValue)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(agilValue)
+						.addGap(9).addComponent(lblOffValue).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(lblDefValue).addPreferredGap(ComponentPlacement.RELATED).addComponent(lblStamValue)
+						.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblagilValue)
 						.addContainerGap(40, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 
 		JButton btnPlayer1 = new JButton("Player1");
 		btnPlayer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				athleteButtonEvent(btnPlayer1, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
+				athleteButtonEvent(btnPlayer1, lblName, lblPrice, lblOffValue, lblDefValue, lblStamValue, lblagilValue, 0);
 			}
 		});
 		btnPlayer1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -415,7 +415,7 @@ public class ShopScreen {
 
 		btnPlayer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				athleteButtonEvent(btnPlayer2, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
+				athleteButtonEvent(btnPlayer2, lblName, lblPrice, lblOffValue, lblDefValue, lblStamValue, lblagilValue, 1);
 			}
 		});
 		btnPlayer2.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -423,7 +423,7 @@ public class ShopScreen {
 		JButton btnPlayer3 = new JButton("Player3");
 		btnPlayer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				athleteButtonEvent(btnPlayer3, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
+				athleteButtonEvent(btnPlayer3, lblName, lblPrice, lblOffValue, lblDefValue, lblStamValue, lblagilValue, 2);
 			}
 		});
 		btnPlayer3.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -431,7 +431,7 @@ public class ShopScreen {
 		JButton btnItem1 = new JButton("Item1");
 		btnItem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemButtonEvent(btnItem1, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0);
+				itemButtonEvent(btnItem1, lblName, lblPrice, lblOffValue, lblDefValue, lblStamValue, lblagilValue, 0);
 			}
 		});
 		btnItem1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -439,7 +439,7 @@ public class ShopScreen {
 		JButton btnItem2 = new JButton("Item2");
 		btnItem2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemButtonEvent(btnItem2, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1);
+				itemButtonEvent(btnItem2, lblName, lblPrice, lblOffValue, lblDefValue, lblStamValue, lblagilValue, 1);
 			}
 		});
 		btnItem2.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -447,7 +447,7 @@ public class ShopScreen {
 		JButton btnItem3 = new JButton("Item3");
 		btnItem3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemButtonEvent(btnItem3, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2);
+				itemButtonEvent(btnItem3, lblName, lblPrice, lblOffValue, lblDefValue, lblStamValue, lblagilValue, 2);
 			}
 		});
 		btnItem3.setFont(new Font("Tahoma", Font.PLAIN, 20));
