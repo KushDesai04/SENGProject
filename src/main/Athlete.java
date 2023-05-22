@@ -3,164 +3,234 @@ package main;
 import java.util.*;
 
 /**
- * This is the Athlete class which represents a single Athlete. The class
- * extends Purchasable as Athletes can be bought and sold to make a Team.
- * 
- * @author Kush Desai
- * @author Yunu Cho
+ * This is the Athlete class which represents a single Athlete. The class Athletes can be bought and sold to make a Team.
+ * @Author Kush Desai
+ * @Author Yunu Cho
  * 
  */
 public class Athlete {
+    
+    /**
+     * The name of the Athlete.
+     */
+    private String name;
+    
+    /**
+     * The price of the Athlete.
+     */
+    private int price;
+    
+    /**
+     * The rating of the Athlete.
+     */
+    private int rating;
+    
+    /**
+     * The position of the Athlete.
+     */
+    private POSITION position;
+    
+    /**
+     * The number of injuries the Athlete has.
+     */
+    private int injuries = 0;
+    
+    /**
+     * The current stamina of the Athlete.
+     */
+    private int currentStamina;
+    
+    /**
+     * The statistics of the Athlete.
+     */
+    private HashMap<STATS, Integer> stats = new HashMap<STATS, Integer>();
 
-	private String name;
-	private int price;
-	private int rating;
-	private POSITION position;
-	private int injuries = 0;
-	private int currentStamina;
-	private HashMap<STATS, Integer> Stats = new HashMap<STATS, Integer>();
+    /**
+     * Constructor to create an Athlete object.
+     * 
+     * @param tempName The name of the Athlete.
+     * @param tempPosition The position of the Athlete.
+     * @param tempStats The statistics of the Athlete.
+     */
+    public Athlete(String tempName, POSITION tempPosition, HashMap<STATS, Integer> tempStats) {
+        name = tempName;
+        position = tempPosition;
+        int offence = tempStats.get(STATS.O);
+        int defence = tempStats.get(STATS.D);
+        int stamina = tempStats.get(STATS.S);
+        int agility = tempStats.get(STATS.A);
+        rating = (offence + defence + stamina + agility) / 4;
+        price = rating * 20;
+        stats.put(STATS.O, offence);
+        stats.put(STATS.D, defence);
+        stats.put(STATS.S, stamina);
+        stats.put(STATS.A, agility);
+        currentStamina = stats.get(Athlete.STATS.S);
+    }
 
-	/**
-	 * Constructor to create Athlete
-	 */
-	public Athlete(String tempName, POSITION tempPosition, HashMap<STATS, Integer> tempStats) {
-		name = tempName;
-		position = tempPosition;
-		int offence = tempStats.get(STATS.O);
-		int defence = tempStats.get(STATS.D);
-		int stamina = tempStats.get(STATS.S);
-		int agility = tempStats.get(STATS.A);
-		rating = (offence + defence + stamina + agility) / 4;
-		price = rating * 20;
-		Stats.put(STATS.O, offence);
-		Stats.put(STATS.D, defence);
-		Stats.put(STATS.S, stamina);
-		Stats.put(STATS.A, agility);
-		currentStamina = Stats.get(Athlete.STATS.S);
-	}
+    /**
+     * Enum to represent the possible player positions.
+     */
+    public enum POSITION {
+        PG, PF, C, SF, SG;
+    }
 
-	/**
-	 * Enum to represent possible player positions
-	 */
-	public enum POSITION {
-		PG, PF, C, SF, SG;
-	}
+    /**
+     * Enum to represent the player stats: Offence, Defence, Stamina, Agility, Current-Stamina.
+     */
+    public enum STATS {
+        O, D, S, A, CS;
+    }
 
-	/**
-	 * Enum to all player stats: Offence Defence Stamina Agility
-	 */
-	public enum STATS {
-		O, D, S, A;
-	}
+    /**
+     * Sets the nickname of the Athlete.
+     * 
+     * @param newName The new nickname to assign to the Athlete.
+     */
+    public void setNickname(String newName) {
+        name = newName;
+    }
 
-	/**
-	 * Set player nickname
-	 * 
-	 * @param newName The nickname to call the player
-	 */
-	public void setNickname(String newName) {
-		name = newName;
-	}
+    /**
+     * Changes a certain stat of the Athlete. Used when consuming Items or playing a match.
+     * 
+     * @param value The amount to change the stat by.
+     * @param stat The stat to change.
+     */
+    public void changeStat(int value, STATS stat) {
+    	int newVal = getStat(stat) + value;
+    	if (newVal < 0) {
+    		newVal = 0;
+    	}
+        stats.put(stat, newVal);
+        rating = (getStat(STATS.O) + getStat(STATS.D) + getStat(STATS.A) + getStat(STATS.S)) / 4;
+        
+    }
 
-	/**
-	 * Change a certain stat of a player Used when consuming Items or playing a
-	 * match
-	 * 
-	 * @param value The amount to change the stat by
-	 * @param stat  The stat to change
-	 */
-	public void changeStat(int value, STATS stat) {
-		Stats.put(stat, (getStat(stat) + value));
-		rating = (getStat(STATS.O) + getStat(STATS.D) + getStat(STATS.A) + getStat(STATS.S)) / 4;
-		
-	}
+    /**
+     * Returns a string representation of the Athlete.
+     * 
+     * @return The string representation of the Athlete.
+     */
+    public String toString() {
+        POSITION athletePosition = position;
+        String positionText = null;
+        switch (athletePosition) {
+            case PG:
+                positionText = "Point Guard";
+                break;
+            case SG:
+                positionText = "Shooting Guard";
+                break;
+            case SF:
+                positionText = "Small Forward";
+                break;
+            case PF:
+                positionText = "Power Forward";
+                break;
+            case C:
+                positionText = "Center";
+                break;
+            default:
+                break;
+        }
+        return String.format("%s, %s, %d OVR", name, positionText, rating);
+    }
 
-	public String toString() {
-		POSITION athletePosition = position;
-		String positionText = null;
-		switch (athletePosition) {
-		case PG:
-			positionText = "Point Guard";
-			break;
-		case SG:
-			positionText = "Shooting Guard";
-			break;
-		case SF:
-			positionText = "Small Forward";
-			break;
-		case PF:
-			positionText = "Power Forward";
-			break;
-		case C:
-			positionText = "Center";
-			break;
-		default:
-			break;
-		}
-		return String.format("%s, %s, %d OVR", name, positionText, rating);
-	}
+    /**
+     * Retrieves the value of the specified stat for the Athlete.
+     * 
+     * @param stat The stat to retrieve.
+     * @return The value of the specified stat.
+     */
+    public int getStat(STATS stat) {
+        return stats.get(stat);
+    }
+    
+    /**
+     * Changes the current stamina of the Athlete.
+     * 
+     * @param value The amount to change the current stamina by.
+     */
+    public void changeCurrentStamina(int value) {
+        currentStamina += value;
+        if (currentStamina < 0) {
+        	currentStamina = 0;
+        }
+    }
+    
+    /**
+     * Restores the current stamina of the Athlete to its maximum value.
+     */
+    public void restoreCurrentStamina() {
+        currentStamina = getStat(Athlete.STATS.S);
+    }
+    
+    /**
+     * Retrieves the current stamina of the Athlete.
+     * 
+     * @return The current stamina of the Athlete.
+     */
+    public int getCurrentStamina() {
+        return currentStamina;
+    }
 
-	// Getter methods
-	public int getStat(STATS stat) {
-		return Stats.get(stat);
-	}
-	
-	public void changeCurrentStamina(int value) {
-		currentStamina -= value;
-	}
-	
-	public void restoreCurrentStamina() {
-		currentStamina = getStat(Athlete.STATS.S);
-	}
+    /**
+     * Retrieves the name of the Athlete.
+     * 
+     * @return The name of the Athlete.
+     */
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * Retrieves the price of the Athlete.
+     * 
+     * @return The price of the Athlete.
+     */
+    public int getPrice() {
+        return price;
+    }
 
-	public int getPrice() {
-		return price;
-	}
+    /**
+     * Retrieves the rating of the Athlete.
+     * 
+     * @return The rating of the Athlete.
+     */
+    public int getRating() {
+        return rating;
+    }
 
-	public int getRating() {
-		return rating;
-	}
+    /**
+     * Retrieves the position of the Athlete.
+     * 
+     * @return The position of the Athlete.
+     */
+    public POSITION getPosition() {
+        return position;
+    }
+    
+    /**
+     * Retrieves the number of injuries the Athlete has.
+     * 
+     * @return The number of injuries the Athlete has.
+     */
+    public int getInjuries() {
+        return injuries;
+    }
 
-	public POSITION getPosition() {
-		return position;
-	}
-	
-	public int getInjuries() {
-		return injuries;
-	}
-
-	public boolean isInjured() {
-		if (currentStamina == 0) {
-			injuries += 1;
-			return true;
-		}
-		return false;
-	}
-
-//	public static void main(String args[]) {
-//		ArrayList<Integer> statListsA = new ArrayList<Integer>();
-//		statListsA.(99);
-//		statListsA.add(96);
-//		statListsA.add(95);
-//		statListsA.add(94);
-//		
-//		Athlete a = new Athlete("A", POSITION.PG, statListsA);
-
-//		System.out.println(a.Stats.get(STATS.O));
-//	
-//		System.out.println(a.getStat(STATS.O));
-//		System.out.println(a.Stats);
-//		STATS pos = STATS.O;
-//		a.increase(99, pos);
-//		System.out.println(a.Stats.get(STATS.O));
-//		
-//		System.out.println(a.getStat(STATS.O));
-//		System.out.println(a.Stats);
-//		System.out.println(a);
-//	}
+    /**
+     * Checks if the Athlete is injured.
+     * 
+     * @return true if the Athlete is injured, false otherwise.
+     */
+    public boolean isInjured() {
+        if (currentStamina == 0) {
+            injuries += 1;
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -74,7 +74,7 @@ public class TeamScreen {
 		manager.closeTeamScreen(this);
 	}
 	
-	public void starterButtonEvent(JButton btn, Athlete.POSITION pos, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, int index, JList<Item> itemList, JList<Athlete> reserveList) {
+	public void starterButtonEvent(JButton btn, Athlete.POSITION pos, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, JList<Item> itemList, JList<Athlete> reserveList, JLabel currStam) {
         Athlete athlete = manager.getTeam().getPlayersMap().get(pos);
 		name.setText(athlete.toString()); //Set name label to athlete name
 		price.setText("$" + String.valueOf(athlete.getPrice()));
@@ -82,6 +82,7 @@ public class TeamScreen {
 		def.setText("Defence: " + String.valueOf(athlete.getStat(Athlete.STATS.D)));
 		stam.setText("Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.S)));
 		agil.setText("Agility: " + String.valueOf(athlete.getStat(Athlete.STATS.A)));
+		currStam.setText("Current Stamina: " + String.valueOf(athlete.getCurrentStamina()));
 		lastSelectedAthlete = athlete;
 		for (JButton starterBtn : starters) {
 			starterBtn.setForeground(Color.black);
@@ -91,7 +92,7 @@ public class TeamScreen {
 		reserveList.clearSelection();
 		
 	}
-	public void refreshLabels(Athlete athlete, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil) {
+	public void refreshLabels(Athlete athlete, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, JLabel currStam) {
 		
 		name.setText(athlete.toString()); //Set name label to athlete name
 		price.setText("$" + String.valueOf(athlete.getPrice()));
@@ -99,8 +100,9 @@ public class TeamScreen {
 		def.setText("Defence: " + String.valueOf(athlete.getStat(Athlete.STATS.D)));
 		stam.setText("Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.S)));
 		agil.setText("Agility: " + String.valueOf(athlete.getStat(Athlete.STATS.A)));
+		currStam.setText("Current Stamina: " + String.valueOf(athlete.getCurrentStamina()));
 	}
-	public void refreshItemLabels(Item item, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil) {
+	public void refreshItemLabels(Item item, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, JLabel currStam) {
 		
 		name.setText(item.toString()); //Set name label to athlete name
 		price.setText("$" + String.valueOf(item.getPrice()));
@@ -108,9 +110,9 @@ public class TeamScreen {
 		def.setText("");
 		stam.setText("");
 		agil.setText("");
+		currStam.setText("");
 	}
 	public void setStarterButtons(ArrayList<JButton> btns) {
-//		System.out.println(manager.getTeam().getPlayersMap());
 		btns.get(0).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.PG).getName()));
 		btns.get(1).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.SG).getName()));
 		btns.get(2).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.C).getName()));
@@ -173,6 +175,9 @@ public class TeamScreen {
 		JLabel defValue = new JLabel("");
 		defValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
+		JLabel currStamValue= new JLabel("");
+		currStamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 0, 64));
 		
@@ -183,7 +188,7 @@ public class TeamScreen {
 			public void valueChanged(ListSelectionEvent e) {
 				lastSelectedReserve = reservesList.getSelectedValue();
 				if (lastSelectedReserve instanceof Athlete) {
-				    refreshLabels(lastSelectedReserve, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+				    refreshLabels(lastSelectedReserve, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, currStamValue);
 				}
 			}
 			
@@ -242,26 +247,25 @@ public class TeamScreen {
 			public void valueChanged(ListSelectionEvent e) {
 				lastSelectedItem = itemList.getSelectedValue();
 				if (lastSelectedItem instanceof Item) {
-				    refreshItemLabels(lastSelectedItem, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+				    refreshItemLabels(lastSelectedItem, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, currStamValue);
 				}
 			}
 			
 		});
 		scrollPane_1.setViewportView(itemList);
 		
-		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(10)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+							.addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
 							.addGap(16))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
 							.addComponent(priceLabel)
 							.addContainerGap())))
 				.addGroup(gl_panel.createSequentialGroup()
@@ -270,8 +274,9 @@ public class TeamScreen {
 						.addComponent(agilValue)
 						.addComponent(offValue)
 						.addComponent(stamValue)
-						.addComponent(defValue))
-					.addContainerGap(311, Short.MAX_VALUE))
+						.addComponent(defValue)
+						.addComponent(currStamValue, GroupLayout.PREFERRED_SIZE, 317, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -290,7 +295,9 @@ public class TeamScreen {
 					.addComponent(stamValue)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(agilValue)
-					.addContainerGap(195, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(currStamValue, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(106, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -401,7 +408,7 @@ public class TeamScreen {
 					else {
 					    lastSelectedAthlete.setNickname(name);
 					    setStarterButtons(starters);
-					    refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue);
+					    refreshLabels(lastSelectedAthlete, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, currStamValue);
 				    }
 				}
 				
@@ -499,35 +506,35 @@ public class TeamScreen {
 		JButton btnPG = new JButton("PG");
 		btnPG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnPG, Athlete.POSITION.PG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 0, itemList, reservesList);
+				starterButtonEvent(btnPG, Athlete.POSITION.PG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, itemList, reservesList, currStamValue);
 			}
 		});
 		
 		JButton btnSG = new JButton("SG");
 		btnSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnSG, Athlete.POSITION.SG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 1, itemList, reservesList);
+				starterButtonEvent(btnSG, Athlete.POSITION.SG, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, itemList, reservesList, currStamValue);
 			}
 		});
 		
 		JButton btnC = new JButton("C");
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnC, Athlete.POSITION.C, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 4, itemList, reservesList);
+				starterButtonEvent(btnC, Athlete.POSITION.C, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, itemList, reservesList, currStamValue);
 			}
 		});
 		
 		JButton btnSF = new JButton("SF");
 		btnSF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnSF, Athlete.POSITION.SF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 2, itemList, reservesList);
+				starterButtonEvent(btnSF, Athlete.POSITION.SF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, itemList, reservesList, currStamValue);
 			}
 		});
 		
 		JButton btnPF = new JButton("PF");
 		btnPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starterButtonEvent(btnPF, Athlete.POSITION.PF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, 3, itemList, reservesList);
+				starterButtonEvent(btnPF, Athlete.POSITION.PF, nameLabel, priceLabel, offValue, defValue, stamValue, agilValue, itemList, reservesList, currStamValue);
 			}
 		});
 		

@@ -127,9 +127,7 @@ public class TeamSetupScreen {
 	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def,
 			JLabel stam, JLabel agil, int index) {
-		
-		System.out.println(manager.getTeam().getReserves());
-		
+				
 		if (btn.isSelected()) {
 			
 			Athlete athlete = manager.getMarket().getStarterAthletes().get(index);

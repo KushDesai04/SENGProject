@@ -108,10 +108,16 @@ public class OpponentSelectorScreen {
 					String message = "Not all starters are ready to play!";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Team Error", JOptionPane.ERROR_MESSAGE);
 				} else {
-					manager.setOpposingTeam(opposingTeam);
-					manager.launchGameScreen();
-					System.out.println(opposingTeam.getTeamName());
-					finishedWindow();
+					try {
+					    manager.setOpposingTeam(opposingTeam);
+					    manager.launchGameScreen();
+					    finishedWindow();
+					}
+					
+					catch (NullPointerException error) {
+						String message = "Please select an Opponent!";
+						JOptionPane.showMessageDialog(new JFrame(), message, "Opponent Selection Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
