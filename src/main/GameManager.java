@@ -493,7 +493,7 @@ public class GameManager {
      */
     public void closeGameOverScreen(GameOverScreen gameOverWindow) {
         gameOverWindow.closeWindow();
-        launchStartScreen();
+        System.exit(0);
     }
     
     

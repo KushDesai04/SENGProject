@@ -39,17 +39,34 @@ import javax.swing.JOptionPane;
  * 
  */
 public class ShopScreen {
-
+	/**
+	 * Frame of the MainScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
+	/**
+	 * The last selected consumable.
+	 */
 	private Object consumable;
+	/**
+	 * The JButton of its corresponding consumable that has been purchased.
+	 */
 	private JButton bought;
+	/**
+	 * The list of JButtons that stores the information of the purchasable Athletes.
+	 */
 	private ArrayList<JButton> athleteBtns = new ArrayList<JButton>();
+	/**
+	 * The list of JButtons that stores the information of the purchasable Items.
+	 */
 	private ArrayList<JButton> itemBtns = new ArrayList<JButton>();
 	
 	/**
-	 * Constructor
-	 * @param gameManager    The GameManager object that controls the game logic
+	 * Constructs a new ShopScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
 	 */
 	public ShopScreen(GameManager gameManager) {
 		manager = gameManager;
@@ -59,7 +76,6 @@ public class ShopScreen {
 	
 	/**
 	 * Launch the application.
-	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -82,34 +98,31 @@ public class ShopScreen {
 	}
 	
 	/**
-	 * Close window
+	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
 	/**
-	 * Give control back to game manager
+	 * Calls closeShopScreen within the GameManager object which opens the next window.
 	 */
 	public void finishedWindow() {
 		manager.closeShopScreen(this);
 	}
 	
 	/**
-	 * When a toggle button is pressed to select a player, this method is run
-	 * The method displays the information of the selected player in a panel.
-	 * 
-	 * If the toggle button is deselected, the player is removed from the team
-	 * 
-	 * @param btn    the toggled button
-	 * @param pos    the position of the player
-	 * @param name   the name of the player
-	 * @param ovr    the overall stat of the player
-	 * @param off    the offence stat of the player
-	 * @param def    the defence stat of the player
-	 * @param stam   the stamina stat of the player
-	 * @param agil   the agility stat of the player
-	 * @param index  the index of the player in the team
+	 * Displays the information of the selected Athlete in the shop when its corresponding JButton 
+	 * is pressed.
+	 * @param btn    the selected JButton
+	 * @param pos    the label displaying the position of the Athlete
+	 * @param name   the label displaying the name of the Athlete
+	 * @param ovr    the label displaying the overall stat of the Athlete
+	 * @param off    the label displaying the offence stat of the Athlete
+	 * @param def    the label displaying the defence stat of the Athlete
+	 * @param stam   the label displaying the stamina stat of the Athlete
+	 * @param agil   the label displaying the agility stat of the Athlete
+	 * @param index  the index of the Athlete in the list of purchasable Athletes
 	 */
 	public void athleteButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		name.setText(manager.getMarket().getPurchasableAthletes().get(index).toString()); //Set name label to athlete name
@@ -131,6 +144,19 @@ public class ShopScreen {
 		btn.setForeground(Color.red);
 	}
 	
+	/**
+	 * Displays the information of the selected Item in the shop when its corresponding JButton 
+	 * is pressed.
+	 * @param btn    the selected JButton
+	 * @param pos    the label displaying the position of the Athlete, which will be set to blank
+	 * @param name   the label displaying the name of the Item
+	 * @param ovr    the label displaying the overall stat of the Athlete, which will be set to show the price of the Item
+	 * @param off    the label displaying the offence stat of the Athlete, which will be set to show the description of the Item
+	 * @param def    the label displaying the defence stat of the Athlete, which will be set to blank
+	 * @param stam   the label displaying the stamina stat of the Athlete, which will be set to blank
+	 * @param agil   the label displaying the agility stat of the Athlete, which will be set to blank
+	 * @param index  the index of the Item in the list of purchasable Item
+	 */
 	public void itemButtonEvent(JButton btn, JLabel name, JLabel ovr, JLabel off, JLabel def, JLabel stam, JLabel agil, int index) {
 		
 		name.setText(manager.getMarket().getPurchasableItems().get(index).getName()); //Set name label to athlete name
@@ -152,14 +178,28 @@ public class ShopScreen {
 		btn.setForeground(Color.red);
 	}
 
+	/**
+	 * Retrieves the Athlete of the given index.
+	 * @param index	the index of the Athlete in the purchasable Athlete list.
+	 * @return the Athlete of the given index. 
+	 */
 	public Athlete returnAthlete(int index) {
 		return manager.getMarket().getPurchasableAthletes().get(index);
 	}
 	
+	/**
+	 * Retrieves the Item of the given index.
+	 * @param index	the index of the Item in the purchasable Item list.
+	 * @return the Item of the given index. 
+	 */
 	public Item returnItem(int index) {
 		return manager.getMarket().getPurchasableItems().get(index);
 	}
 	
+	/**
+	 * Sets the JButtons to show the information of its corresponding Athlete.
+	 * @param btns list of buttons that will be set to show Athletes' information.
+	 */
 	public void setAthleteButtons(ArrayList<JButton> btns) {
 		for (int i=0; i < btns.size();i++) {
 			Athlete athlete = manager.getMarket().getPurchasableAthletes().get(i);
@@ -171,6 +211,10 @@ public class ShopScreen {
 		}
 	}
 	
+	/**
+	 * Sets the JButtons to show the information of its corresponding Item.
+	 * @param btns list of buttons that will be set to show the information of Items.
+	 */
 	public void setItemButtons(ArrayList<JButton> btns) {
 		for (int i=0; i < btns.size();i++) {
 			Item item = manager.getMarket().getPurchasableItems().get(i);

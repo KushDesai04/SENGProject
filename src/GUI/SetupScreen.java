@@ -42,18 +42,30 @@ import javax.swing.event.ChangeEvent;
 /**
  * This is the Setup Screen class. This screen will 
  * allow players to set their team name, select difficulty,
- * and select the season duration.
+ * and select the season duration. This information is passed and stored in the GameManager.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class SetupScreen {
-
+	/**
+	 * Frame of the MainScreen.
+	 */
 	private JFrame frame;
-	private JTextField txtTeamName;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
-
+	/**
+	 * The name of the given Team.
+	 */
+	private JTextField txtTeamName;
+	
+	/**
+	 * Constructs a new SetupScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public SetupScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
@@ -83,11 +95,17 @@ public class SetupScreen {
 	public SetupScreen() {
 		initialize();
 	}
-
+	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-
+	
+	/**
+	 * Calls closeGameSetupScreen within the GameManager object which opens the next window.
+	 */
 	public void finishedWindow() {
 		manager.closeGameSetupScreen(this);
 	}

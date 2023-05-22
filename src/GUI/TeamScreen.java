@@ -36,46 +36,87 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.JTextField;
 
 /**
- * This is the Team Screen class. The team screen will 
- * allow players to access their team and make changes such 
- * as: selecting the starting lineup, selling players,
- * using consumables to boost player stats.
+ * This is the TeamScreen class. The team screen will 
+ * allow players to access their Team and make changes such 
+ * as: Selecting the starting lineup, selling players, and
+ * using consumables to increase player stats.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class TeamScreen {
-
+	/**
+	 * The frame of the GameOverScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
+	/**
+	 * The list that contains the JButtons that correspond to the starting Athletes.
+	 */
 	private ArrayList<JButton> starters = new ArrayList<JButton>();
+	/**
+	 * The last selected starting Athlete.
+	 */
 	private Athlete lastSelectedAthlete;
+	/**
+	 * The last selected reserve Athlete.
+	 */
 	private Athlete lastSelectedReserve;
+	/**
+	 * The last selected Item.
+	 */
 	private Item lastSelectedItem;
+	/**
+	 * The JTextField to set an Athlete's nickname.
+	 */
 	private JTextField textNickname;
 	
+	/**
+	 * Constructs a new TeamScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public TeamScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
 		frame.setVisible(true);
 	}
+	
 	/**
-	 * Close window
+	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
 	/**
-	 * Give control back to game manager
+	 * Calls closeTeamScreen within the GameManager object which opens the next window.
 	 */
 	public void finishedWindow() {
 		manager.closeTeamScreen(this);
 	}
 	
+	/**
+	 * Displays the information of the selected Athlete in the starting lineup when its corresponding JButton 
+	 * is pressed.
+	 * @param btn    		the selected JButton
+	 * @param pos    		the label displaying the position of the Athlete
+	 * @param name   		the label displaying the name of the Athlete
+	 * @param price	 		the label displaying the price of the Athlete
+	 * @param off    		the label displaying the offence stat of the Athlete
+	 * @param def    		the label displaying the defence stat of the Athlete
+	 * @param stam   		the label displaying the stamina stat of the Athlete
+	 * @param agil   		the label displaying the agility stat of the Athlete
+	 * @param itemList 		the JList containing the items owned by the team
+	 * @param reservesList 	the JList containing the reserve Athletes
+	 * @param currStam		the label displaying the current stamina of the Athlete
+	 */
 	public void starterButtonEvent(JButton btn, Athlete.POSITION pos, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, JList<Item> itemList, JList<Athlete> reserveList, JLabel currStam) {
-        Athlete athlete = manager.getTeam().getPlayersMap().get(pos);
+        
+		Athlete athlete = manager.getTeam().getPlayersMap().get(pos);
 		name.setText(athlete.toString()); //Set name label to athlete name
 		price.setText("$" + String.valueOf(athlete.getPrice()));
 		off.setText("Offence: " + String.valueOf(athlete.getStat(Athlete.STATS.O)));
@@ -92,6 +133,20 @@ public class TeamScreen {
 		reserveList.clearSelection();
 		
 	}
+	
+	/**
+	 * Refreshes the labels to display the information of the given Athlete when its corresponding JButton 
+	 * is pressed or its corresponding JList entry is selected.
+	 * @param athlete		the Athlete whose information will be displayed
+	 * @param name   		the label displaying the name of the Athlete
+	 * @param price	 		the label displaying the price of the Athlete
+	 * @param off    		the label displaying the offence stat of the Athlete
+	 * @param def    		the label displaying the defence stat of the Athlete
+	 * @param stam   		the label displaying the stamina stat of the Athlete
+	 * @param agil   		the label displaying the agility stat of the Athlete
+	 * @param itemList 		the JList containing the Items owned by the Team
+	 * @param reservesList 	the JList containing the reserve Athletes
+	 */
 	public void refreshLabels(Athlete athlete, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, JLabel currStam) {
 		
 		name.setText(athlete.toString()); //Set name label to athlete name
@@ -102,9 +157,21 @@ public class TeamScreen {
 		agil.setText("Agility: " + String.valueOf(athlete.getStat(Athlete.STATS.A)));
 		currStam.setText("Current Stamina: " + String.valueOf(athlete.getCurrentStamina()));
 	}
+	
+	/**
+	 * Refreshes the labels to display the information of the given Item when its corresponding JList entry is selected.
+	 * @param item		the Item which will have its information displayed
+	 * @param name   	the label displaying the name of the Item
+	 * @param price		the label displaying the price of the Item
+	 * @param off    	the label displaying the offence stat of the Athlete, which will be set to display the description of the Item
+	 * @param def    	the label displaying the defence stat of the Athlete, which will be set to blank
+	 * @param stam   	the label displaying the stamina stat of the Athlete, which will be set to blank
+	 * @param agil   	the label displaying the agility stat of the Athlete, which will be set to blank
+	 * @param currStam 	the label displaying the current stamina of the Athlete, which will be set to blank
+	 */
 	public void refreshItemLabels(Item item, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil, JLabel currStam) {
 		
-		name.setText(item.toString()); //Set name label to athlete name
+		name.setText(item.toString()); 
 		price.setText("$" + String.valueOf(item.getPrice()));
 		off.setText(item.getDescription());
 		def.setText("");
@@ -112,7 +179,13 @@ public class TeamScreen {
 		agil.setText("");
 		currStam.setText("");
 	}
+	
+	/**
+	 * Sets starter buttons to display the information of the current starting Athletes.
+	 * @param btns list of buttons that need to be changed
+	 */
 	public void setStarterButtons(ArrayList<JButton> btns) {
+		
 		btns.get(0).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.PG).getName()));
 		btns.get(1).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.SG).getName()));
 		btns.get(2).setText(String.valueOf(manager.getTeam().getPlayersMap().get(Athlete.POSITION.C).getName()));
@@ -181,7 +254,6 @@ public class TeamScreen {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 0, 64));
 		
-        // Scroll pane with reserves in it
 		JScrollPane scrollPane = new JScrollPane();
 		JList<Athlete> reservesList = new JList<Athlete>();
 		reservesList.addListSelectionListener(new ListSelectionListener() {

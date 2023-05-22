@@ -35,19 +35,23 @@ import javax.swing.JOptionPane;
  * given an option to choose 5 from 6 players and the players are generated
  * mostly randomly.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class TeamSetupScreen {
-
+	/**
+	 * Frame of the GameScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
 
 	/**
-	 * Constructor
-	 * 
-	 * @param gameManager The GameManager object that controls the game logic
+	 * Constructs a new TeamSetupScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
 	 */
 	public TeamSetupScreen(GameManager gameManager) {
 		manager = gameManager;
@@ -57,8 +61,6 @@ public class TeamSetupScreen {
 
 	/**
 	 * Launch the application.
-	 * 
-	 * @param args args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -81,49 +83,47 @@ public class TeamSetupScreen {
 	}
 
 	/**
-	 * Close window
+	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
 	/**
-	 * Give control back to game manager
+	 * Calls closeTeamSetupScreen within the GameManager object which opens the next window.
 	 */
 	public void finishedWindow() {
 		manager.closeTeamSetupScreen(this);
 	}
 
 	/**
-	 * @return if the team is at max capacity
+	 * @return true if the team is at maximum capacity, false otherwise
 	 */
 	public boolean maxSize() {
 		return manager.getTeam().getPlayersArray().size() == 5;
 	}
 
 	/**
-	 * @return if the team is at less than max capacity
-	 *
+	 * @return true if the team is at less than maximum capacity
 	 */
 	public boolean lessThanMax() {
 		return manager.getTeam().getPlayersArray().size() < 5;
 	}
 
 	/**
-	 * When a toggle button is pressed to select a player, this method is run The
-	 * method displays the information of the selected player in a panel.
+	 * When a JToggleButton is pressed to select an Athlete, it displays the information of  
+	 * its corresponding Athlete in a panel and adds the Athlete to the team.
+	 * If the JToggleButton is deselected, the Athlete is removed from the team.
 	 * 
-	 * If the toggle button is deselected, the player is removed from the team
-	 * 
-	 * @param btn   the toggled button
-	 * @param pos   the position of the player
-	 * @param name  the name of the player
-	 * @param ovr   the overall stat of the player
-	 * @param off   the offence stat of the player
-	 * @param def   the defence stat of the player
-	 * @param stam  the stamina stat of the player
-	 * @param agil  the agility stat of the player
-	 * @param index the index of the player in the team
+	 * @param btn   the toggled JToggleButton
+	 * @param pos   the position of the Athlete
+	 * @param name  the name of the Athlete
+	 * @param ovr   the overall stat of the Athlete
+	 * @param off   the offence stat of the Athlete
+	 * @param def   the defence stat of the Athlete
+	 * @param stam  the stamina stat of the Athlete
+	 * @param agil  the agility stat of the Athlete
+	 * @param index the index of the player in the Team
 	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def,
 			JLabel stam, JLabel agil, int index) {
@@ -155,6 +155,10 @@ public class TeamSetupScreen {
 		}
 	}
 
+	/**
+	 * Sets the JButtons to show the information of its corresponding Athlete.
+	 * @param btns list of buttons that will be set to show Athletes' information.
+	 */
 	public void setAthleteButtons(ArrayList<JToggleButton> btns) {
 		for (int i = 0; i < btns.size(); i++) {
 			Athlete athlete = manager.getMarket().getStarterAthletes().get(i);

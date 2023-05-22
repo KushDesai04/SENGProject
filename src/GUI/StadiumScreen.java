@@ -19,10 +19,10 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 
 /**
- * This is the Stadium Screen class. The stadium screen will allow players to
- * access the stadium which is where players can find and select matches to
+ * This is the StadiumScreen class. The stadium screen will allow players to
+ * access the stadium, where players can find and select matches to
  * play, or take a bye. Each week, the opponents will change and become more
- * difficult
+ * difficult.
  * 
  * @author Yunu Cho
  * @author Kush Desai
@@ -30,9 +30,19 @@ import javax.swing.SwingConstants;
  */
 
 public class StadiumScreen {
+	/**
+	 * Frame of the GameScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
-
+	
+	/**
+	 * Constructs a new StadiumScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public StadiumScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
@@ -61,11 +71,17 @@ public class StadiumScreen {
 	public StadiumScreen() {
 		initialize();
 	}
-
+	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-
+	
+	/**
+	 * Calls closeStadiumScreen within the GameManager object which opens the next window.
+	 */
 	public void finishedWindow() {
 		manager.closeStadiumScreen(this);
 	}
@@ -86,7 +102,6 @@ public class StadiumScreen {
 				finishedWindow();
 			}
 		});
-		// TODO: Implement gameplay and GUI
 		btnPlay.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JButton btnBye = new JButton("Take a Bye");

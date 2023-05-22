@@ -35,32 +35,52 @@ import main.Item;
  */
 public class TrainAthleteScreen {
 
+	/**
+	 * Frame of the GameScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
-	private ArrayList<JButton> starters = new ArrayList<JButton>();
+	/**
+	 * The last selected Athlete.
+	 */
 	private Athlete lastSelectedAthlete;
-	private Athlete lastSelectedReserve;
-	private Item lastSelectedItem;
 	
+	/**
+	 * Constructs a new TrainAthleteScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public TrainAthleteScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
 		frame.setVisible(true);
 	}
 	/**
-	 * Close window
+	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
 	/**
-	 * Give control back to game manager
+	 * Calls closeTeamSetupScreen within the GameManager object which opens the next window.
 	 */
 	public void finishedWindow() {
 		manager.closeTrainAthleteScreen(this);
 	}
 	
+	/**
+	 * Refreshes the labels to display the information of the given Athlete when its corresponding JList entry is selected.
+	 * @param athlete		the Athlete whose information will be displayed
+	 * @param name   		the label displaying the name of the Athlete
+	 * @param price	 		the label displaying the price of the Athlete
+	 * @param off    		the label displaying the offence stat of the Athlete
+	 * @param def    		the label displaying the defence stat of the Athlete
+	 * @param stam   		the label displaying the stamina stat of the Athlete
+	 * @param agil   		the label displaying the agility stat of the Athlete
+	 */
     public void refreshLabels(Athlete athlete, JLabel name, JLabel price, JLabel off, JLabel def, JLabel stam, JLabel agil) {
 		name.setText(athlete.toString()); //Set name label to athlete name
 		price.setText("$" + String.valueOf(athlete.getPrice()));

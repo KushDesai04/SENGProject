@@ -32,18 +32,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * This is the Start Screen class. The start screen is the first screen that
+ * This is the StartScreen class. The start screen is the first screen that
  * opens when the game begins. The only options are to start the game, or quit.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class StartScreen {
-
+	/**
+	 * The frame of the GameOverScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
-
+	
+	/**
+	 * Constructs a new StartScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public StartScreen(GameManager gameManager) {
 		// TODO Auto-generated constructor stub
 		manager = gameManager;
@@ -73,11 +82,17 @@ public class StartScreen {
 	public StartScreen() {
 		initialize();
 	}
-
+	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
+	/**
+	 * Calls closeStartScreen within the GameManager object which opens the next window.
+	 */
 	public void finishedWindow() {
 		manager.closeStartScreen(this);
 	}

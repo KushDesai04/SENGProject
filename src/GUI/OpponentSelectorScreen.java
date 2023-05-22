@@ -32,11 +32,23 @@ import javax.swing.SwingConstants;
  * 
  */
 public class OpponentSelectorScreen {
-
+	/**
+	 * Frame of the MainScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
+	/**
+	 * The opposing Team.
+	 */
 	private Team opposingTeam;
-
+	
+	/**
+	 * Constructs a new OpponentSelectorScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public OpponentSelectorScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
@@ -65,21 +77,42 @@ public class OpponentSelectorScreen {
 	public OpponentSelectorScreen() {
 		initialize();
 	}
-
+	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-
+	
+	/**
+	 * Calls closeGameScreen within the GameManager object which opens the next window.
+	 */
 	public void finishedWindow() {
 		manager.closeOpponentSelectorScreen(this);
 	}
-
+	
+	/**
+	 * Sets the JButtons showing information based on the generated opponent Teams for the current week.
+	 * @param btns list of JButtons that will be changed
+	 */
 	public void setTeamButtons(ArrayList<JButton> btns) {
 		for (int i = 0; i < btns.size(); i++) {
 			btns.get(i).setText(manager.getWeeklyTeams().get(i).getTeamName());
 		}
 	}
-
+	
+	/**
+	 * Sets the Label text when a JButton is pressed, displaying the information of an Athlete
+	 * that is linked to its corresponding JButton.
+	 * @param teamName 	the name of the opposing Team
+	 * @param player1 	label that will be set to display the information of the opposing Athlete of the Point Guard position 
+	 * @param player2	label that will be set to display the information of the opposing Athlete of the Shooting Guard position 
+	 * @param player3	label that will be set to display the information of the opposing Athlete of the Small Forward position 
+	 * @param player4	label that will be set to display the information of the opposing Athlete of the Power Forward position 
+	 * @param player5	label that will be set to display the information of the opposing Athlete of the Center position 
+	 * @param index		index of the opposing Team that has been selected
+	 */
 	public void btnEvent(JLabel teamName, JLabel player1, JLabel player2, JLabel player3, JLabel player4,
 			JLabel player5, int index) {
 		teamName.setText(manager.getWeeklyTeams().get(index).getTeamName());
