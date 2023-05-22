@@ -7,6 +7,9 @@ import javax.swing.JOptionPane;
 
 import main.GameManager;
 
+/**
+ * Launches a dialogue box to provide information about random events.
+ */
 public class DialogueBox {
 
 	private JFrame frame;

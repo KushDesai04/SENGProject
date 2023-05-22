@@ -81,9 +81,9 @@ public class Gameplay {
             } else if (player.getRating() < opponent.getRating()) {
                 opponentPoints += 1;
                 if (difficulty.equals("easy")) {
-                    player.changeCurrentStamina(-10);
+                    player.changeCurrentStamina(-15);
                 } else {
-                    player.changeCurrentStamina(-20);
+                    player.changeCurrentStamina(-25);
                 }
             }
         }
