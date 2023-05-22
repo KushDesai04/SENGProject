@@ -9,11 +9,23 @@ import main.GameManager;
 
 /**
  * Launches a dialogue box to provide information about random events.
+ * 
+ * @author Yunu Cho
+ * @author Kush Desai
+ * 
  */
 public class DialogueBox {
-
+	/**
+	 * The frame of the DialogueBox.
+	 */
 	private JFrame frame;
+	/**
+	 * The message that will be passed onto the player.
+	 */
 	private String message;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
 
 	/**
@@ -33,7 +45,9 @@ public class DialogueBox {
 	}
 
 	/**
-	 * Create the application.
+	 * Constructs a new DialogueBox object with the given GameManager.
+     * @param gameManager the current instance of the GameManager object
+	 * @param tempMessage the message that is displayed on the DialogueBox
 	 */
 	public DialogueBox(GameManager gameManager, String tempMessage) {
 		manager = gameManager;
@@ -41,11 +55,12 @@ public class DialogueBox {
 		initialize();
 		
 	}
-	
+	/**
+	 * Create the application.
+	 */
 	public DialogueBox() {
 		initialize();
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.

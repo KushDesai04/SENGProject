@@ -18,19 +18,41 @@ import java.util.HashMap;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-/*
+/**
  * This is the GameScreen class. The game screen is shown when the player initiates a match against an opponent.
  * The screen will show players from both teams, and winning players have their names shown in green, losing players
  * in white, and draw in orange. The team names are also shown.
+ * 
+ * @author Yunu Cho
+ * @author Kush Desai
+ * 
  */
 public class GameScreen {
-
+	/**
+	 * Frame of the GameScreen.
+	 */
 	private JFrame frame;
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
+	/**
+	 * The current instance of the Gameplay object.
+	 */
 	private Gameplay gamePlay;
+	/**
+	 * A list of JLabels that contains the starting Athletes of the player.
+	 */
 	private ArrayList<JLabel> playerStarters = new ArrayList<JLabel>();
+	/**
+	 * A list of JLabels that contains the starting Athletes of the opponent.
+	 */
 	private ArrayList<JLabel> opponentStarters = new ArrayList<JLabel>();
-
+	
+	/**
+	 * Constructs a new GameScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public GameScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
@@ -59,33 +81,62 @@ public class GameScreen {
 	public GameScreen() {
 		initialize();
 	}
-
+	
+	/**
+	 * Closes the window.
+	 */
+	
 	public void closeWindow() {
 		frame.dispose();
 	}
-
+	
+	/**
+	 * Calls closeGameScreen within the GameManager object which opens another window.
+	 */
+	
 	public void finishedWindow() {
 		manager.closeGameScreen(this);
 	}
 	
-	public void setPlayerLabels(ArrayList<JLabel> btns) {
+	/**
+	 * Sets the labels for the player's starting Athletes.
+	 * @param lbls list of labels that need to be changed
+	 * 
+	 */
+	
+	public void setPlayerLabels(ArrayList<JLabel> lbls) {
 		HashMap<Athlete.POSITION, Athlete> players = manager.getTeam().getPlayersMap();
-		btns.get(0).setText(String.valueOf(players.get(Athlete.POSITION.PG).getName() + " - " + players.get(Athlete.POSITION.PG).getRating()));
-		btns.get(1).setText(String.valueOf(players.get(Athlete.POSITION.SG).getName() + " - " + players.get(Athlete.POSITION.SG).getRating()));
-		btns.get(2).setText(String.valueOf(players.get(Athlete.POSITION.C).getName() + " - " + players.get(Athlete.POSITION.C).getRating()));
-		btns.get(3).setText(String.valueOf(players.get(Athlete.POSITION.SF).getName() + " - " + players.get(Athlete.POSITION.SF).getRating()));
-		btns.get(4).setText(String.valueOf(players.get(Athlete.POSITION.PF).getName() + " - " + players.get(Athlete.POSITION.PF).getRating()));
+		lbls.get(0).setText(String.valueOf(players.get(Athlete.POSITION.PG).getName() + " - " + players.get(Athlete.POSITION.PG).getRating()));
+		lbls.get(1).setText(String.valueOf(players.get(Athlete.POSITION.SG).getName() + " - " + players.get(Athlete.POSITION.SG).getRating()));
+		lbls.get(2).setText(String.valueOf(players.get(Athlete.POSITION.C).getName() + " - " + players.get(Athlete.POSITION.C).getRating()));
+		lbls.get(3).setText(String.valueOf(players.get(Athlete.POSITION.SF).getName() + " - " + players.get(Athlete.POSITION.SF).getRating()));
+		lbls.get(4).setText(String.valueOf(players.get(Athlete.POSITION.PF).getName() + " - " + players.get(Athlete.POSITION.PF).getRating()));
 	}
 	
-	public void setOpponentLabels(ArrayList<JLabel> btns) {
+	/**
+	 * Sets the labels for the opponent's starting Athletes.
+	 * @param lbls list of labels that need to be changed
+	 * 
+	 */
+	
+	public void setOpponentLabels(ArrayList<JLabel> lbls) {
 		HashMap<Athlete.POSITION, Athlete> opponents = manager.getOpposingTeam().getPlayersMap();
-		btns.get(0).setText(String.valueOf(opponents.get(Athlete.POSITION.PG).getName() + " - " + opponents.get(Athlete.POSITION.PG).getRating()));
-		btns.get(1).setText(String.valueOf(opponents.get(Athlete.POSITION.SG).getName()+ " - " + opponents.get(Athlete.POSITION.SG).getRating()));
-		btns.get(2).setText(String.valueOf(opponents.get(Athlete.POSITION.C).getName() + " - " + opponents.get(Athlete.POSITION.C).getRating()));
-		btns.get(3).setText(String.valueOf(opponents.get(Athlete.POSITION.SF).getName() + " - " + opponents.get(Athlete.POSITION.SF).getRating()));
-		btns.get(4).setText(String.valueOf(opponents.get(Athlete.POSITION.PF).getName() + " - " + opponents.get(Athlete.POSITION.PF).getRating()));
+		lbls.get(0).setText(String.valueOf(opponents.get(Athlete.POSITION.PG).getName() + " - " + opponents.get(Athlete.POSITION.PG).getRating()));
+		lbls.get(1).setText(String.valueOf(opponents.get(Athlete.POSITION.SG).getName()+ " - " + opponents.get(Athlete.POSITION.SG).getRating()));
+		lbls.get(2).setText(String.valueOf(opponents.get(Athlete.POSITION.C).getName() + " - " + opponents.get(Athlete.POSITION.C).getRating()));
+		lbls.get(3).setText(String.valueOf(opponents.get(Athlete.POSITION.SF).getName() + " - " + opponents.get(Athlete.POSITION.SF).getRating()));
+		lbls.get(4).setText(String.valueOf(opponents.get(Athlete.POSITION.PF).getName() + " - " + opponents.get(Athlete.POSITION.PF).getRating()));
 	}
 	
+	/**
+	 * Determines the winners by comparing each athlete's overall rating and changes the Label text to green or orange, 
+	 * based on win or draw respectively.
+	 * @param playerLabels 		list of labels that displays the player's Athletes' information
+	 * @param opponentLabels	list of labels that displays the opponents' Athletes' information
+	 * @param playerWinnerLbl	label that will be set to visible when the player wins
+	 * @param opponentWinnerLbl label that will be set to visible when the player wins
+	 * 
+	 */
 	public void setWinners(ArrayList<JLabel> playerLabels, ArrayList<JLabel> opponentLabels, JLabel playerWinnerLbl, JLabel opponentWinnerLbl) {
 		int playerScore = 0;
 		for (int i=0; i<5; i++) {
