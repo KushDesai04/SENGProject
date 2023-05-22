@@ -40,13 +40,12 @@ public class Item {
 	 * @param name  the name of the Item
 	 * @param stat  the stat affected by the Item
 	 * @param value the value by which the stat is increased
-	 * @param price the price of the Item
 	 */
-	public Item(String name, Athlete.STATS stat, int value, int price) {
+	public Item(String name, Athlete.STATS stat, int value) {
 		this.name = name;
 		this.stat = stat;
 		this.value = value;
-		this.price = price;
+		this.price = value * 100;
 		this.description = "This item increases a player's " + getStatName() + " by " + value;
 	}
 
@@ -132,10 +131,7 @@ public class Item {
 	 * @param athlete the Athlete on which to apply the Item's effect
 	 */
 	public void consume(Athlete athlete) {
-		if (stat == Athlete.STATS.CS) {
-			athlete.changeCurrentStamina(value);
-		} else {
-			athlete.changeStat(value, stat);
-		}
+
+		athlete.changeStat(value, stat);
 	}
 }

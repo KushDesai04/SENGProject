@@ -158,6 +158,10 @@ public class Athlete {
         if (currentStamina < 0) {
         	currentStamina = 0;
         }
+        
+        else if (currentStamina > stats.get(STATS.S)) {
+        	currentStamina = stats.get(STATS.S);
+        }
     }
     
     /**

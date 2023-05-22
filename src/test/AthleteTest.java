@@ -45,6 +45,15 @@ public class AthleteTest {
         athlete.changeCurrentStamina(changeValue);
         int expectedValue = initialValue + changeValue;
         assertEquals(expectedValue, athlete.getCurrentStamina());
+        
+        // Check that current stamina does not go over max
+        athlete.changeCurrentStamina(initialValue + 20);
+        assertEquals(initialValue, athlete.getCurrentStamina());
+        
+        // Check current stamina does not go below 0
+        athlete.changeCurrentStamina(-(athlete.getCurrentStamina() + 1));
+        assertEquals(0, athlete.getCurrentStamina());
+        
     }
 
     @Test
@@ -67,8 +76,6 @@ public class AthleteTest {
         String expectedString = "John Doe, Point Guard, 82 OVR";
         assertEquals(expectedString, athlete.toString());
     }
-    
-    // Add more tests for other methods and edge cases as needed
     
 }
 

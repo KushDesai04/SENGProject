@@ -118,6 +118,9 @@ public class GameManager {
      */
     public void changeMoney(int amount) {
         money += amount;
+        if (money < 0) {
+        	money = 0;
+        }
     }
 
     /**

@@ -183,7 +183,6 @@ public class GenerateRandom {
             }
             usedItemNames.add(name);
             int increaseBy = (int) (random.nextInt(5, 10) * multiplier);
-            int price = increaseBy * 100;
             switch (statIndex) {
                 case 0:
                     s = Athlete.STATS.O;
@@ -203,7 +202,7 @@ public class GenerateRandom {
                 default:
                     break;
             }
-            Item item = new Item(name, s, increaseBy, price);
+            Item item = new Item(name, s, increaseBy);
             weeklyItems.add(item);
         }
         usedItemNames.clear();
