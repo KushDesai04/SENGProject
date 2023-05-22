@@ -3,8 +3,12 @@ package main;
 import java.util.*;
 
 /**
- * The GenerateRandom class provides functionality for generating random objects such as athletes, items, and teams.
- * It uses randomization to create diverse and dynamic elements for the game.
+ * The GenerateRandom class provides functionality for generating random objects such as Athletes, Items, and Teams.
+ * It uses randomisation to create dynamic elements for the game.
+ * 
+ * @author Yunu Cho
+ * @author Kush Desai
+ * 
  */
 public class GenerateRandom {
 	/**
@@ -18,32 +22,32 @@ public class GenerateRandom {
 	private float multiplier = 1.0f;
 
 	/**
-	 * List of possible names for generating athletes.
+	 * List of possible names for generating Athletes.
 	 */
 	private ArrayList<String> possibleNames;
 
 	/**
-	 * List of possible names for generating items.
+	 * List of possible names for generating Items.
 	 */
 	private ArrayList<String> possibleItemNames;
 
 	/**
-	 * List of possible names for generating teams.
+	 * List of possible names for generating Teams.
 	 */
 	private ArrayList<String> possibleTeamNames;
 
 	/**
-	 * List of names that have already been used for generating athletes.
+	 * List of names that have already been used for generating Athletes.
 	 */
 	private ArrayList<String> usedNames;
 
 	/**
-	 * List of names that have already been used for generating items.
+	 * List of names that have already been used for generating Items.
 	 */
 	private ArrayList<String> usedItemNames;
 
 	/**
-	 * List of names that have already been used for generating teams.
+	 * List of names that have already been used for generating Teams.
 	 */
 	private ArrayList<String> usedTeamNames;
 
@@ -55,33 +59,34 @@ public class GenerateRandom {
     	
         random = new Random();
         
-        possibleNames = new ArrayList<>(Arrays.asList("Michael", "Jordan", "Steph", "Kush", "Droopy", "Hoi Fung",
+        possibleNames = new ArrayList<String>(Arrays.asList("Michael", "Jordan", "Steph", "Kush", "Droopy", "Hoi Fung",
                 "Ray", "Zaza", "Archibold", "Freddie", "Wij", "Richard", "Kang", "Zheng", "Rundle", "Tim", "Sum",
                 "Ting", "Wong", "Jake", "Tuffy", "Stevo", "Gavin", "Miguel", "Andy", "Giancarlo", "Gus", "Walter",
-                "Jesse", "Hank", "Cornelius", "Erik", "Bjorn", "Steve", "Alex", "Lucas", "Lars", "Jaron", "Kel"));
+                "Jesse", "Hank", "Cornelius", "Erik", "Bjorn", "Steve", "Alex", "Lucas", "Lars", "Jaron", "Kel",
+                "Geraldo"));
         
-        possibleItemNames = new ArrayList<>(Arrays.asList("Apple", "Blue Pot", "Sushi", "Katsu Chicken Sandwich",
+        possibleItemNames = new ArrayList<String>(Arrays.asList("Apple", "Blue Pot", "Sushi", "Katsu Chicken Sandwich",
                 "Protein Shake", "Trenbolone Acetate", "Energy Drink", "Preworkout", "Ghost Pepper", "Protein Bar",
                 "Can of Spinach", "Pot of Greed", "Chicken Dinner", "Stardrop"));
         
-        possibleTeamNames = new ArrayList<>(Arrays.asList("Celtics", "Nets", "Knicks", "76ers", "Raptors", "Bulls",
+        possibleTeamNames = new ArrayList<String>(Arrays.asList("Celtics", "Nets", "Knicks", "76ers", "Raptors", "Bulls",
                 "Cavaliers", "Pistons", "Pacers", "Bucks", "Hawks", "Hornets", "Heat", "Magic", "Wizards", "Nuggets",
                 "Timberwolves", "Thunder", "Trail Blazers", "Jazz", "Warriors", "Clippers", "Lakers", "Suns", "Kings",
                 "Mavericks", "Rockets", "Grizzlies", "Pelicans", "Spurs"));
         
-        usedNames = new ArrayList<>();
-        usedItemNames = new ArrayList<>();
-        usedTeamNames = new ArrayList<>();
+        usedNames = new ArrayList<String>();
+        usedItemNames = new ArrayList<String>();
+        usedTeamNames = new ArrayList<String>();
     }
 
     /**
-     * Generates a random athlete object with specified index.
+     * Generates a random Athlete object with specified index.
      *
-     * @param index The index used to determine the position of the athlete.
-     * @return The generated athlete object.
+     * @param index The index used to determine the position of the Athlete.
+     * @return The generated Athlete object.
      */
     public Athlete generateAthlete(int index) {
-        HashMap<Athlete.STATS, Integer> statValues = new HashMap<>();
+        HashMap<Athlete.STATS, Integer> statValues = new HashMap<Athlete.STATS, Integer>();
         int nameIndex = random.nextInt(possibleNames.size());
         String name = possibleNames.get(nameIndex);
         while (usedNames.contains(name)) {
@@ -115,10 +120,10 @@ public class GenerateRandom {
     }
 
     /**
-     * Generates a position for an athlete based on the specified index.
+     * Generates a position for an Athlete based on the specified index.
      *
      * @param index The index used to determine the position.
-     * @return The generated position for the athlete.
+     * @return The generated position for the Athlete.
      */
     public Athlete.POSITION generatePosition(int index) {
         Athlete.POSITION p;
@@ -145,12 +150,12 @@ public class GenerateRandom {
     }
 
     /**
-     * Generates a list of weekly athletes.
+     * Generates a list of weekly Athletes.
      *
-     * @return The list of generated weekly athletes.
+     * @return The list of generated weekly Athletes.
      */
     public ArrayList<Athlete> generateWeeklyAthletes() {
-        ArrayList<Athlete> weeklyAthletes = new ArrayList<>();
+        ArrayList<Athlete> weeklyAthletes = new ArrayList<Athlete>();
         while (weeklyAthletes.size() < 3) {
             int positionIndex = random.nextInt(5);
             Athlete athlete = generateAthlete(positionIndex);
@@ -161,12 +166,12 @@ public class GenerateRandom {
     }
 
     /**
-     * Generates a list of weekly items.
+     * Generates a list of weekly Items.
      *
-     * @return The list of generated weekly items.
+     * @return The list of generated weekly Items.
      */
     public ArrayList<Item> generateWeeklyItems() {
-        ArrayList<Item> weeklyItems = new ArrayList<>();
+        ArrayList<Item> weeklyItems = new ArrayList<Item>();
         while (weeklyItems.size() < 3) {
             int index = random.nextInt(possibleItemNames.size());
             int statIndex = random.nextInt(5);
@@ -206,12 +211,12 @@ public class GenerateRandom {
     }
 
     /**
-     * Generates a list of opposing teams.
+     * Generates a list of opposing Teams.
      *
-     * @return The list of generated opposing teams.
+     * @return The list of generated opposing Teams.
      */
     public ArrayList<Team> generateTeams() {
-        ArrayList<Team> opposingTeams = new ArrayList<>();
+        ArrayList<Team> opposingTeams = new ArrayList<Team>();
         while (opposingTeams.size() < 3) {
             int teamIndex = random.nextInt(possibleTeamNames.size());
             String name = possibleTeamNames.get(teamIndex);
@@ -244,7 +249,7 @@ public class GenerateRandom {
 
     /**
      * Increments the multiplier value.
-     * This method increases the multiplier by 0.02.
+     * This method increases the multiplier by 0.02 per week.
      */
     public void incrementMultiplier() {
         multiplier += 0.02;

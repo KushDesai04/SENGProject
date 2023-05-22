@@ -4,8 +4,9 @@ import java.util.*;
 
 /**
  * This is the Athlete class which represents a single Athlete. The class Athletes can be bought and sold to make a Team.
- * @Author Kush Desai
+ *
  * @Author Yunu Cho
+ * @Author Kush Desai 
  * 
  */
 public class Athlete {
@@ -41,7 +42,7 @@ public class Athlete {
     private int currentStamina;
     
     /**
-     * The statistics of the Athlete.
+     * The stats of the Athlete.
      */
     private HashMap<STATS, Integer> stats = new HashMap<STATS, Integer>();
 
@@ -50,7 +51,7 @@ public class Athlete {
      * 
      * @param tempName The name of the Athlete.
      * @param tempPosition The position of the Athlete.
-     * @param tempStats The statistics of the Athlete.
+     * @param tempStats The stats of the Athlete.
      */
     public Athlete(String tempName, POSITION tempPosition, HashMap<STATS, Integer> tempStats) {
         name = tempName;
@@ -76,7 +77,7 @@ public class Athlete {
     }
 
     /**
-     * Enum to represent the player stats: Offence, Defence, Stamina, Agility, Current-Stamina.
+     * Enum to represent the player stats: Offence, Defence, Stamina, Agility, Current Stamina.
      */
     public enum STATS {
         O, D, S, A, CS;
@@ -221,7 +222,7 @@ public class Athlete {
     }
 
     /**
-     * Checks if the Athlete is injured.
+     * Checks if the Athlete is injured. If the current stamina of the Athlete is 0, increment injuries by 1.
      * 
      * @return true if the Athlete is injured, false otherwise.
      */

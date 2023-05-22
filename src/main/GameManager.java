@@ -6,8 +6,8 @@ import java.util.*;
  * This is the GameManager class which controls the logic for the game such as
  * opening/closing windows.
  * 
- * @Author Kush Desai
- * @Author Yunu Cho
+ * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class GameManager {
@@ -27,12 +27,12 @@ public class GameManager {
 	private int numWeeks;
 
 	/**
-	 * The current week of the game. Initialized to 1.
+	 * The current week of the game. Initialised to 1.
 	 */
 	private int currentWeek = 1;
 
 	/**
-	 * The team controlled by the GameManager.
+	 * The Team controlled by the GameManager.
 	 */
 	private Team team = new Team(teamName);
 
@@ -52,17 +52,17 @@ public class GameManager {
 	private ArrayList<Team> weeklyTeams;
 
 	/**
-	 * The opposing team in the current game.
+	 * The opposing Team in the current game.
 	 */
 	private Team opposingTeam;
 
 	/**
-	 * The random number generator used in the game.
+	 * The random Object generator used in the game.
 	 */
 	private GenerateRandom random;
 
 	/**
-	 * The market in the game.
+	 * The Market in the game.
 	 */
 	private Market market;
 
@@ -139,14 +139,14 @@ public class GameManager {
     }
 
     /**
-     * Generates random teams for the current week.
+     * Generates random Teams for the current week.
      */
     public void generateRandomTeams() {
         weeklyTeams = random.generateTeams();
     }
 
     /**
-     * Increments the current week and updates the market and random teams accordingly.
+     * Increments the current week and updates the Market and random Teams accordingly.
      */
     public void incrementWeek() {
         currentWeek += 1;
@@ -176,9 +176,9 @@ public class GameManager {
     }
 
     /**
-     * Retrieves the player's team.
+     * Retrieves the player's Team.
      * 
-     * @return The player's team.
+     * @return The player's Team.
      */
     public Team getTeam() {
         return team;
@@ -203,36 +203,36 @@ public class GameManager {
     }
 
     /**
-     * Retrieves the game market.
+     * Retrieves the game Market.
      * 
-     * @return The game market.
+     * @return The game Market.
      */
     public Market getMarket() {
         return market;
     }
 
     /**
-     * Retrieves the random teams for the current week.
+     * Retrieves the random Teams for the current week.
      * 
-     * @return The random teams for the current week.
+     * @return The random Teams for the current week.
      */
     public ArrayList<Team> getWeeklyTeams() {
         return weeklyTeams;
     }
 
     /**
-     * Retrieves the opposing team.
+     * Retrieves the opposing Team.
      * 
-     * @return The opposing team.
+     * @return The opposing Team.
      */
     public Team getOpposingTeam() {
         return opposingTeam;
     }
 
     /**
-     * Sets the opposing team.
+     * Sets the opposing Team.
      * 
-     * @param team The opposing team to set.
+     * @param team The opposing Team to set.
      */
     public void setOpposingTeam(Team team) {
         opposingTeam = team;
@@ -283,7 +283,7 @@ public class GameManager {
     }
 
     /**
-     * Launches the team setup screen after generating random starting athletes
+     * Launches the team setup screen after generating random starting Athletes
      */
     public void launchTeamSetupScreen() {
         market.getStarterAthletes().add(random.generateAthlete(0));
@@ -500,7 +500,7 @@ public class GameManager {
     /**
      * Closes the train athlete screen and launches the main screen.
      * 
-     * @param trainAthleteScree The train athlete screen to close.
+     * @param trainAthleteScreen The train athlete screen to close.
      */
 	public void closeTrainAthleteScreen(TrainAthleteScreen trainAthleteScreen) {
 		trainAthleteScreen.closeWindow();

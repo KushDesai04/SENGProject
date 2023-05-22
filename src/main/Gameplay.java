@@ -4,27 +4,28 @@ package main;
  * The Gameplay class represents a game session between a player's team and an opposing team.
  * It manages the gameplay logic, including calculating points and determining the winner.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
+ * 
  */
 public class Gameplay {
     /**
-     * The player's team participating in the game.
+     * The player's Team participating in the game.
      */
     private Team playerTeam;
 
     /**
-     * The opposing team participating in the game.
+     * The opposing Team participating in the game.
      */
     private Team opposingTeam;
 
     /**
-     * The total points earned by the player's team.
+     * The total points earned by the player's Team.
      */
     private int playerPoints;
 
     /**
-     * The total points earned by the opposing team.
+     * The total points earned by the opposing Team.
      */
     private int opponentPoints;
 
@@ -34,10 +35,10 @@ public class Gameplay {
     private String difficulty;
 
     /**
-     * Constructs a new Gameplay object with the specified player's team, opposing team, and difficulty.
+     * Constructs a new Gameplay object with the specified player's Team, opposing Team, and difficulty.
      *
-     * @param playerTeam    The player's team participating in the game.
-     * @param opposingTeam  The opposing team participating in the game.
+     * @param playerTeam    The player's Team participating in the game.
+     * @param opposingTeam  The opposing Team participating in the game.
      * @param difficulty    The difficulty level of the game.
      */
     public Gameplay(Team playerTeam, Team opposingTeam, String difficulty) {
@@ -47,18 +48,18 @@ public class Gameplay {
     }
 
     /**
-     * Retrieves the total points earned by the player's team.
+     * Retrieves the total points earned by the player's Team.
      *
-     * @return The total points earned by the player's team.
+     * @return The total points earned by the player's Team.
      */
     public int getPlayerPoints() {
         return playerPoints;
     }
 
     /**
-     * Retrieves the total points earned by the opposing team.
+     * Retrieves the total points earned by the opposing Team.
      *
-     * @return The total points earned by the opposing team.
+     * @return The total points earned by the opposing Team.
      */
     public int getOpponentPoints() {
         return opponentPoints;
@@ -89,7 +90,7 @@ public class Gameplay {
     }
 
     /**
-     * Determines the winner of the game based on the total points earned by the player's team and the opposing team.
+     * Determines the winner of the game based on the total points earned by the player's Team and the opposing Team.
      *
      * @return The result of the game: "player" if the player's team has more points,
      *         "draw" if the points are equal, or "opponent" if the opposing team has more points.

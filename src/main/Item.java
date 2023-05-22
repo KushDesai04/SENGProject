@@ -3,18 +3,19 @@ package main;
 /**
  * This is the Item class which represents a single Item. Items are used to boost player stats.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
+ * 
  */
 public class Item {
 	
 	/**
-	 * The name of the item.
+	 * The name of the Item.
 	 */
 	private String name;
 	
 	/**
-	 * The stat affected by the item.
+	 * The stat affected by the Item.
 	 */
 	private Athlete.STATS stat;
 	
@@ -24,22 +25,22 @@ public class Item {
 	private int value;
 	
 	/**
-	 * The price of the item.
+	 * The price of the Item.
 	 */
 	private int price;
 	
 	/**
-	 * The description of the item.
+	 * The description of the Item.
 	 */
 	private String description;
 
 	/**
 	 * Constructs a new Item with the specified name, stat, value, and price.
 	 * 
-	 * @param name  the name of the item
-	 * @param stat  the stat affected by the item
+	 * @param name  the name of the Item
+	 * @param stat  the stat affected by the Item
 	 * @param value the value by which the stat is increased
-	 * @param price the price of the item
+	 * @param price the price of the Item
 	 */
 	public Item(String name, Athlete.STATS stat, int value, int price) {
 		this.name = name;
@@ -50,25 +51,25 @@ public class Item {
 	}
 
 	/**
-	 * Returns the value of the item.
+	 * Returns the value of the Item.
 	 * 
-	 * @return the value of the item
+	 * @return the value of the Item
 	 */
 	public int getValue() {
 		return value;
 	}
 
 	/**
-	 * Returns the price of the item.
+	 * Returns the price of the Item.
 	 * 
-	 * @return the price of the item
+	 * @return the price of the Item
 	 */
 	public int getPrice() {
 		return price;
 	}
 
 	/**
-	 * Returns a string representation of the item.
+	 * Returns a string representation of the Item.
 	 * 
 	 * @return the name of the item
 	 */
@@ -77,9 +78,9 @@ public class Item {
 	}
 
 	/**
-	 * Returns the description of the item.
+	 * Returns the description of the Item.
 	 * 
-	 * @return the description of the item
+	 * @return the description of the Item
 	 */
 	public String getDescription() {
 		return description;
@@ -108,27 +109,27 @@ public class Item {
 	}
 
 	/**
-	 * Returns the name of the item.
+	 * Returns the name of the Item.
 	 * 
-	 * @return the name of the item
+	 * @return the name of the Item
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Returns the stat affected by the item.
+	 * Returns the stat affected by the Item.
 	 * 
-	 * @return the stat affected by the item
+	 * @return the stat affected by the Item
 	 */
 	public Athlete.STATS getStat() {
 		return stat;
 	}
 
 	/**
-	 * Applies the item's effect on the given athlete.
+	 * Applies the Item's effect on the given Athlete.
 	 * 
-	 * @param athlete the athlete on which to apply the item's effect
+	 * @param athlete the Athlete on which to apply the Item's effect
 	 */
 	public void consume(Athlete athlete) {
 		if (stat == Athlete.STATS.CS) {
@@ -137,15 +138,4 @@ public class Item {
 			athlete.changeStat(value, stat);
 		}
 	}
-
-	/**
-	 * The main method used for testing the Item class.
-	 * 
-	 * @param args the command-line arguments
-	 */
-	public static void main(String[] args) {
-//		Item item = new Item("Cake", Athlete.STATS.D, 12, 6000);
-//		System.out.println(item);
-	}
-
 }

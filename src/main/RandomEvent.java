@@ -2,7 +2,13 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+/** 
+ * This is the RandomEvent class. This class controls the logic for generating random events when the player takes a bye.
+ * 
+ * @author Yunu Cho
+ * @author Kush Desai
+ *
+ */
 public class RandomEvent {
 	/**
 	 * The random number generator used for generating random events.
@@ -15,20 +21,20 @@ public class RandomEvent {
 	private int randomInt;
 
 	/**
-	 * The team object to which the random events will be applied.
+	 * The Team object to which the random events will be applied.
 	 */
 	private Team team;
 
 	/**
-	 * The instance of the GenerateRandom class used for generating random athletes.
+	 * The instance of the GenerateRandom class used for generating random Athletes.
 	 */
 	private GenerateRandom generateRandom = new GenerateRandom();
 
 
     /**
-     * Constructs a new RandomEvent object with the given team.
+     * Constructs a new RandomEvent object with the given Team.
      *
-     * @param tempTeam The team object to which the random events will be applied.
+     * @param tempTeam The Team object to which the random events will be applied.
      */
     public RandomEvent(Team tempTeam) {
         random = new Random();
@@ -59,7 +65,7 @@ public class RandomEvent {
             int i = random.nextInt(50);
             switch (i) {
                 case 0:
-                    // random starter athlete gets a stat boost
+                    // Random starter Athlete gets a stat boost
                     Athlete athlete = team.getPlayersArray().get(random.nextInt(team.getPlayersArray().size()));
                     athlete.changeStat(random.nextInt(1, 11), Athlete.STATS.O);
                     athlete.changeStat(random.nextInt(1, 11), Athlete.STATS.D);
@@ -69,7 +75,7 @@ public class RandomEvent {
                     break;
 
                 case 1:
-                    // random reserve athlete gets a stat boost
+                    // Random reserve Athlete gets a stat boost
                     if (reserves.size() > 0) {
                         Athlete reserve = reserves.get(random.nextInt(team.getReserves().size()));
                         reserve.changeStat(random.nextInt(1, 11), Athlete.STATS.O);
@@ -81,7 +87,7 @@ public class RandomEvent {
                     break;
 
                 case 2:
-                    // athlete quits
+                    // Athlete quits
                     for (int j = 0; j < reserves.size(); j++) {
                         Athlete player = reserves.get(j);
                         if (random.nextInt(5) * (player.getInjuries() / 100) >= 5) {
@@ -93,7 +99,7 @@ public class RandomEvent {
                     break;
 
                 case 3:
-                    // new athlete joins
+                    // New Athlete joins
                     int chance = random.nextInt(50);
                     if (reserves.size() < 5 && chance < 5) {
                         Athlete a = generateRandom.generateAthlete(chance);
