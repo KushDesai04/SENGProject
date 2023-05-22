@@ -22,17 +22,14 @@ public class Team {
      * The name of the Team.
      */
     private String teamName;
-    
     /**
      * The mapping of player positions to athlete objects in the Team.
      */
     private HashMap<Athlete.POSITION, Athlete> players = new HashMap<Athlete.POSITION, Athlete>();
-    
     /**
      * The list of reserve Athletes in the Team.
      */
     private ArrayList<Athlete> reserves = new ArrayList<Athlete>();
-    
     /**
      * The list of consumable Items held by the Team.
      */

@@ -23,9 +23,13 @@ import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-/*
+/**
  * This is the OpponentSelectorScreen. This screen provides 3 opponent teams to choose from. When
  * a team is clicked, the players in that team and their stats are shown to the player.
+ * 
+ * @author Yunu Cho
+ * @author Kush Desai
+ * 
  */
 public class OpponentSelectorScreen {
 

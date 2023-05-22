@@ -27,17 +27,27 @@ import javax.swing.JPanel;
 
 /**
  * This is the Main Screen class. The main screen will allow players to access
- * the stadium, shop, and their their Team of players, as well as go back to the start screen
+ * the stadium, shop, and their their Team of players, as well as going back to the start screen.
  * 
  * @author Yunu Cho
  * @author Kush Desai
  * 
  */
 public class MainScreen {
-
+	/**
+	 * Frame of the MainScreen.
+	 */
 	private JFrame frame;
+	
+	/**
+	 * The current instance of the GameManager object.
+	 */
 	private GameManager manager;
-
+	
+	/**
+	 * Constructs a new MainScreen object with the given GameManager.
+	 * @param gameManager the current instance of the GameManager object
+	 */
 	public MainScreen(GameManager gameManager) {
 		manager = gameManager;
 		initialize();
@@ -66,11 +76,18 @@ public class MainScreen {
 	public MainScreen() {
 		initialize();
 	}
-
+	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-
+	
+	/**
+	 * Calls closeGameScreen within the GameManager object which opens the given window.
+	 * @param screen the next window that will be opened
+	 */
 	public void finishedWindow(GameManager.GOTOSCREEN screen) {
 		manager.closeMainScreen(this, screen);
 	}
