@@ -46,15 +46,17 @@ public class DialogueBox {
 
 	/**
 	 * Constructs a new DialogueBox object with the given GameManager.
-     * @param gameManager the current instance of the GameManager object
+	 * 
+	 * @param gameManager the current instance of the GameManager object
 	 * @param tempMessage the message that is displayed on the DialogueBox
 	 */
 	public DialogueBox(GameManager gameManager, String tempMessage) {
 		manager = gameManager;
 		message = tempMessage;
 		initialize();
-		
+
 	}
+
 	/**
 	 * Create the application.
 	 */
@@ -67,7 +69,7 @@ public class DialogueBox {
 	 */
 	private void initialize() {
 		JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.INFORMATION_MESSAGE);
-		
+
 	}
 
 }

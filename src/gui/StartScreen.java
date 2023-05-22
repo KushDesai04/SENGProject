@@ -48,13 +48,13 @@ public class StartScreen {
 	 * The current instance of the GameManager object.
 	 */
 	private GameManager manager;
-	
+
 	/**
 	 * Constructs a new StartScreen object with the given GameManager.
+	 * 
 	 * @param gameManager the current instance of the GameManager object
 	 */
 	public StartScreen(GameManager gameManager) {
-		// TODO Auto-generated constructor stub
 		manager = gameManager;
 		initialize();
 		frame.setVisible(true);
@@ -82,7 +82,7 @@ public class StartScreen {
 	public StartScreen() {
 		initialize();
 	}
-	
+
 	/**
 	 * Closes the window.
 	 */
@@ -91,7 +91,8 @@ public class StartScreen {
 	}
 
 	/**
-	 * Calls closeStartScreen within the GameManager object which opens the next window.
+	 * Calls closeStartScreen within the GameManager object which opens the next
+	 * window.
 	 */
 	public void finishedWindow() {
 		manager.closeStartScreen(this);

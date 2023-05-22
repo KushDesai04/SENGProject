@@ -1,4 +1,5 @@
 package gui;
+
 import main.*;
 import java.awt.EventQueue;
 
@@ -19,9 +20,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 /**
- * This is the GameScreen class. The game screen is shown when the player initiates a match against an opponent.
- * The screen will show players from both teams, and winning players have their names shown in green, losing players
- * in white, and draw in orange. The team names are also shown.
+ * This is the GameScreen class. The game screen is shown when the player
+ * initiates a match against an opponent. The screen will show players from both
+ * teams, and winning players have their names shown in green, losing players in
+ * white, and draw in orange. The team names are also shown.
  * 
  * @author Yunu Cho
  * @author Kush Desai
@@ -48,9 +50,10 @@ public class GameScreen {
 	 * A list of JLabels that contains the starting Athletes of the opponent.
 	 */
 	private ArrayList<JLabel> opponentStarters = new ArrayList<JLabel>();
-	
+
 	/**
 	 * Constructs a new GameScreen object with the given GameManager.
+	 * 
 	 * @param gameManager the current instance of the GameManager object
 	 */
 	public GameScreen(GameManager gameManager) {
@@ -81,116 +84,134 @@ public class GameScreen {
 	public GameScreen() {
 		initialize();
 	}
-	
+
 	/**
 	 * Closes the window.
 	 */
-	
+
 	public void closeWindow() {
 		frame.dispose();
 	}
-	
+
 	/**
-	 * Calls closeGameScreen within the GameManager object which opens another window.
+	 * Calls closeGameScreen within the GameManager object which opens another
+	 * window.
 	 */
-	
+
 	public void finishedWindow() {
 		manager.closeGameScreen(this);
 	}
-	
+
 	/**
 	 * Sets the labels for the player's starting Athletes.
+	 * 
 	 * @param lbls list of labels that need to be changed
 	 * 
 	 */
-	
+
 	public void setPlayerLabels(ArrayList<JLabel> lbls) {
 		HashMap<Athlete.POSITION, Athlete> players = manager.getTeam().getPlayersMap();
-		lbls.get(0).setText(String.valueOf(players.get(Athlete.POSITION.PG).getName() + " - " + players.get(Athlete.POSITION.PG).getRating()));
-		lbls.get(1).setText(String.valueOf(players.get(Athlete.POSITION.SG).getName() + " - " + players.get(Athlete.POSITION.SG).getRating()));
-		lbls.get(2).setText(String.valueOf(players.get(Athlete.POSITION.C).getName() + " - " + players.get(Athlete.POSITION.C).getRating()));
-		lbls.get(3).setText(String.valueOf(players.get(Athlete.POSITION.SF).getName() + " - " + players.get(Athlete.POSITION.SF).getRating()));
-		lbls.get(4).setText(String.valueOf(players.get(Athlete.POSITION.PF).getName() + " - " + players.get(Athlete.POSITION.PF).getRating()));
+		lbls.get(0).setText(String.valueOf(
+				players.get(Athlete.POSITION.PG).getName() + " - " + players.get(Athlete.POSITION.PG).getRating()));
+		lbls.get(1).setText(String.valueOf(
+				players.get(Athlete.POSITION.SG).getName() + " - " + players.get(Athlete.POSITION.SG).getRating()));
+		lbls.get(2).setText(String.valueOf(
+				players.get(Athlete.POSITION.C).getName() + " - " + players.get(Athlete.POSITION.C).getRating()));
+		lbls.get(3).setText(String.valueOf(
+				players.get(Athlete.POSITION.SF).getName() + " - " + players.get(Athlete.POSITION.SF).getRating()));
+		lbls.get(4).setText(String.valueOf(
+				players.get(Athlete.POSITION.PF).getName() + " - " + players.get(Athlete.POSITION.PF).getRating()));
 	}
-	
+
 	/**
 	 * Sets the labels for the opponent's starting Athletes.
+	 * 
 	 * @param lbls list of labels that need to be changed
 	 * 
 	 */
-	
+
 	public void setOpponentLabels(ArrayList<JLabel> lbls) {
 		HashMap<Athlete.POSITION, Athlete> opponents = manager.getOpposingTeam().getPlayersMap();
-		lbls.get(0).setText(String.valueOf(opponents.get(Athlete.POSITION.PG).getName() + " - " + opponents.get(Athlete.POSITION.PG).getRating()));
-		lbls.get(1).setText(String.valueOf(opponents.get(Athlete.POSITION.SG).getName()+ " - " + opponents.get(Athlete.POSITION.SG).getRating()));
-		lbls.get(2).setText(String.valueOf(opponents.get(Athlete.POSITION.C).getName() + " - " + opponents.get(Athlete.POSITION.C).getRating()));
-		lbls.get(3).setText(String.valueOf(opponents.get(Athlete.POSITION.SF).getName() + " - " + opponents.get(Athlete.POSITION.SF).getRating()));
-		lbls.get(4).setText(String.valueOf(opponents.get(Athlete.POSITION.PF).getName() + " - " + opponents.get(Athlete.POSITION.PF).getRating()));
+		lbls.get(0).setText(String.valueOf(
+				opponents.get(Athlete.POSITION.PG).getName() + " - " + opponents.get(Athlete.POSITION.PG).getRating()));
+		lbls.get(1).setText(String.valueOf(
+				opponents.get(Athlete.POSITION.SG).getName() + " - " + opponents.get(Athlete.POSITION.SG).getRating()));
+		lbls.get(2).setText(String.valueOf(
+				opponents.get(Athlete.POSITION.C).getName() + " - " + opponents.get(Athlete.POSITION.C).getRating()));
+		lbls.get(3).setText(String.valueOf(
+				opponents.get(Athlete.POSITION.SF).getName() + " - " + opponents.get(Athlete.POSITION.SF).getRating()));
+		lbls.get(4).setText(String.valueOf(
+				opponents.get(Athlete.POSITION.PF).getName() + " - " + opponents.get(Athlete.POSITION.PF).getRating()));
 	}
-	
+
 	/**
-	 * Determines the winners by comparing each athlete's overall rating and changes the Label text to green or orange, 
-	 * based on win or draw respectively.
-	 * @param playerLabels 		list of labels that displays the player's Athletes' information
-	 * @param opponentLabels	list of labels that displays the opponents' Athletes' information
-	 * @param playerWinnerLbl	label that will be set to visible when the player wins
-	 * @param opponentWinnerLbl label that will be set to visible when the player wins
+	 * Determines the winners by comparing each athlete's overall rating and changes
+	 * the Label text to green or orange, based on win or draw respectively.
+	 * 
+	 * @param playerLabels      list of labels that displays the player's Athletes'
+	 *                          information
+	 * @param opponentLabels    list of labels that displays the opponents'
+	 *                          Athletes' information
+	 * @param playerWinnerLbl   label that will be set to visible when the player
+	 *                          wins
+	 * @param opponentWinnerLbl label that will be set to visible when the player
+	 *                          wins
 	 * 
 	 */
-	public void setWinners(ArrayList<JLabel> playerLabels, ArrayList<JLabel> opponentLabels, JLabel playerWinnerLbl, JLabel opponentWinnerLbl) {
+	public void setWinners(ArrayList<JLabel> playerLabels, ArrayList<JLabel> opponentLabels, JLabel playerWinnerLbl,
+			JLabel opponentWinnerLbl) {
 		int playerScore = 0;
-		for (int i=0; i<5; i++) {
+		for (int i = 0; i < 5; i++) {
 			Athlete player = manager.getTeam().getPlayersArray().get(i);
 			Athlete opponent = manager.getOpposingTeam().getPlayersMap().get(player.getPosition());
 			Athlete.POSITION pos = opponent.getPosition();
 			int index = 0;
 			switch (pos) {
-			    case PG:
-				    index = 0;
-				    break;
-			    case SG:
-			    	index = 1;
-			    	break;
-			    case C:
-			    	index = 2;
-			    	break;
-			    case SF:
-			    	index = 3;
-			    	break;
-			    case PF:
-			    	index = 4;
-			    	break;
-			    default:
-			    	break;
+			case PG:
+				index = 0;
+				break;
+			case SG:
+				index = 1;
+				break;
+			case C:
+				index = 2;
+				break;
+			case SF:
+				index = 3;
+				break;
+			case PF:
+				index = 4;
+				break;
+			default:
+				break;
 			}
 
 			if (player.getRating() > opponent.getRating()) {
 				playerLabels.get(index).setForeground(Color.green);
 				playerScore += 1;
 			}
-			
+
 			else if (player.getRating() < opponent.getRating()) {
 				opponentLabels.get(index).setForeground(Color.green);
 				playerScore -= 1;
 			}
-			
+
 			else {
 				playerLabels.get(index).setForeground(Color.orange);
 				opponentLabels.get(index).setForeground(Color.orange);
 			}
 		}
-		
+
 		if (playerScore > 0) {
-		    playerWinnerLbl.setText("Winner");
+			playerWinnerLbl.setText("Winner");
 		}
-		
-		else if (playerScore < 0){
-		    opponentWinnerLbl.setText("Winner");
-		    	
-		}
-		else {
-		   	playerWinnerLbl.setText("Draw!");
-		   	playerWinnerLbl.setForeground(Color.orange);
+
+		else if (playerScore < 0) {
+			opponentWinnerLbl.setText("Winner");
+
+		} else {
+			playerWinnerLbl.setText("Draw!");
+			playerWinnerLbl.setForeground(Color.orange);
 		}
 	}
 
@@ -258,84 +279,86 @@ public class GameScreen {
 			}
 		});
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
+
 		JLabel lblVs = new JLabel("VS");
 		lblVs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblVs.setForeground(new Color(255, 255, 255));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(411)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(411).addGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
-							.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+								.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+								.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
-							.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+								.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(playerPG, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-								.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-								.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblVs, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-							.addGap(3)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(opponentPG, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(25)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(opponentC, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-										.addComponent(opponentSG, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))))))
-					.addGap(329))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(backButton, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-					.addGap(1131))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(36)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(opponentPG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addComponent(playerPG, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(3)
-									.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-								.addComponent(opponentSG, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-								.addComponent(opponentC, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-								.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-								.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
-					.addGap(38))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(backButton)
-					.addContainerGap(528, Short.MAX_VALUE))
-		);
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(playerPG, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+										.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 114,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(playerSG, GroupLayout.PREFERRED_SIZE, 114,
+												GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblVs, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addGap(3)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(opponentPG, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 114,
+												GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup().addGap(25).addGroup(groupLayout
+												.createParallelGroup(Alignment.LEADING)
+												.addComponent(opponentC, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE,
+														114, GroupLayout.PREFERRED_SIZE)
+												.addComponent(opponentSG, Alignment.TRAILING,
+														GroupLayout.PREFERRED_SIZE, 114,
+														GroupLayout.PREFERRED_SIZE))))))
+						.addGap(329))
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addComponent(backButton, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE).addGap(1131)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(36)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
+								.createSequentialGroup().addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(opponentPG, GroupLayout.PREFERRED_SIZE, 63,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED))
+										.addComponent(playerPG, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(playerSG,
+												GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+										.addComponent(opponentSG, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(playerC, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(opponentC, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(playerSF, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(opponentSF, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(playerPF, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(opponentPF, GroupLayout.PREFERRED_SIZE, 63,
+												GroupLayout.PREFERRED_SIZE)))
+								.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+						.addGap(38))
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(backButton)
+						.addContainerGap(528, Short.MAX_VALUE)));
 
 		JLabel lblPlayerHeader = new JLabel("Player");
 		lblPlayerHeader.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -352,74 +375,72 @@ public class GameScreen {
 		opponentTeam.setText(manager.getOpposingTeam().getTeamName());
 		opponentTeam.setHorizontalAlignment(SwingConstants.TRAILING);
 		opponentTeam.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
+
 		JLabel lblPlayerWinner = new JLabel("");
 		lblPlayerWinner.setForeground(new Color(0, 255, 0));
 		lblPlayerWinner.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
+
 		JLabel lblOpponentWinner = new JLabel("");
 		lblOpponentWinner.setForeground(new Color(0, 255, 0));
 		lblOpponentWinner.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblOpponentWinner.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup().addContainerGap()
+						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(142))
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_panel.createSequentialGroup()
+														.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE,
+																GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addGap(142))
+												.addGroup(gl_panel.createSequentialGroup()
+														.addComponent(lblPlayerWinner, GroupLayout.PREFERRED_SIZE, 98,
+																GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.RELATED)))
+										.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+												.addGroup(gl_panel.createSequentialGroup().addGap(104).addComponent(
+														opponentTeam, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addGroup(gl_panel.createSequentialGroup()
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(lblOpponentWinner, GroupLayout.PREFERRED_SIZE, 98,
+																GroupLayout.PREFERRED_SIZE))))
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblPlayerWinner, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(104)
-									.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblOpponentWinner, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblPlayerHeader, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
-							.addComponent(lblOpponentHeader, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE, false)
-						.addComponent(lblPlayerHeader)
+										.addComponent(lblPlayerHeader, GroupLayout.PREFERRED_SIZE, 98,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
+										.addComponent(lblOpponentHeader, GroupLayout.PREFERRED_SIZE, 104,
+												GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap()));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
+				.createSequentialGroup().addContainerGap()
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE, false).addComponent(lblPlayerHeader)
 						.addComponent(lblOpponentHeader))
-					.addGap(29)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+				.addGap(29)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPlayerWinner, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblOpponentWinner, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(opponentTeam, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
 						.addComponent(playerTeam, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-					.addContainerGap())
-		);
+				.addContainerGap()));
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
-		
+
 		playerStarters.add(playerPG);
 		playerStarters.add(playerSG);
 		playerStarters.add(playerC);
 		playerStarters.add(playerSF);
 		playerStarters.add(playerPF);
-		
+
 		opponentStarters.add(opponentPG);
 		opponentStarters.add(opponentSG);
 		opponentStarters.add(opponentC);
 		opponentStarters.add(opponentSF);
 		opponentStarters.add(opponentPF);
-		
+
 		setPlayerLabels(playerStarters);
 		setOpponentLabels(opponentStarters);
 		setWinners(playerStarters, opponentStarters, lblPlayerWinner, lblOpponentWinner);

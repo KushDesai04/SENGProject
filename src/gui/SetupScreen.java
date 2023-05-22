@@ -40,9 +40,9 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
 /**
- * This is the Setup Screen class. This screen will 
- * allow players to set their team name, select difficulty,
- * and select the season duration. This information is passed and stored in the GameManager.
+ * This is the Setup Screen class. This screen will allow players to set their
+ * team name, select difficulty, and select the season duration. This
+ * information is passed and stored in the GameManager.
  * 
  * @author Yunu Cho
  * @author Kush Desai
@@ -61,9 +61,10 @@ public class SetupScreen {
 	 * The name of the given Team.
 	 */
 	private JTextField txtTeamName;
-	
+
 	/**
 	 * Constructs a new SetupScreen object with the given GameManager.
+	 * 
 	 * @param gameManager the current instance of the GameManager object
 	 */
 	public SetupScreen(GameManager gameManager) {
@@ -95,16 +96,17 @@ public class SetupScreen {
 	public SetupScreen() {
 		initialize();
 	}
-	
+
 	/**
 	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-	
+
 	/**
-	 * Calls closeGameSetupScreen within the GameManager object which opens the next window.
+	 * Calls closeGameSetupScreen within the GameManager object which opens the next
+	 * window.
 	 */
 	public void finishedWindow() {
 		manager.closeGameSetupScreen(this);
@@ -141,13 +143,15 @@ public class SetupScreen {
 					} else {
 						String message = "No special characters are allowed in the team name"
 								+ "\n and name should be between 3-15 characters long";
-						JOptionPane.showMessageDialog(new JFrame(), message, "Name Selection Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), message, "Name Selection Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 
 				else {
 					String message = "Please enter a team name that is between 3 and 15 characters long";
-					JOptionPane.showMessageDialog(new JFrame(), message, "Name Selection Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(new JFrame(), message, "Name Selection Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

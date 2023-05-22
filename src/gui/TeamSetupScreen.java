@@ -30,10 +30,10 @@ import javax.swing.JSeparator;
 import javax.swing.JOptionPane;
 
 /**
- * This is the TeamSetupScreen class. This screen will allow players to
- * purchase their first 5 athletes so that they can start the game. Players are
- * given an option to choose 5 from 6 players and the players are generated
- * mostly randomly.
+ * This is the TeamSetupScreen class. This screen will allow players to purchase
+ * their first 5 athletes so that they can start the game. Players are given an
+ * option to choose 5 from 6 players and the players are generated mostly
+ * randomly.
  * 
  * @author Yunu Cho
  * @author Kush Desai
@@ -51,6 +51,7 @@ public class TeamSetupScreen {
 
 	/**
 	 * Constructs a new TeamSetupScreen object with the given GameManager.
+	 * 
 	 * @param gameManager the current instance of the GameManager object
 	 */
 	public TeamSetupScreen(GameManager gameManager) {
@@ -90,7 +91,8 @@ public class TeamSetupScreen {
 	}
 
 	/**
-	 * Calls closeTeamSetupScreen within the GameManager object which opens the next window.
+	 * Calls closeTeamSetupScreen within the GameManager object which opens the next
+	 * window.
 	 */
 	public void finishedWindow() {
 		manager.closeTeamSetupScreen(this);
@@ -111,9 +113,10 @@ public class TeamSetupScreen {
 	}
 
 	/**
-	 * When a JToggleButton is pressed to select an Athlete, it displays the information of  
-	 * its corresponding Athlete in a panel and adds the Athlete to the team.
-	 * If the JToggleButton is deselected, the Athlete is removed from the team.
+	 * When a JToggleButton is pressed to select an Athlete, it displays the
+	 * information of its corresponding Athlete in a panel and adds the Athlete to
+	 * the team. If the JToggleButton is deselected, the Athlete is removed from the
+	 * team.
 	 * 
 	 * @param btn   the toggled JToggleButton
 	 * @param pos   the position of the Athlete
@@ -127,17 +130,17 @@ public class TeamSetupScreen {
 	 */
 	public void tglButtonEvent(JToggleButton btn, JLabel pos, JLabel name, JLabel ovr, JLabel off, JLabel def,
 			JLabel stam, JLabel agil, int index) {
-				
+
 		if (btn.isSelected()) {
-			
+
 			Athlete athlete = manager.getMarket().getStarterAthletes().get(index);
 			if (manager.getTeam().getPlayersMap().get(athlete.getPosition()) instanceof Athlete) {
-			    // another player in same position already in team
+				// another player in same position already in team
 				btn.setSelected(false);
 				String message = "Another player is already in that position!";
 				JOptionPane.showMessageDialog(new JFrame(), message, "Selection Error", JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 			else {
 				manager.getTeam().addPlayer(athlete); // Add player from array to starters
 				name.setText(athlete.getName()); // Set name label to athlete name
@@ -148,8 +151,8 @@ public class TeamSetupScreen {
 				stam.setText(String.valueOf(athlete.getStat(Athlete.STATS.S)));
 				agil.setText(String.valueOf(athlete.getStat(Athlete.STATS.A)));
 			}
-		} 
-		
+		}
+
 		else if (!btn.isSelected()) {
 			manager.getTeam().removePlayer(manager.getMarket().getStarterAthletes().get(index));
 		}
@@ -157,6 +160,7 @@ public class TeamSetupScreen {
 
 	/**
 	 * Sets the JButtons to show the information of its corresponding Athlete.
+	 * 
 	 * @param btns list of buttons that will be set to show Athletes' information.
 	 */
 	public void setAthleteButtons(ArrayList<JToggleButton> btns) {
@@ -411,8 +415,7 @@ public class TeamSetupScreen {
 				.addGap(27)));
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
-        
-		
+
 		ArrayList<JToggleButton> tglBtns = new ArrayList<JToggleButton>();
 		tglBtns.add(tglbtnPlayer1);
 		tglBtns.add(tglbtnPlayer2);

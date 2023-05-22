@@ -3,6 +3,7 @@ package main;
 import java.util.*;
 
 import gui.*;
+
 /**
  * This is the GameManager class which controls the logic for the game such as
  * opening/closing windows.
@@ -12,6 +13,7 @@ import gui.*;
  * 
  */
 public class GameManager {
+
 	/**
 	 * The amount of money the GameManager has.
 	 */
@@ -77,457 +79,456 @@ public class GameManager {
 	 */
 	GOTOSCREEN screen;
 
-    
+	public GameManager() {
+		random = new GenerateRandom();
+		market = new Market(random);
+		market.setPurchasableAthletes();
+		market.setPurchasableItems();
+		generateRandomTeams();
+	}
 
-    public GameManager() {
-        random = new GenerateRandom();
-        market = new Market(random);
-        market.setPurchasableAthletes();
-        market.setPurchasableItems();
-        generateRandomTeams();
-    }
+	/**
+	 * Enum to select next screen
+	 */
+	public enum GOTOSCREEN {
+		START, MAIN, SHOP, TEAM, STADIUM, QUIT;
+	}
 
-    /**
-     * Enum to select next screen
-     */
-    public enum GOTOSCREEN {
-        START, MAIN, SHOP, TEAM, STADIUM, QUIT;
-    }
+	/**
+	 * Retrieves the team name.
+	 * 
+	 * @return The team name.
+	 */
+	public String getTeamName() {
+		return teamName;
+	}
 
-    /**
-     * Retrieves the team name.
-     * 
-     * @return The team name.
-     */
-    public String getTeamName() {
-        return teamName;
-    }
+	/**
+	 * Retrieves the amount of money.
+	 * 
+	 * @return The amount of money.
+	 */
+	public int getMoney() {
+		return money;
+	}
 
-    /**
-     * Retrieves the amount of money.
-     * 
-     * @return The amount of money.
-     */
-    public int getMoney() {
-        return money;
-    }
+	/**
+	 * Changes the amount of money by the specified amount.
+	 * 
+	 * @param amount The amount to change the money by.
+	 */
+	public void changeMoney(int amount) {
+		money += amount;
+		if (money < 0) {
+			money = 0;
+		}
+	}
 
-    /**
-     * Changes the amount of money by the specified amount.
-     * 
-     * @param amount The amount to change the money by.
-     */
-    public void changeMoney(int amount) {
-        money += amount;
-        if (money < 0) {
-        	money = 0;
-        }
-    }
+	/**
+	 * Sets the team name.
+	 * 
+	 * @param teamName The team name to set.
+	 */
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
 
-    /**
-     * Sets the team name.
-     * 
-     * @param teamName The team name to set.
-     */
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
+	/**
+	 * Retrieves the current week.
+	 * 
+	 * @return The current week.
+	 */
+	public int getCurrentWeek() {
+		return currentWeek;
+	}
 
-    /**
-     * Retrieves the current week.
-     * 
-     * @return The current week.
-     */
-    public int getCurrentWeek() {
-        return currentWeek;
-    }
+	/**
+	 * Generates random Teams for the current week.
+	 */
+	public void generateRandomTeams() {
+		weeklyTeams = random.generateTeams();
+	}
 
-    /**
-     * Generates random Teams for the current week.
-     */
-    public void generateRandomTeams() {
-        weeklyTeams = random.generateTeams();
-    }
+	/**
+	 * Increments the current week and updates the Market and random Teams
+	 * accordingly.
+	 */
+	public void incrementWeek() {
+		currentWeek += 1;
+		market.setPurchasableAthletes();
+		market.setPurchasableItems();
+		market.clearWeeklyPurchases();
+		random.incrementMultiplier();
+		generateRandomTeams();
+	}
 
-    /**
-     * Increments the current week and updates the Market and random Teams accordingly.
-     */
-    public void incrementWeek() {
-        currentWeek += 1;
-        market.setPurchasableAthletes();
-        market.setPurchasableItems();
-        market.clearWeeklyPurchases();
-        random.incrementMultiplier();
-        generateRandomTeams();
-    }
+	/**
+	 * Retrieves the total number of weeks.
+	 * 
+	 * @return The total number of weeks.
+	 */
+	public int getNumWeeks() {
+		return numWeeks;
+	}
 
-    /**
-     * Retrieves the total number of weeks.
-     * 
-     * @return The total number of weeks.
-     */
-    public int getNumWeeks() {
-        return numWeeks;
-    }
+	/**
+	 * Sets the total number of weeks.
+	 * 
+	 * @param numWeeks The total number of weeks to set.
+	 */
+	public void setNumWeeks(int numWeeks) {
+		this.numWeeks = numWeeks;
+	}
 
-    /**
-     * Sets the total number of weeks.
-     * 
-     * @param numWeeks The total number of weeks to set.
-     */
-    public void setNumWeeks(int numWeeks) {
-        this.numWeeks = numWeeks;
-    }
+	/**
+	 * Retrieves the player's Team.
+	 * 
+	 * @return The player's Team.
+	 */
+	public Team getTeam() {
+		return team;
+	}
 
-    /**
-     * Retrieves the player's Team.
-     * 
-     * @return The player's Team.
-     */
-    public Team getTeam() {
-        return team;
-    }
+	/**
+	 * Retrieves the game difficulty.
+	 * 
+	 * @return The game difficulty.
+	 */
+	public String getDifficulty() {
+		return difficulty;
+	}
 
-    /**
-     * Retrieves the game difficulty.
-     * 
-     * @return The game difficulty.
-     */
-    public String getDifficulty() {
-        return difficulty;
-    }
+	/**
+	 * Sets the game difficulty.
+	 * 
+	 * @param difficulty The game difficulty to set.
+	 */
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
 
-    /**
-     * Sets the game difficulty.
-     * 
-     * @param difficulty The game difficulty to set.
-     */
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
+	/**
+	 * Retrieves the game Market.
+	 * 
+	 * @return The game Market.
+	 */
+	public Market getMarket() {
+		return market;
+	}
 
-    /**
-     * Retrieves the game Market.
-     * 
-     * @return The game Market.
-     */
-    public Market getMarket() {
-        return market;
-    }
+	/**
+	 * Retrieves the random Teams for the current week.
+	 * 
+	 * @return The random Teams for the current week.
+	 */
+	public ArrayList<Team> getWeeklyTeams() {
+		return weeklyTeams;
+	}
 
-    /**
-     * Retrieves the random Teams for the current week.
-     * 
-     * @return The random Teams for the current week.
-     */
-    public ArrayList<Team> getWeeklyTeams() {
-        return weeklyTeams;
-    }
+	/**
+	 * Retrieves the opposing Team.
+	 * 
+	 * @return The opposing Team.
+	 */
+	public Team getOpposingTeam() {
+		return opposingTeam;
+	}
 
-    /**
-     * Retrieves the opposing Team.
-     * 
-     * @return The opposing Team.
-     */
-    public Team getOpposingTeam() {
-        return opposingTeam;
-    }
+	/**
+	 * Sets the opposing Team.
+	 * 
+	 * @param team The opposing Team to set.
+	 */
+	public void setOpposingTeam(Team team) {
+		opposingTeam = team;
+	}
 
-    /**
-     * Sets the opposing Team.
-     * 
-     * @param team The opposing Team to set.
-     */
-    public void setOpposingTeam(Team team) {
-        opposingTeam = team;
-    }
+	/**
+	 * Launches the start screen.
+	 */
+	public void launchStartScreen() {
+		StartScreen startWindow = new StartScreen(this);
+	}
 
-    /**
-     * Launches the start screen.
-     */
-    public void launchStartScreen() {
-        StartScreen startWindow = new StartScreen(this);
-    }
+	/**
+	 * Closes the start screen and launches the game setup screen or main screen.
+	 * 
+	 * @param startWindow The start screen to close.
+	 */
+	public void closeStartScreen(StartScreen startWindow) {
+		startWindow.closeWindow();
+		if (!isSetup) {
+			isSetup = true;
+			launchGameSetupScreen();
+		} else {
+			launchMainScreen();
+		}
+	}
 
-    /**
-     * Closes the start screen and launches the game setup screen or main screen.
-     * 
-     * @param startWindow The start screen to close.
-     */
-    public void closeStartScreen(StartScreen startWindow) {
-        startWindow.closeWindow();
-        if (!isSetup) {
-            isSetup = true;
-            launchGameSetupScreen();
-        } else {
-            launchMainScreen();
-        }
-    }
+	/**
+	 * Launches the game setup screen.
+	 */
+	public void launchGameSetupScreen() {
+		SetupScreen gameSetupWindow = new SetupScreen(this);
+	}
 
-    /**
-     * Launches the game setup screen.
-     */
-    public void launchGameSetupScreen() {
-        SetupScreen gameSetupWindow = new SetupScreen(this);
-    }
+	/**
+	 * Closes the game setup screen and launches the team setup screen.
+	 * 
+	 * @param gameSetupWindow The game setup screen to close.
+	 */
+	public void closeGameSetupScreen(SetupScreen gameSetupWindow) {
+		if (difficulty.equals("Easy")) {
+			money = 5000;
+		} else {
+			money = 3000;
+		}
+		gameSetupWindow.closeWindow();
+		launchTeamSetupScreen();
+	}
 
-    /**
-     * Closes the game setup screen and launches the team setup screen.
-     * 
-     * @param gameSetupWindow The game setup screen to close.
-     */
-    public void closeGameSetupScreen(SetupScreen gameSetupWindow) {
-        if (difficulty.equals("Easy")) {
-            money = 5000;
-        } else {
-            money = 3000;
-        }
-        gameSetupWindow.closeWindow();
-        launchTeamSetupScreen();
-    }
+	/**
+	 * Launches the team setup screen after generating random starting Athletes
+	 */
+	public void launchTeamSetupScreen() {
+		market.getStarterAthletes().add(random.generateAthlete(0));
+		market.getStarterAthletes().add(random.generateAthlete(1));
+		market.getStarterAthletes().add(random.generateAthlete(2));
+		market.getStarterAthletes().add(random.generateAthlete(3));
+		market.getStarterAthletes().add(random.generateAthlete(4));
+		market.getStarterAthletes().add(random.generateAthlete(random.getRandomNumber(5)));
+		TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
+	}
 
-    /**
-     * Launches the team setup screen after generating random starting Athletes
-     */
-    public void launchTeamSetupScreen() {
-        market.getStarterAthletes().add(random.generateAthlete(0));
-        market.getStarterAthletes().add(random.generateAthlete(1));
-        market.getStarterAthletes().add(random.generateAthlete(2));
-        market.getStarterAthletes().add(random.generateAthlete(3));
-        market.getStarterAthletes().add(random.generateAthlete(4));
-        market.getStarterAthletes().add(random.generateAthlete(random.getRandomNumber(5)));
-        TeamSetupScreen teamSetupWindow = new TeamSetupScreen(this);
-    }
+	/**
+	 * Closes the team setup screen and launches the main screen.
+	 * 
+	 * @param teamSetupWindow The team setup screen to close.
+	 */
+	public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) {
+		teamSetupWindow.closeWindow();
+		team.getReserves().clear();
+		launchMainScreen();
+	}
 
-    /**
-     * Closes the team setup screen and launches the main screen.
-     * 
-     * @param teamSetupWindow The team setup screen to close.
-     */
-    public void closeTeamSetupScreen(TeamSetupScreen teamSetupWindow) {
-        teamSetupWindow.closeWindow();
-        team.getReserves().clear();
-        launchMainScreen();
-    }
+	/**
+	 * Launches the main screen.
+	 */
+	public void launchMainScreen() {
+		if (currentWeek < numWeeks) {
+			MainScreen mainWindow = new MainScreen(this);
+		} else {
+			launchGameOverScreen();
+		}
+	}
 
-    /**
-     * Launches the main screen.
-     */
-    public void launchMainScreen() {
-        if (currentWeek < numWeeks) {
-            MainScreen mainWindow = new MainScreen(this);
-        } else {
-            launchGameOverScreen();
-        }
-    }
+	/**
+	 * Closes the main screen and navigates to the specified screen.
+	 * 
+	 * @param mainWindow The main screen to close.
+	 * @param toScreen   The screen to navigate to.
+	 */
+	public void closeMainScreen(MainScreen mainWindow, GOTOSCREEN toScreen) {
+		this.screen = toScreen;
 
-    /**
-     * Closes the main screen and navigates to the specified screen.
-     * 
-     * @param mainWindow The main screen to close.
-     * @param toScreen   The screen to navigate to.
-     */
-    public void closeMainScreen(MainScreen mainWindow, GOTOSCREEN toScreen) {
-        this.screen = toScreen;
+		switch (screen) {
 
-        switch (screen) {
+		case START:
+			mainWindow.closeWindow();
+			launchStartScreen();
+			break;
 
-            case START:
-                mainWindow.closeWindow();
-                launchStartScreen();
-                break;
+		case SHOP:
+			mainWindow.closeWindow();
+			launchShopScreen();
+			break;
 
-            case SHOP:
-                mainWindow.closeWindow();
-                launchShopScreen();
-                break;
+		case STADIUM:
+			mainWindow.closeWindow();
+			launchStadiumScreen();
+			break;
 
-            case STADIUM:
-                mainWindow.closeWindow();
-                launchStadiumScreen();
-                break;
+		case TEAM:
+			mainWindow.closeWindow();
+			launchTeamScreen();
+			break;
 
-            case TEAM:
-                mainWindow.closeWindow();
-                launchTeamScreen();
-                break;
+		case QUIT:
+			mainWindow.closeWindow();
+			break;
 
-            case QUIT:
-                mainWindow.closeWindow();
-                break;
+		case MAIN:
+			mainWindow.closeWindow();
+			launchStartScreen();
 
-            case MAIN:
-                mainWindow.closeWindow();
-                launchStartScreen();
+		default:
+			break;
+		}
+	}
 
-            default:
-                break;
-        }
-    }
+	/**
+	 * Launches the shop screen.
+	 */
+	public void launchShopScreen() {
+		ShopScreen shopWindow = new ShopScreen(this);
+	}
 
-    /**
-     * Launches the shop screen.
-     */
-    public void launchShopScreen() {
-        ShopScreen shopWindow = new ShopScreen(this);
-    }
+	/**
+	 * Closes the shop screen and launches the main screen.
+	 * 
+	 * @param shopWindow The shop screen to close.
+	 */
+	public void closeShopScreen(ShopScreen shopWindow) {
+		shopWindow.closeWindow();
+		launchMainScreen();
+	}
 
-    /**
-     * Closes the shop screen and launches the main screen.
-     * 
-     * @param shopWindow The shop screen to close.
-     */
-    public void closeShopScreen(ShopScreen shopWindow) {
-        shopWindow.closeWindow();
-        launchMainScreen();
-    }
+	/**
+	 * Launches the team screen.
+	 */
+	public void launchTeamScreen() {
+		TeamScreen teamWindow = new TeamScreen(this);
+	}
 
-    /**
-     * Launches the team screen.
-     */
-    public void launchTeamScreen() {
-        TeamScreen teamWindow = new TeamScreen(this);
-    }
+	/**
+	 * Closes the team screen and launches the main screen.
+	 * 
+	 * @param teamWindow The team screen to close.
+	 */
+	public void closeTeamScreen(TeamScreen teamWindow) {
+		teamWindow.closeWindow();
+		launchMainScreen();
+	}
 
-    /**
-     * Closes the team screen and launches the main screen.
-     * 
-     * @param teamWindow The team screen to close.
-     */
-    public void closeTeamScreen(TeamScreen teamWindow) {
-        teamWindow.closeWindow();
-        launchMainScreen();
-    }
+	/**
+	 * Launches the stadium screen.
+	 */
+	public void launchStadiumScreen() {
+		StadiumScreen stadiumWindow = new StadiumScreen(this);
+	}
 
-    /**
-     * Launches the stadium screen.
-     */
-    public void launchStadiumScreen() {
-        StadiumScreen stadiumWindow = new StadiumScreen(this);
-    }
+	/**
+	 * Closes the stadium screen.
+	 * 
+	 * @param stadiumWindow The stadium screen to close.
+	 */
+	public void closeStadiumScreen(StadiumScreen stadiumWindow) {
+		stadiumWindow.closeWindow();
+	}
 
-    /**
-     * Closes the stadium screen.
-     * 
-     * @param stadiumWindow The stadium screen to close.
-     */
-    public void closeStadiumScreen(StadiumScreen stadiumWindow) {
-        stadiumWindow.closeWindow();
-    }
+	/**
+	 * Launches the opponent selector screen.
+	 */
+	public void LaunchOpponentSelectorScreen() {
+		OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
+	}
 
-    /**
-     * Launches the opponent selector screen.
-     */
-    public void LaunchOpponentSelectorScreen() {
-        OpponentSelectorScreen opponentSelectorWindow = new OpponentSelectorScreen(this);
-    }
+	/**
+	 * Closes the opponent selector screen.
+	 * 
+	 * @param opponentSelectorWindow The opponent selector screen to close.
+	 */
+	public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
+		opponentSelectorWindow.closeWindow();
+	}
 
-    /**
-     * Closes the opponent selector screen.
-     * 
-     * @param opponentSelectorWindow The opponent selector screen to close.
-     */
-    public void closeOpponentSelectorScreen(OpponentSelectorScreen opponentSelectorWindow) {
-        opponentSelectorWindow.closeWindow();
-    }
+	/**
+	 * Launches the game screen and updates points, and money according to match
+	 * results
+	 */
+	public void launchGameScreen() {
+		Gameplay gamePlay = new Gameplay(team, opposingTeam, difficulty);
+		gamePlay.play();
+		String result = gamePlay.declareWinner();
+		switch (result) {
+		case "player":
+			finalScore += 3;
+			money += 2000;
+			if (difficulty.equals("hard")) {
+				finalScore += 3;
+			}
+			break;
+		case "draw":
+			finalScore += 1;
+			money += 1000;
+			if (difficulty.equals("hard")) {
+				finalScore += 1;
+			}
+			break;
+		case "opponent":
+			money += 500;
+			if (difficulty.equals("hard")) {
+				money += 500;
+			}
+			break;
+		}
+		GameScreen gameWindow = new GameScreen(this);
+	}
 
-    /**
-     * Launches the game screen and updates points, and money according to match results
-     */
-    public void launchGameScreen() {
-        Gameplay gamePlay = new Gameplay(team, opposingTeam, difficulty);
-        gamePlay.play();
-        String result = gamePlay.declareWinner();
-        switch (result) {
-            case "player":
-                finalScore += 3;
-                money += 2000;
-                if (difficulty.equals("hard")) {
-                    finalScore += 3;
-                }
-                break;
-            case "draw":
-                finalScore += 1;
-                money += 1000;
-                if (difficulty.equals("hard")) {
-                    finalScore += 1;
-                }
-                break;
-            case "opponent":
-                money += 500;
-                if (difficulty.equals("hard")) {
-                    money += 500;
-                }
-                break;
-        }
-        GameScreen gameWindow = new GameScreen(this);
-    }
+	/**
+	 * Closes the game screen and launches the main screen.
+	 * 
+	 * @param gameWindow The game screen to close.
+	 */
+	public void closeGameScreen(GameScreen gameWindow) {
+		gameWindow.closeWindow();
+		incrementWeek();
+		launchMainScreen();
+	}
 
-    /**
-     * Closes the game screen and launches the main screen.
-     * 
-     * @param gameWindow The game screen to close.
-     */
-    public void closeGameScreen(GameScreen gameWindow) {
-        gameWindow.closeWindow();
-        incrementWeek();
-        launchMainScreen();
-    }
+	/**
+	 * Retrieves the final score.
+	 * 
+	 * @return The final score.
+	 */
+	public int getScore() {
+		return finalScore;
+	}
 
-    /**
-     * Retrieves the final score.
-     * 
-     * @return The final score.
-     */
-    public int getScore() {
-        return finalScore;
-    }
+	/**
+	 * Launches the game over screen.
+	 */
+	public void launchGameOverScreen() {
+		GameOverScreen gameOverWindow = new GameOverScreen(this);
+	}
 
-    /**
-     * Launches the game over screen.
-     */
-    public void launchGameOverScreen() {
-        GameOverScreen gameOverWindow = new GameOverScreen(this);
-    }
+	/**
+	 * Closes the game over screen and launches the start screen.
+	 * 
+	 * @param gameOverWindow The game over screen to close.
+	 */
+	public void closeGameOverScreen(GameOverScreen gameOverWindow) {
+		gameOverWindow.closeWindow();
+		System.exit(0);
+	}
 
-    /**
-     * Closes the game over screen and launches the start screen.
-     * 
-     * @param gameOverWindow The game over screen to close.
-     */
-    public void closeGameOverScreen(GameOverScreen gameOverWindow) {
-        gameOverWindow.closeWindow();
-        System.exit(0);
-    }
-    
-    
-    /**
-     * Closes the train athlete screen and launches the main screen.
-     * 
-     * @param trainAthleteScreen The train athlete screen to close.
-     */
+	/**
+	 * Closes the train athlete screen and launches the main screen.
+	 * 
+	 * @param trainAthleteScreen The train athlete screen to close.
+	 */
 	public void closeTrainAthleteScreen(TrainAthleteScreen trainAthleteScreen) {
 		trainAthleteScreen.closeWindow();
 		launchMainScreen();
 	}
-	
+
 	/**
-     * Launches the train athlete screen.
-     */
+	 * Launches the train athlete screen.
+	 */
 	public void launchTrainAthleteScreen() {
 		TrainAthleteScreen trainAthleteWindow = new TrainAthleteScreen(this);
 	}
-	
+
 	/**
-     * Launches a dialogue box to provide information about random events.
-     */
+	 * Launches a dialogue box to provide information about random events.
+	 */
 	public void launchDialogueBox(String message) {
 		DialogueBox dialogueBox = new DialogueBox(this, message);
 	}
-	
+
 	/**
-     * Launches a random event
-     */
+	 * Launches a random event
+	 */
 	public void launchRandomEvent() {
 		RandomEvent randomEvent = new RandomEvent(team);
 		int chanceOfEvent = randomEvent.generateRandomNumber();
@@ -538,9 +539,9 @@ public class GameManager {
 	}
 
 	/**
-     * Launches the application
-     */
-    public static void main(String args[]) {
+	 * Launches the application
+	 */
+	public static void main(String args[]) {
 		GameManager manager = new GameManager();
 		manager.launchStartScreen();
 	}

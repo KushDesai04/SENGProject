@@ -24,8 +24,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 /**
- * This is the OpponentSelectorScreen. This screen provides 3 opponent teams to choose from. When
- * a team is clicked, the players in that team and their stats are shown to the player.
+ * This is the OpponentSelectorScreen. This screen provides 3 opponent teams to
+ * choose from. When a team is clicked, the players in that team and their stats
+ * are shown to the player.
  * 
  * @author Yunu Cho
  * @author Kush Desai
@@ -44,9 +45,10 @@ public class OpponentSelectorScreen {
 	 * The opposing Team.
 	 */
 	private Team opposingTeam;
-	
+
 	/**
 	 * Constructs a new OpponentSelectorScreen object with the given GameManager.
+	 * 
 	 * @param gameManager the current instance of the GameManager object
 	 */
 	public OpponentSelectorScreen(GameManager gameManager) {
@@ -77,23 +79,26 @@ public class OpponentSelectorScreen {
 	public OpponentSelectorScreen() {
 		initialize();
 	}
-	
+
 	/**
 	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-	
+
 	/**
-	 * Calls closeGameScreen within the GameManager object which opens the next window.
+	 * Calls closeGameScreen within the GameManager object which opens the next
+	 * window.
 	 */
 	public void finishedWindow() {
 		manager.closeOpponentSelectorScreen(this);
 	}
-	
+
 	/**
-	 * Sets the JButtons showing information based on the generated opponent Teams for the current week.
+	 * Sets the JButtons showing information based on the generated opponent Teams
+	 * for the current week.
+	 * 
 	 * @param btns list of JButtons that will be changed
 	 */
 	public void setTeamButtons(ArrayList<JButton> btns) {
@@ -101,17 +106,23 @@ public class OpponentSelectorScreen {
 			btns.get(i).setText(manager.getWeeklyTeams().get(i).getTeamName());
 		}
 	}
-	
+
 	/**
-	 * Sets the Label text when a JButton is pressed, displaying the information of an Athlete
-	 * that is linked to its corresponding JButton.
-	 * @param teamName 	the name of the opposing Team
-	 * @param player1 	label that will be set to display the information of the opposing Athlete of the Point Guard position 
-	 * @param player2	label that will be set to display the information of the opposing Athlete of the Shooting Guard position 
-	 * @param player3	label that will be set to display the information of the opposing Athlete of the Small Forward position 
-	 * @param player4	label that will be set to display the information of the opposing Athlete of the Power Forward position 
-	 * @param player5	label that will be set to display the information of the opposing Athlete of the Center position 
-	 * @param index		index of the opposing Team that has been selected
+	 * Sets the Label text when a JButton is pressed, displaying the information of
+	 * an Athlete that is linked to its corresponding JButton.
+	 * 
+	 * @param teamName the name of the opposing Team
+	 * @param player1  label that will be set to display the information of the
+	 *                 opposing Athlete of the Point Guard position
+	 * @param player2  label that will be set to display the information of the
+	 *                 opposing Athlete of the Shooting Guard position
+	 * @param player3  label that will be set to display the information of the
+	 *                 opposing Athlete of the Small Forward position
+	 * @param player4  label that will be set to display the information of the
+	 *                 opposing Athlete of the Power Forward position
+	 * @param player5  label that will be set to display the information of the
+	 *                 opposing Athlete of the Center position
+	 * @param index    index of the opposing Team that has been selected
 	 */
 	public void btnEvent(JLabel teamName, JLabel player1, JLabel player2, JLabel player3, JLabel player4,
 			JLabel player5, int index) {
@@ -150,14 +161,15 @@ public class OpponentSelectorScreen {
 					JOptionPane.showMessageDialog(new JFrame(), message, "Team Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-					    manager.setOpposingTeam(opposingTeam);
-					    manager.launchGameScreen();
-					    finishedWindow();
+						manager.setOpposingTeam(opposingTeam);
+						manager.launchGameScreen();
+						finishedWindow();
 					}
-					
+
 					catch (NullPointerException error) {
 						String message = "Please select an Opponent!";
-						JOptionPane.showMessageDialog(new JFrame(), message, "Opponent Selection Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), message, "Opponent Selection Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}

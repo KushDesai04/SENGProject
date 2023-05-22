@@ -20,9 +20,8 @@ import javax.swing.SwingConstants;
 
 /**
  * This is the StadiumScreen class. The stadium screen will allow players to
- * access the stadium, where players can find and select matches to
- * play, or take a bye. Each week, the opponents will change and become more
- * difficult.
+ * access the stadium, where players can find and select matches to play, or
+ * take a bye. Each week, the opponents will change and become more difficult.
  * 
  * @author Yunu Cho
  * @author Kush Desai
@@ -38,9 +37,10 @@ public class StadiumScreen {
 	 * The current instance of the GameManager object.
 	 */
 	private GameManager manager;
-	
+
 	/**
 	 * Constructs a new StadiumScreen object with the given GameManager.
+	 * 
 	 * @param gameManager the current instance of the GameManager object
 	 */
 	public StadiumScreen(GameManager gameManager) {
@@ -71,16 +71,17 @@ public class StadiumScreen {
 	public StadiumScreen() {
 		initialize();
 	}
-	
+
 	/**
 	 * Closes the window.
 	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-	
+
 	/**
-	 * Calls closeStadiumScreen within the GameManager object which opens the next window.
+	 * Calls closeStadiumScreen within the GameManager object which opens the next
+	 * window.
 	 */
 	public void finishedWindow() {
 		manager.closeStadiumScreen(this);
@@ -128,39 +129,31 @@ public class StadiumScreen {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+										.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addGap(875))
+								.addGroup(groupLayout.createSequentialGroup().addGap(258)
+										.addComponent(btnPlay, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE).addGap(6)
+										.addComponent(btnBye, GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+						.addGap(121).addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addContainerGap()
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnBack, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(875))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(258)
-							.addComponent(btnPlay, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-							.addGap(6)
-							.addComponent(btnBye, GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
-					.addGap(121)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnBack)
-							.addGap(151)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnBye, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-								.addComponent(btnPlay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-							.addGap(187))))
-		);
+								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup().addComponent(btnBack).addGap(151)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(btnBye, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190,
+												Short.MAX_VALUE)
+										.addComponent(btnPlay, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 190,
+												Short.MAX_VALUE))
+								.addGap(187)))));
 
 		JLabel lblCurrentWeek = new JLabel(String.format("Week: %d", manager.getCurrentWeek()));
 		lblCurrentWeek.setHorizontalAlignment(SwingConstants.CENTER);

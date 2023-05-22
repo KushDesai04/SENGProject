@@ -3,51 +3,56 @@ package main;
 import java.util.ArrayList;
 
 /**
- * This is the Market class. This class controls the logic for buying and selling all purchasable items such as Athletes and Items.
- * It manages the lists of purchasable Athletes and Items, as well as the lists of starter Athletes and weekly purchased Athletes and Items.
+ * This is the Market class. This class controls the logic for buying and
+ * selling all purchasable items such as Athletes and Items. It manages the
+ * lists of purchasable Athletes and Items, as well as the lists of starter
+ * Athletes and weekly purchased Athletes and Items.
  * 
- * The Market class is responsible for generating random purchasable Athletes and Items through the GenerateRandom class.
+ * The Market class is responsible for generating random purchasable Athletes
+ * and Items through the GenerateRandom class.
  * 
  * @author Yunu Cho
  * @author Kush Desai
  * 
  */
 public class Market {
-	
+
 	/**
 	 * The list of purchasable Athletes.
 	 */
 	private ArrayList<Athlete> purchasableAthletes;
-	
+
 	/**
 	 * The list of purchasable Items.
 	 */
 	private ArrayList<Item> purchasableItems;
-	
+
 	/**
 	 * The list of starter Athletes.
 	 */
 	private ArrayList<Athlete> starterAthletes = new ArrayList<Athlete>();
-	
+
 	/**
 	 * The list of weekly purchased Athletes.
 	 */
 	private ArrayList<Athlete> weeklyPurchasedAthletes = new ArrayList<Athlete>();
-	
+
 	/**
 	 * The list of weekly purchased Items.
 	 */
 	private ArrayList<Item> weeklyPurchasedItems = new ArrayList<Item>();
-	
+
 	/**
-	 * The instance of GenerateRandom used for generating random purchasable Athletes and Items.
+	 * The instance of GenerateRandom used for generating random purchasable
+	 * Athletes and Items.
 	 */
 	private GenerateRandom randomPurchasables;
 
 	/**
 	 * Constructs a new Market object with the specified instance of GenerateRandom.
 	 * 
-	 * @param random the instance of GenerateRandom used for generating random purchasable Athletes and Items
+	 * @param random the instance of GenerateRandom used for generating random
+	 *               purchasable Athletes and Items
 	 */
 	public Market(GenerateRandom random) {
 		randomPurchasables = random;
@@ -63,7 +68,8 @@ public class Market {
 	}
 
 	/**
-	 * Generates and sets the list of purchasable Athletes using the GenerateRandom class.
+	 * Generates and sets the list of purchasable Athletes using the GenerateRandom
+	 * class.
 	 */
 	public void setPurchasableAthletes() {
 		purchasableAthletes = randomPurchasables.generateWeeklyAthletes();
@@ -79,7 +85,8 @@ public class Market {
 	}
 
 	/**
-	 * Generates and sets the list of purchasable Items using the GenerateRandom class.
+	 * Generates and sets the list of purchasable Items using the GenerateRandom
+	 * class.
 	 */
 	public void setPurchasableItems() {
 		purchasableItems = randomPurchasables.generateWeeklyItems();
@@ -138,4 +145,3 @@ public class Market {
 		weeklyPurchasedItems.clear();
 	}
 }
-

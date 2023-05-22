@@ -1,34 +1,35 @@
 package main;
 
 /**
- * This is the Item class which represents a single Item. Items are used to boost player stats.
+ * This is the Item class which represents a single Item. Items are used to
+ * boost player stats.
  * 
  * @author Yunu Cho
  * @author Kush Desai
  * 
  */
 public class Item {
-	
+
 	/**
 	 * The name of the Item.
 	 */
 	private String name;
-	
+
 	/**
 	 * The stat affected by the Item.
 	 */
 	private Athlete.STATS stat;
-	
+
 	/**
 	 * The value by which the stat is increased.
 	 */
 	private int value;
-	
+
 	/**
 	 * The price of the Item.
 	 */
 	private int price;
-	
+
 	/**
 	 * The description of the Item.
 	 */
