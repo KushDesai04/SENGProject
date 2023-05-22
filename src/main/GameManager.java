@@ -1,7 +1,8 @@
 package main;
 
-import GUI.*;
 import java.util.*;
+
+import gui.*;
 /**
  * This is the GameManager class which controls the logic for the game such as
  * opening/closing windows.
@@ -529,7 +530,8 @@ public class GameManager {
      */
 	public void launchRandomEvent() {
 		RandomEvent randomEvent = new RandomEvent(team);
-		String message = randomEvent.generateEvent(randomEvent.generateRandom());
+		int chanceOfEvent = randomEvent.generateRandomNumber();
+		String message = randomEvent.generateEvent(randomEvent.generateRandom(), chanceOfEvent);
 		if (message instanceof String) {
 			launchDialogueBox(message);
 		}

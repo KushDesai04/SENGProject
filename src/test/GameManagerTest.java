@@ -1,9 +1,11 @@
 package test;
 
-import GUI.*;
 import main.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import gui.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameManagerTest {
@@ -50,7 +52,29 @@ class GameManagerTest {
         // Test if the method runs without errors
         assertDoesNotThrow(() -> gameManager.launchStartScreen());
     }
+    
+    @Test
+    void testSetandGetTeamName() {
+    	assertNull(gameManager.getTeam().getTeamName());
+    	String name = "Test";
+    	gameManager.setTeamName(name);
+    	assertEquals(gameManager.getTeamName(), name);
+    }
+    
+    @Test
+    void testSetandGetDifficulty() {
+    	assertNull(gameManager.getDifficulty());
+    	String easy = "Easy";
+    	gameManager.setDifficulty(easy);
+    	assertEquals(gameManager.getDifficulty(), easy);
+    }
 
-    // Add more test cases as needed for the remaining methods
+    @Test
+    void testSetandGetOpposingTeam() {
+    	assertNull(gameManager.getOpposingTeam());
+    	Team team = new Team("opponent");
+    	gameManager.setOpposingTeam(team);
+    	assertEquals(gameManager.getOpposingTeam(), team);
+    }
 
 }

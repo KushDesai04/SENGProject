@@ -82,7 +82,7 @@ public class GamePlayTest {
     }
 
     @Test
-    public void testDeclareWinner_PlayerWins() {
+    public void testDeclarePlayerWins() {
         // Set up the player points and opponent points
     	HashMap<Athlete.STATS, Integer> stats = new HashMap<Athlete.STATS, Integer>();
         stats.put(Athlete.STATS.O, 99);
@@ -96,14 +96,14 @@ public class GamePlayTest {
     }
 
     @Test
-    public void testDeclareWinner_Draw() {
+    public void testDeclareDraw() {
         // Set up the player points and opponent points to be equal
         gameplay.play();
         assertEquals("draw", gameplay.declareWinner());
     }
 
     @Test
-    public void testDeclareWinner_OpponentWins() {
+    public void testDeclareOpponentWins() {
         // Set up the player points and opponent points
     	HashMap<Athlete.STATS, Integer> stats = new HashMap<Athlete.STATS, Integer>();
         stats.put(Athlete.STATS.O, 9);

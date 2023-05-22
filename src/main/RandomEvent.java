@@ -49,7 +49,15 @@ public class RandomEvent {
      */
     public boolean generateRandom() {
         return random.nextInt(50) == randomInt;
-//      return true;
+    }
+    
+    /**
+     * Generates a random int value.
+     *
+     * @return A random integer
+     */
+    public int generateRandomNumber() {
+        return random.nextInt(50);
     }
 
     /**
@@ -58,12 +66,12 @@ public class RandomEvent {
      * @param run A boolean value indicating whether the event should be generated.
      * @return A string message describing the event that occurred.
      */
-    public String generateEvent(Boolean run) {
+    public String generateEvent(Boolean run, int chanceOfEvent) {
         String message = null;
         if (run) {
             ArrayList<Athlete> reserves = team.getReserves();
-            int i = random.nextInt(50);
-            switch (i) {
+            
+            switch (chanceOfEvent) {
                 case 0:
                     // Random starter Athlete gets a stat boost
                     Athlete athlete = team.getPlayersArray().get(random.nextInt(team.getPlayersArray().size()));
@@ -91,7 +99,7 @@ public class RandomEvent {
                     for (int j = 0; j < reserves.size(); j++) {
                         Athlete player = reserves.get(j);
                         if (random.nextInt(5) * (player.getInjuries() / 100) >= 5) {
-                            reserves.remove(j);
+                            team.getReserves().remove(j);
                             message = player.getName() + " has quit the team because of a broken foot!";
                             break;
                         }
@@ -103,7 +111,7 @@ public class RandomEvent {
                     int chance = random.nextInt(50);
                     if (reserves.size() < 5 && chance < 5) {
                         Athlete a = generateRandom.generateAthlete(chance);
-                        reserves.add(a);
+                        team.getReserves().add(a);
                         message = a.getName() + " has joined your team!";
                     }
                     break;
