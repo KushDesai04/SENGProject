@@ -17,7 +17,11 @@ import main.GameManager;
 
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
+/*
+ * This is the GameOverScreen class. This GUI class is the final window shown
+ * to the player, and only opens once the player finishes all weeks. The screen
+ * shows the players points, money, team name, and duration of the season.
+ */
 public class GameOverScreen {
 
 	private JFrame frame;

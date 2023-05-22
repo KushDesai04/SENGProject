@@ -18,6 +18,11 @@ import java.util.HashMap;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
+/*
+ * This is the GameScreen class. The game screen is shown when the player initiates a match against an opponent.
+ * The screen will show players from both teams, and winning players have their names shown in green, losing players
+ * in white, and draw in orange. The team names are also shown.
+ */
 public class GameScreen {
 
 	private JFrame frame;
@@ -134,6 +139,7 @@ public class GameScreen {
 		}
 		else {
 		   	playerWinnerLbl.setText("Draw!");
+		   	playerWinnerLbl.setForeground(Color.orange);
 		}
 	}
 

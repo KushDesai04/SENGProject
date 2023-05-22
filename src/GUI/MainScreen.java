@@ -27,10 +27,10 @@ import javax.swing.JPanel;
 
 /**
  * This is the Main Screen class. The main screen will allow players to access
- * the stadium, shop, and their their Team of players (as well as quit the game)
+ * the stadium, shop, and their their Team of players, as well as go back to the start screen
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class MainScreen {

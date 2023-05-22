@@ -40,8 +40,11 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
 /**
- * This is the Setup Screen class. The setup screen will allow players to
- * purchase their initial 5 players so start the game
+ * This is the Setup Screen class. This screen will 
+ * allow players to purchase their first 5 athletes so 
+ * that they can start the game. Players are given an
+ * option to choose 5 from 6 players and the players
+ * are generated mostly randomly.
  * 
  * @author Kush Desai
  * @author Yunu Cho

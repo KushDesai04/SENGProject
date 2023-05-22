@@ -407,7 +407,8 @@ public class TeamSetupScreen {
 				.addGap(27)));
 		panel_1.setLayout(gl_panel_1);
 		frame.getContentPane().setLayout(groupLayout);
-
+        
+		
 		ArrayList<JToggleButton> tglBtns = new ArrayList<JToggleButton>();
 		tglBtns.add(tglbtnPlayer1);
 		tglBtns.add(tglbtnPlayer2);

@@ -29,14 +29,13 @@ import javax.swing.JSeparator;
 import javax.swing.JOptionPane;
 
 /**
- * This is the Team Setup Screen class. This screen will 
- * allow players to purchase their first 5 athletes so 
- * that they can start the game. Players are given an
- * option to choose 5 from 6 players and the players
- * are generated mostly randomly.
+ * This is the ShopScreen class. This screen will 
+ * allow players to purchase athletes and items.
+ * There are 3 athletes and 3 items that are randomly
+ * generated each week that get placed into the shop.
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 public class ShopScreen {
