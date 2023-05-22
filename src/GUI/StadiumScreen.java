@@ -24,8 +24,8 @@ import javax.swing.SwingConstants;
  * play, or take a bye. Each week, the opponents will change and become more
  * difficult
  * 
- * @author Kush Desai
  * @author Yunu Cho
+ * @author Kush Desai
  * 
  */
 

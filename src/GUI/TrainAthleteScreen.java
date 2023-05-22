@@ -28,6 +28,11 @@ import main.Athlete;
 import main.GameManager;
 import main.Item;
 
+/*
+ * This is the TrainAthlete screen. This screen is opened when the player
+ * takes a bye. This screen allows a player to specially train one athlete,
+ * and that Athletes stats are all increased by 10.
+ */
 public class TrainAthleteScreen {
 
 	private JFrame frame;
