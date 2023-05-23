@@ -59,6 +59,7 @@ public class OpponentSelectorScreen {
 
 	/**
 	 * Launch the application.
+	 * @param args Command line args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -179,10 +180,10 @@ public class OpponentSelectorScreen {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel = new JLabel("Choose a team to play against");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JLabel lblTitle = new JLabel("Choose a team to play against");
+		lblTitle.setForeground(new Color(255, 255, 255));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JSeparator separator = new JSeparator();
 
@@ -246,7 +247,7 @@ public class OpponentSelectorScreen {
 								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
 								.addGap(62)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 529,
+										.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 529,
 												GroupLayout.PREFERRED_SIZE)
 										.addGroup(groupLayout.createSequentialGroup()
 												.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 522,
@@ -257,7 +258,7 @@ public class OpponentSelectorScreen {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
 				.createSequentialGroup().addGap(10)
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnBack)
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 				.addGap(18)
 				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 406, GroupLayout.PREFERRED_SIZE)

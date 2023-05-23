@@ -62,6 +62,7 @@ public class TeamSetupScreen {
 
 	/**
 	 * Launch the application.
+	 * @param args Command line args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -230,19 +231,19 @@ public class TeamSetupScreen {
 		JLabel lblPosition = new JLabel("and see their stats.");
 		lblPosition.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel offLabel = new JLabel("Offence: ");
-		offLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblOffValue = new JLabel("Offence: ");
+		lblOffValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JSeparator separator = new JSeparator();
 
-		JLabel defLabel = new JLabel("Defence: ");
-		defLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblDefValue = new JLabel("Defence: ");
+		lblDefValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel stamLabel = new JLabel("Stamina: ");
-		stamLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblStamValue = new JLabel("Stamina: ");
+		lblStamValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		JLabel agilLabel = new JLabel("Agility: ");
-		agilLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblAgilValue = new JLabel("Agility: ");
+		lblAgilValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		JLabel ovrLabel = new JLabel("");
 		ovrLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -265,14 +266,14 @@ public class TeamSetupScreen {
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 										.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
-												.addComponent(stamLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+												.addComponent(lblStamValue, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(defLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+												.addComponent(lblDefValue, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 										.addGap(6).addComponent(stamValue))
-								.addGroup(gl_panel.createSequentialGroup().addComponent(agilLabel).addGap(18)
+								.addGroup(gl_panel.createSequentialGroup().addComponent(lblAgilValue).addGap(18)
 										.addComponent(agilValue))
-								.addGroup(gl_panel.createSequentialGroup().addComponent(offLabel).addGap(6)
+								.addGroup(gl_panel.createSequentialGroup().addComponent(lblOffValue).addGap(6)
 										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(defValue)
 												.addComponent(offValue))))
 						.addContainerGap(173, Short.MAX_VALUE))
@@ -300,17 +301,17 @@ public class TeamSetupScreen {
 								GroupLayout.PREFERRED_SIZE)
 						.addGap(9)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(offLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblOffValue, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 								.addComponent(offValue))
 						.addGap(5)
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
 								.createSequentialGroup()
-								.addComponent(defLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblDefValue, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(stamLabel)
+								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblStamValue)
 										.addComponent(stamValue))
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(agilLabel)
+								.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(lblAgilValue)
 										.addComponent(agilValue)))
 								.addComponent(defValue))
 						.addContainerGap(18, Short.MAX_VALUE)));

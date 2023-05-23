@@ -78,7 +78,10 @@ public class GameManager {
 	 * The next screen to navigate to in the game.
 	 */
 	GOTOSCREEN screen;
-
+    
+	/**
+	 * Constructor for game manager
+	 */
 	public GameManager() {
 		random = new GenerateRandom();
 		market = new Market(random);
@@ -91,7 +94,35 @@ public class GameManager {
 	 * Enum to select next screen
 	 */
 	public enum GOTOSCREEN {
-		START, MAIN, SHOP, TEAM, STADIUM, QUIT;
+		/**
+		 * Start Screen
+		 */
+		START,
+		
+		/**
+		 * Main Screen
+		 */
+		MAIN,
+		
+		/**
+		 * Shop Screen
+		 */
+		SHOP,
+		
+		/**
+		 * Team Screen
+		 */
+		TEAM,
+		
+		/**
+		 * Stadium Screen
+		 */
+		STADIUM,
+		
+		/**
+		 * Quit Game
+		 */
+		QUIT;
 	}
 
 	/**
@@ -521,6 +552,8 @@ public class GameManager {
 
 	/**
 	 * Launches a dialogue box to provide information about random events.
+	 * 
+	 * @param message A String message to display in the dialogue box
 	 */
 	public void launchDialogueBox(String message) {
 		DialogueBox dialogueBox = new DialogueBox(this, message);
@@ -540,6 +573,7 @@ public class GameManager {
 
 	/**
 	 * Launches the application
+	 * @param args command line args (not needed)
 	 */
 	public static void main(String args[]) {
 		GameManager manager = new GameManager();

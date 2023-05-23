@@ -81,10 +81,11 @@ public class Team {
 		reserves.remove(player);
 		// TODO throw exception if player is in team
 	}
-
+	
 	/**
 	 * Removes an Athlete from the Team's player mapping and adds them to the
-	 * reserves.
+	 * reserves. Only used in team setup to ensure that the player has an otherwise
+	 * full team.
 	 *
 	 * @param player the Athlete to be removed from the Team and added to the
 	 *               reserves
@@ -116,14 +117,6 @@ public class Team {
 		consumables.add(consumable);
 	}
 
-	/**
-	 * Sells a consumable Item by removing it from the Team's consumables list.
-	 *
-	 * @param consumable the Item to be sold and removed from the consumables
-	 */
-	public void sellConsumable(Item consumable) {
-		consumables.remove(consumable);
-	}
 
 	/**
 	 * Checks if the Team can play a game. A Team can play if it has exactly 5

@@ -97,7 +97,7 @@ public class TeamTest {
 	public void testSellConsumable() {
 		Item consumable = new Item("Health Potion", Athlete.STATS.A, 10);
 		team.buyConsumable(consumable);
-		team.sellConsumable(consumable);
+		team.removeItem(consumable);
 
 		assertFalse(team.getItems().contains(consumable));
 	}

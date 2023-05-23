@@ -77,6 +77,7 @@ public class ShopScreen {
 
 	/**
 	 * Launch the application.
+	 * @param args Command line args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -118,7 +119,6 @@ public class ShopScreen {
 	 * corresponding JButton is pressed.
 	 * 
 	 * @param btn   the selected JButton
-	 * @param pos   the label displaying the position of the Athlete
 	 * @param name  the label displaying the name of the Athlete
 	 * @param ovr   the label displaying the overall stat of the Athlete
 	 * @param off   the label displaying the offence stat of the Athlete
@@ -158,8 +158,6 @@ public class ShopScreen {
 	 * corresponding JButton is pressed.
 	 * 
 	 * @param btn   the selected JButton
-	 * @param pos   the label displaying the position of the Athlete, which will be
-	 *              set to blank
 	 * @param name  the label displaying the name of the Item
 	 * @param ovr   the label displaying the overall stat of the Athlete, which will
 	 *              be set to show the price of the Item

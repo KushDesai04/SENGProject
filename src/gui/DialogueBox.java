@@ -30,6 +30,7 @@ public class DialogueBox {
 
 	/**
 	 * Launch the application.
+	 * @param args Command line args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

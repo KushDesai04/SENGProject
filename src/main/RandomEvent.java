@@ -65,14 +65,15 @@ public class RandomEvent {
 	 * Generates a random event based on the given boolean value.
 	 *
 	 * @param run A boolean value indicating whether the event should be generated.
+	 * @param event an integer representing which event to run
 	 * @return A string message describing the event that occurred.
 	 */
-	public String generateEvent(Boolean run, int chanceOfEvent) {
+	public String generateEvent(Boolean run, int event) {
 		String message = null;
 		if (run) {
 			ArrayList<Athlete> reserves = team.getReserves();
 
-			switch (chanceOfEvent) {
+			switch (event) {
 			case 0:
 				// Random starter Athlete gets a stat boost
 				Athlete athlete = team.getPlayersArray().get(random.nextInt(team.getPlayersArray().size()));

@@ -77,14 +77,13 @@ public class GamePlayTest {
 		stats.put(Athlete.STATS.A, 99);
 		playerTeam.addPlayer(new Athlete("A", Athlete.POSITION.C, stats));
 		gameplay.play();
-		// Verify that player points and opponent points are updated correctly
+		// Verify that player points and opponent points are updated correctly in case of draw
 		assertEquals(1, gameplay.getPlayerPoints());
 		assertEquals(0, gameplay.getOpponentPoints());
 	}
 
 	@Test
 	public void testDeclarePlayerWins() {
-		// Set up the player points and opponent points
 		HashMap<Athlete.STATS, Integer> stats = new HashMap<Athlete.STATS, Integer>();
 		stats.put(Athlete.STATS.O, 99);
 		stats.put(Athlete.STATS.D, 99);
@@ -92,20 +91,20 @@ public class GamePlayTest {
 		stats.put(Athlete.STATS.A, 99);
 		playerTeam.addPlayer(new Athlete("A", Athlete.POSITION.C, stats));
 		gameplay.play();
-
+        // Test player wins
 		assertEquals("player", gameplay.declareWinner());
 	}
 
 	@Test
 	public void testDeclareDraw() {
-		// Set up the player points and opponent points to be equal
+		// Test draw
 		gameplay.play();
 		assertEquals("draw", gameplay.declareWinner());
 	}
 
 	@Test
 	public void testDeclareOpponentWins() {
-		// Set up the player points and opponent points
+		// Test player loses
 		HashMap<Athlete.STATS, Integer> stats = new HashMap<Athlete.STATS, Integer>();
 		stats.put(Athlete.STATS.O, 9);
 		stats.put(Athlete.STATS.D, 9);

@@ -74,7 +74,30 @@ public class Athlete {
 	 * Enum to represent the possible player positions.
 	 */
 	public enum POSITION {
-		PG, PF, C, SF, SG;
+		/**
+		 * Point Guard
+		 */
+        PG, 
+        
+        /**
+		 * Power Forward
+		 */
+        PF,
+        
+        /**
+		 * Center
+		 */
+        C,
+        
+        /**
+		 * Small Forward
+		 */
+        SF, 
+        
+        /**
+		 * Shooting Guard
+		 */
+        SG; 
 	}
 
 	/**
@@ -82,7 +105,30 @@ public class Athlete {
 	 * Current Stamina.
 	 */
 	public enum STATS {
-		O, D, S, A, CS;
+		/**
+		 * Offence
+		 */
+		O, 
+		
+		/**
+		 * Defence
+		 */
+		D, 
+		
+		/**
+		 * Stamina
+		 */
+		S, 
+		
+		/**
+		 * Agility
+		 */
+		A,
+		
+		/**
+		 * Current Stamina
+		 */
+		CS;
 	}
 
 	/**
