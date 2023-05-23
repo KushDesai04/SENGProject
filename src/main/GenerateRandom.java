@@ -175,7 +175,7 @@ public class GenerateRandom {
 		while (weeklyItems.size() < 3) {
 			int index = random.nextInt(possibleItemNames.size());
 			int statIndex = random.nextInt(5);
-			Athlete.STATS s = null;
+			Athlete.STATS s = Athlete.STATS.A;
 			String name = possibleItemNames.get(index);
 			while (usedItemNames.contains(name)) {
 				index = random.nextInt(possibleItemNames.size());

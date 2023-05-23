@@ -297,9 +297,9 @@ public class TeamScreen {
 		});
 		scrollPane.setViewportView(reservesList);
 
-		JButton tglBtnPG_5 = new JButton("Make Starter");
-		tglBtnPG_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		tglBtnPG_5.addActionListener(new ActionListener() {
+		JButton btnMakeStarter = new JButton("Make Starter");
+		btnMakeStarter.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnMakeStarter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Athlete athlete = reservesList.getSelectedValue();
 				lastSelectedReserve = athlete;
@@ -314,7 +314,6 @@ public class TeamScreen {
 					scrollPane.repaint();
 					setStarterButtons(starters);
 				} catch (NullPointerException error) {
-
 					String message = "Please select a Reserve Player first!";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
 				}
@@ -386,14 +385,14 @@ public class TeamScreen {
 					Item item = itemList.getSelectedValue();
 					item.consume(lastSelectedAthlete);
 					manager.getTeam().removeItem(item);
-
 					itemList.clearSelection();
 					itemList.revalidate();
 					itemList.repaint();
 					scrollPane_1.revalidate();
 					scrollPane_1.repaint();
 					setStarterButtons(starters);
-				} catch (NullPointerException error) {
+				} 
+				catch (NullPointerException error) {
 					String message = "Please select a starter first!";
 					JOptionPane.showMessageDialog(new JFrame(), message, "Dialog", JOptionPane.ERROR_MESSAGE);
 				}
@@ -502,7 +501,7 @@ public class TeamScreen {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(tglBtnPG_5, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnMakeStarter, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(btnSellAthlete, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -531,7 +530,7 @@ public class TeamScreen {
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(tglBtnPG_5, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnMakeStarter, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnSellAthlete, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
 							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)

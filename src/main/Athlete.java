@@ -67,7 +67,7 @@ public class Athlete {
 		stats.put(STATS.D, defence);
 		stats.put(STATS.S, stamina);
 		stats.put(STATS.A, agility);
-		currentStamina = stats.get(Athlete.STATS.S);
+		stats.put(STATS.CS, stamina);
 	}
 
 	/**
@@ -214,6 +214,8 @@ public class Athlete {
 		else if (currentStamina > stats.get(STATS.S)) {
 			currentStamina = stats.get(STATS.S);
 		}
+		
+		stats.put(Athlete.STATS.CS, currentStamina);
 	}
 
 	/**
@@ -221,6 +223,7 @@ public class Athlete {
 	 */
 	public void restoreCurrentStamina() {
 		currentStamina = getStat(Athlete.STATS.S);
+		stats.put(Athlete.STATS.CS, currentStamina);
 	}
 
 	/**

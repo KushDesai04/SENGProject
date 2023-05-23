@@ -132,7 +132,6 @@ public class Item {
 	 * @param athlete the Athlete on which to apply the Item's effect
 	 */
 	public void consume(Athlete athlete) {
-
 		athlete.changeStat(value, stat);
 	}
 }
