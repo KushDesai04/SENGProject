@@ -91,7 +91,7 @@ public class GameManager {
 	}
 
 	/**
-	 * Enum to select next screen
+	 * Enum to select next screen.
 	 */
 	public enum GOTOSCREEN {
 		/**
