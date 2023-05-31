@@ -127,7 +127,7 @@ public class TeamTest {
 		Athlete player4 = generateAthlete("Player4", Athlete.POSITION.SF);
 		Athlete player5 = generateAthlete("Player5", Athlete.POSITION.PF);
 
-		player3.changeCurrentStamina(-player3.getCurrentStamina());
+		player3.changeStat(-player3.getStat(Athlete.STATS.CS), Athlete.STATS.CS);
 
 		team.addPlayer(player1);
 		team.addPlayer(player2);
@@ -206,12 +206,12 @@ public class TeamTest {
 		team.addPlayer(player1);
 		team.addPlayer(player2);
 
-		player1.changeCurrentStamina(50);
-		player2.changeCurrentStamina(60);
+		player1.changeStat(50, Athlete.STATS.CS);
+		player2.changeStat(60, Athlete.STATS.CS);
 
 		team.restoreStamina();
 
-		assertEquals(player1.getStat(STATS.S), player1.getCurrentStamina());
-		assertEquals(player2.getStat(STATS.S), player2.getCurrentStamina());
+		assertEquals(player1.getStat(STATS.S), player1.getStat(Athlete.STATS.CS));
+		assertEquals(player2.getStat(STATS.S), player2.getStat(Athlete.STATS.CS));
 	}
 }

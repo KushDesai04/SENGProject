@@ -77,16 +77,16 @@ public class Gameplay {
 			if (player.getRating() > opponent.getRating()) {
 				playerPoints += 1;
 				if (difficulty.equals("easy")) {
-					player.changeCurrentStamina(-10);
+					player.changeStat(-10, Athlete.STATS.CS);
 				} else {
-					player.changeCurrentStamina(-20);
+					player.changeStat(-20, Athlete.STATS.CS);
 				}
 			} else if (player.getRating() < opponent.getRating()) {
 				opponentPoints += 1;
 				if (difficulty.equals("easy")) {
-					player.changeCurrentStamina(-15);
+					player.changeStat(-15, Athlete.STATS.CS);
 				} else {
-					player.changeCurrentStamina(-25);
+					player.changeStat(-25, Athlete.STATS.CS);
 				}
 			}
 		}

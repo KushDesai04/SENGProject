@@ -38,11 +38,6 @@ public class Athlete {
 	private int injuries = 0;
 
 	/**
-	 * The current stamina of the Athlete.
-	 */
-	private int currentStamina;
-
-	/**
 	 * The stats of the Athlete.
 	 */
 	private HashMap<STATS, Integer> stats = new HashMap<STATS, Integer>();
@@ -200,39 +195,13 @@ public class Athlete {
 		return stats.get(stat);
 	}
 
-	/**
-	 * Changes the current stamina of the Athlete.
-	 * 
-	 * @param value The amount to change the current stamina by.
-	 */
-	public void changeCurrentStamina(int value) {
-		currentStamina += value;
-		if (currentStamina < 0) {
-			currentStamina = 0;
-		}
-
-		else if (currentStamina > stats.get(STATS.S)) {
-			currentStamina = stats.get(STATS.S);
-		}
-		
-		stats.put(Athlete.STATS.CS, currentStamina);
-	}
 
 	/**
 	 * Restores the current stamina of the Athlete to its maximum value.
 	 */
 	public void restoreCurrentStamina() {
-		currentStamina = getStat(Athlete.STATS.S);
-		stats.put(Athlete.STATS.CS, currentStamina);
-	}
-
-	/**
-	 * Retrieves the current stamina of the Athlete.
-	 * 
-	 * @return The current stamina of the Athlete.
-	 */
-	public int getCurrentStamina() {
-		return currentStamina;
+		int maxStamina = getStat(Athlete.STATS.S);
+		stats.put(Athlete.STATS.CS, maxStamina);
 	}
 
 	/**
@@ -287,7 +256,7 @@ public class Athlete {
 	 * @return true if the Athlete is injured, false otherwise.
 	 */
 	public boolean isInjured() {
-		if (currentStamina == 0) {
+		if (stats.get(STATS.CS) == 0) {
 			injuries += 1;
 			return true;
 		}

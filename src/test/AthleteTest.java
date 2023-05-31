@@ -1,6 +1,8 @@
 package test;
 
 import main.*;
+import main.Athlete.STATS;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
@@ -53,33 +55,33 @@ public class AthleteTest {
 
 	@Test
 	public void testChangeCurrentStamina() {
-		int initialValue = athlete.getCurrentStamina();
+		int initialValue = athlete.getStat(Athlete.STATS.CS);
 		int changeValue = -20;
-		athlete.changeCurrentStamina(changeValue);
+		athlete.changeStat(changeValue, Athlete.STATS.CS);
 		int expectedValue = initialValue + changeValue;
-		assertEquals(expectedValue, athlete.getCurrentStamina());
+		assertEquals(expectedValue, athlete.getStat(Athlete.STATS.CS));
 
 		// Check that current stamina does not go over max
-		athlete.changeCurrentStamina(initialValue + 20);
-		assertEquals(initialValue, athlete.getCurrentStamina());
+		athlete.changeStat(athlete.getStat(Athlete.STATS.S) + 20, Athlete.STATS.CS);
+		assertEquals(99, athlete.getStat(Athlete.STATS.CS));
 
 		// Check current stamina does not go below 0
-		athlete.changeCurrentStamina(-(athlete.getCurrentStamina() + 1));
-		assertEquals(0, athlete.getCurrentStamina());
+		athlete.changeStat(-(athlete.getStat(Athlete.STATS.CS) + 1), Athlete.STATS.CS);
+		assertEquals(0, athlete.getStat(Athlete.STATS.CS));
 
 	}
 
 	@Test
 	public void testRestoreCurrentStamina() {
-		athlete.changeCurrentStamina(-20);
+		athlete.changeStat(-20, Athlete.STATS.CS);
 		athlete.restoreCurrentStamina();
 		int expectedValue = athlete.getStat(Athlete.STATS.S);
-		assertEquals(expectedValue, athlete.getCurrentStamina());
+		assertEquals(expectedValue, athlete.getStat(Athlete.STATS.CS));
 	}
 
 	@Test
 	public void testIsInjured() {
-		athlete.changeCurrentStamina(-athlete.getCurrentStamina());
+		athlete.changeStat(-athlete.getStat(Athlete.STATS.CS), Athlete.STATS.CS);
 		assertTrue(athlete.isInjured());
 		assertEquals(1, athlete.getInjuries());
 	}

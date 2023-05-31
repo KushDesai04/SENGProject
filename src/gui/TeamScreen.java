@@ -127,7 +127,7 @@ public class TeamScreen {
 		def.setText("Defence: " + String.valueOf(athlete.getStat(Athlete.STATS.D)));
 		stam.setText("Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.S)));
 		agil.setText("Agility: " + String.valueOf(athlete.getStat(Athlete.STATS.A)));
-		currStam.setText("Current Stamina: " + String.valueOf(athlete.getCurrentStamina()));
+		currStam.setText("Current Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.CS)));
 		lastSelectedAthlete = athlete;
 		for (JButton starterBtn : starters) {
 			starterBtn.setForeground(Color.black);
@@ -161,7 +161,7 @@ public class TeamScreen {
 		def.setText("Defence: " + String.valueOf(athlete.getStat(Athlete.STATS.D)));
 		stam.setText("Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.S)));
 		agil.setText("Agility: " + String.valueOf(athlete.getStat(Athlete.STATS.A)));
-		currStam.setText("Current Stamina: " + String.valueOf(athlete.getCurrentStamina()));
+		currStam.setText("Current Stamina: " + String.valueOf(athlete.getStat(Athlete.STATS.CS)));
 	}
 
 	/**
@@ -510,14 +510,14 @@ public class TeamScreen {
 							.addComponent(btnSellItem, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
 						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBack)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(textNickname, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnSetName)))
 					.addContainerGap())
 		);
@@ -542,7 +542,7 @@ public class TeamScreen {
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 401, GroupLayout.PREFERRED_SIZE)
 							.addGap(25)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(textNickname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textNickname)
 								.addComponent(btnSetName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
 							.addComponent(btnBack))

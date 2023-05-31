@@ -53,10 +53,10 @@ public class ItemTest {
 	@Test
 	public void testConsume() {
 		HashMap<Athlete.STATS, Integer> stats = new HashMap<Athlete.STATS, Integer>();
-		stats.put(Athlete.STATS.O, 99);
-		stats.put(Athlete.STATS.D, 99);
-		stats.put(Athlete.STATS.S, 99);
-		stats.put(Athlete.STATS.A, 99);
+		stats.put(Athlete.STATS.O, 69);
+		stats.put(Athlete.STATS.D, 69);
+		stats.put(Athlete.STATS.S, 69);
+		stats.put(Athlete.STATS.A, 69);
 
 		Athlete athlete = new Athlete("A", Athlete.POSITION.C, stats);
 		Item item = new Item("Health Potion", Athlete.STATS.A, 10);

@@ -75,7 +75,7 @@ public class RandomEventTest {
 		team.addReserves(generateAthlete("reserve1", Athlete.POSITION.C));
 		assertNotNull(team.getReserves());
 		Athlete reserve = team.getReserves().get(0);
-		reserve.changeCurrentStamina(-reserve.getCurrentStamina());
+		reserve.changeStat(-reserve.getStat(Athlete.STATS.CS), Athlete.STATS.CS);
 
 		// There is a 1/5 chance that the test will fail (if random.nextInt() returns 0)
 		for (int i = 0; i < 500; i++) {
